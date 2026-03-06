@@ -564,34 +564,11 @@
             align-items: center;
             margin-top: 48px;
         }
-        .phone-device {
-            width: 375px;
-            height: 720px;
-            background: #111;
-            border-radius: 44px;
-            padding: 12px;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.08);
+        .proto-phone-img {
+            max-height: 620px;
+            width: auto;
+            filter: drop-shadow(0 40px 80px rgba(0,0,0,0.25));
             animation: phoneFloat 4s ease-in-out infinite;
-            position: relative;
-        }
-        .phone-device::before {
-            content: '';
-            position: absolute;
-            top: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 28px;
-            background: #111;
-            border-radius: 20px;
-            z-index: 10;
-        }
-        .phone-device iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 34px;
-            background: var(--navy);
         }
         @keyframes phoneFloat {
             0%, 100% { transform: translateY(0); }
@@ -612,14 +589,7 @@
             50% { opacity: 1; }
         }
         @media (max-width: 768px) {
-            .phone-device {
-                width: 300px;
-                height: 580px;
-                border-radius: 36px;
-                padding: 10px;
-            }
-            .phone-device iframe { border-radius: 28px; }
-            .phone-device::before { width: 80px; height: 24px; top: 12px; }
+            .proto-phone-img { max-height: 460px; }
             .proto-showcase { padding: 48px 0 40px; }
         }
 
@@ -889,11 +859,8 @@
             <h2 class="sec-title" style="text-align:center;">Try it yourself.</h2>
         </div>
         <div class="proto-frame-wrap reveal">
-            <div class="phone-device">
-                <iframe src="https://milesmiles.figma.site/" allow="fullscreen" loading="lazy"></iframe>
-            </div>
+            <img src="milesmiles.png" alt="Miles & Miles App" class="proto-phone-img" />
         </div>
-        <p class="proto-hint reveal">↕ Scroll & tap to navigate the prototype</p>
     </div>
 </section>
 

@@ -13,22 +13,22 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg: #0a0a0a;
-            --bg-card: #111111;
-            --bg-card-hover: #161616;
-            --text: #f0efe9;
-            --text-muted: #8a8a8a;
+            --bg: #111111;
+            --bg-dark: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --text: #eeeeee;
+            --text-muted: #a9a9a9;
             --navy: #1B2B63;
             --navy-light: #2a3d7c;
+            --navy-dark: #0f1a3d;
             --green: #78BE20;
             --green-dark: #5a9a10;
-            --accent: #c9a55a;
-            --border: rgba(255,255,255,0.08);
+            --red: #e57373;
+            --border: rgba(255,255,255,0.1);
             --heading: 'Space Grotesk', sans-serif;
             --sans: 'Inter', sans-serif;
             --mono: 'DM Mono', monospace;
-            --max-width: 1200px;
-            --section-gap: 80px;
+            --max-width: 1100px;
         }
 
         html { scroll-behavior: smooth; }
@@ -42,44 +42,42 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ── Back Nav ── */
-        .back-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(10,10,10,0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
         }
-        .back-nav a {
+
+        /* ── Fixed Header ── */
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            height: 64px;
+            background: var(--bg-dark);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            backdrop-filter: blur(20px);
+        }
+        .header a {
             font-family: var(--mono);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--text-muted);
             text-decoration: none;
             transition: color 0.3s;
         }
-        .back-nav a:hover { color: var(--text); }
-        .back-nav .brand {
+        .header a:hover { color: var(--text); }
+        .header .brand {
             font-family: var(--heading);
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text);
             letter-spacing: -0.02em;
-        }
-
-        /* ── Container ── */
-        .container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 40px;
         }
 
         /* ── Hero ── */
@@ -87,109 +85,124 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 80px;
+            padding-top: 64px;
+            background: var(--bg-dark);
             position: relative;
             overflow: hidden;
         }
         .hero::before {
             content: '';
             position: absolute;
-            top: -200px;
-            right: -200px;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(27,43,99,0.15) 0%, transparent 70%);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.15) 1px, transparent 0),
+                radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.1) 1px, transparent 0),
+                radial-gradient(1px 1px at 50% 30%, rgba(255,255,255,0.12) 1px, transparent 0),
+                radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.08) 1px, transparent 0),
+                radial-gradient(1px 1px at 90% 40%, rgba(255,255,255,0.1) 1px, transparent 0),
+                radial-gradient(1px 1px at 20% 90%, rgba(255,255,255,0.06) 1px, transparent 0),
+                radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.12) 1px, transparent 0),
+                radial-gradient(1px 1px at 60% 50%, rgba(255,255,255,0.08) 1px, transparent 0);
             pointer-events: none;
         }
-        .hero-content {
+        .hero-inner {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            gap: 60px;
             align-items: center;
             width: 100%;
+            position: relative;
+            z-index: 1;
         }
-        .hero-text .tag {
+        .hero-text .case-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             font-family: var(--mono);
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--green);
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .hero-text .tag::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--green);
-            border-radius: 50%;
+            margin-bottom: 32px;
+            padding: 8px 16px;
+            border: 1px solid rgba(120,190,32,0.3);
+            border-radius: 100px;
         }
         .hero-text h1 {
             font-family: var(--heading);
-            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-size: clamp(3.5rem, 6vw, 5.5rem);
             font-weight: 700;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
-            margin-bottom: 24px;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 16px;
         }
-        .hero-text h1 span {
-            color: var(--navy-light);
-        }
-        .hero-text .subtitle {
+        .hero-text h1 .accent { color: var(--green); }
+        .hero-text .hero-sub {
             font-family: var(--mono);
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--text-muted);
             margin-bottom: 20px;
         }
-        .hero-text p {
-            font-size: 1.1rem;
+        .hero-text .hero-desc {
+            font-size: 1.05rem;
             color: var(--text-muted);
             line-height: 1.8;
-            max-width: 480px;
+            max-width: 440px;
         }
-        .hero-visual {
+        .hero-text .hero-role {
+            display: inline-block;
+            margin-top: 24px;
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text);
+            padding: 8px 20px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+        }
+        .hero-phone {
             display: flex;
             justify-content: center;
-            align-items: center;
         }
-        .hero-visual img {
-            max-height: 600px;
+        .hero-phone img {
+            max-height: 580px;
             width: auto;
-            filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
-            background: var(--bg);
+            filter: drop-shadow(0 40px 80px rgba(0,0,0,0.6));
+            background: var(--bg-dark);
             border-radius: 24px;
         }
 
-        /* ── Section Base ── */
-        .section {
-            padding: var(--section-gap) 0;
-        }
-        .section-label {
+        /* ── Section Labels ── */
+        .sec-label {
             font-family: var(--mono);
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--green);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .section-title {
+        .sec-label::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+        }
+        .sec-heading {
             font-family: var(--heading);
-            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
             font-weight: 700;
             letter-spacing: -0.03em;
             line-height: 1.1;
+            text-transform: uppercase;
             margin-bottom: 24px;
         }
-        .section-desc {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            max-width: 640px;
-            line-height: 1.8;
-        }
+        .section { padding: 100px 0; }
         .divider {
             width: 100%;
             height: 1px;
@@ -197,383 +210,296 @@
             margin: 40px 0;
         }
 
-        /* ── Overview Strip ── */
-        .overview-strip {
+        /* ── About + Overview ── */
+        .about-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            margin-top: 60px;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
         }
-        .overview-item {
-            background: var(--bg-card);
-            padding: 32px;
-            text-align: center;
+        .about-left .sec-heading {
+            font-size: clamp(2rem, 3.5vw, 3rem);
         }
-        .overview-item .label {
+        .about-right p {
+            color: var(--text-muted);
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+        .about-right strong {
+            color: var(--text);
+        }
+        .about-right .pill {
+            display: inline-block;
             font-family: var(--mono);
             font-size: 0.6rem;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
+            padding: 6px 16px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        /* ── Problem + Goal ── */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .problem-image {
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+        .problem-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .problem-text h3 {
+            font-family: var(--heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .problem-text p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        /* ── Design Process ── */
+        .process-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin: 48px 0;
+        }
+        .process-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text);
+            white-space: nowrap;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .process-pill:hover {
+            border-color: var(--green);
+            background: rgba(120,190,32,0.05);
+        }
+        .process-pill .p-icon { font-size: 0.9rem; }
+        .process-dash {
+            width: 40px;
+            border-top: 2px dashed rgba(255,255,255,0.2);
+        }
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .time-item .hours {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
             color: var(--text-muted);
             margin-bottom: 8px;
         }
-        .overview-item .value {
+        .time-item h4 {
             font-family: var(--heading);
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .time-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .time-tags span {
+            font-family: var(--mono);
+            font-size: 0.55rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-muted);
         }
 
-        /* ── Discovery ── */
-        .discovery-grid {
+        /* ── App Showcase Banner ── */
+        .app-banner {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+            border-radius: 24px;
+            padding: 80px 40px;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .app-banner img {
+            max-height: 500px;
+            width: auto;
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));
+            background: var(--navy-dark);
+            border-radius: 24px;
+        }
+
+        /* ── Pain Points ── */
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        .pain-item { text-align: left; }
+        .pain-num {
+            width: 44px; height: 44px;
+            border: 1.5px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .pain-item h4 {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        .pain-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ── Journey Map ── */
+        .journey-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: start;
             margin-top: 48px;
         }
-        .discovery-text h3 {
-            font-family: var(--heading);
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: -0.02em;
-        }
-        .discovery-text p {
-            color: var(--text-muted);
-            line-height: 1.8;
-        }
-        .discovery-image {
-            border-radius: 16px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-        }
-        .discovery-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* ── Insight Cards ── */
-        .insight-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-top: 48px;
-        }
-        .insight-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 36px;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-        .insight-card:hover {
-            border-color: rgba(120,190,32,0.3);
-            transform: translateY(-2px);
-        }
-        .insight-card .icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: rgba(120,190,32,0.1);
+        .journey-steps { display: flex; flex-direction: column; gap: 24px; }
+        .j-step {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        .insight-card h4 {
-            font-family: var(--heading);
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        .insight-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* ── Problem Banner ── */
-        .problem-banner {
-            background: linear-gradient(135deg, var(--navy) 0%, #0f1a3d 100%);
-            border-radius: 24px;
-            padding: 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .problem-banner::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(120,190,32,0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .problem-banner h2 {
-            font-family: var(--heading);
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-        .problem-banner h2 em {
-            font-style: normal;
-            color: var(--green);
-        }
-        .problem-banner p {
-            color: rgba(255,255,255,0.7);
-            font-size: 1.05rem;
-            max-width: 600px;
-            margin: 0 auto 48px;
-            line-height: 1.8;
-        }
-        .stats-row {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-        }
-        .stat {
-            text-align: center;
-        }
-        .stat .number {
-            font-family: var(--heading);
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--text);
-            line-height: 1;
-        }
-        .stat .desc {
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
-            margin-top: 8px;
-        }
-
-        /* ── Personas ── */
-        .persona-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            margin-top: 48px;
-        }
-        .persona-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: border-color 0.3s;
-        }
-        .persona-card:hover {
-            border-color: rgba(120,190,32,0.2);
-        }
-        .persona-header {
-            height: 180px;
-            overflow: hidden;
-            position: relative;
-        }
-        .persona-header img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .persona-header::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, var(--bg-card) 0%, transparent 60%);
-        }
-        .persona-body {
-            padding: 28px 32px 36px;
-            position: relative;
-            margin-top: -40px;
-        }
-        .persona-body h3 {
-            font-family: var(--heading);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        .persona-body .role {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 16px;
-        }
-        .persona-tags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        .persona-tags span {
-            font-family: var(--mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 6px 14px;
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            color: var(--text-muted);
-        }
-        .persona-detail {
-            margin-bottom: 16px;
-        }
-        .persona-detail .detail-label {
-            font-family: var(--mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-        }
-        .persona-detail p {
-            font-size: 0.95rem;
-            color: var(--text);
-            line-height: 1.6;
-        }
-        .persona-detail.frustration p {
-            color: #e57373;
-        }
-
-        /* ── Journey ── */
-        .journey-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-top: 48px;
-        }
-        .journey-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-        }
-        .journey-step {
-            display: flex;
-            gap: 20px;
+            gap: 16px;
             align-items: flex-start;
         }
-        .journey-step .step-num {
-            width: 40px;
-            height: 40px;
-            min-width: 40px;
-            border-radius: 12px;
+        .j-step .j-num {
+            width: 36px; height: 36px; min-width: 36px;
+            border-radius: 10px;
             background: rgba(120,190,32,0.1);
             border: 1px solid rgba(120,190,32,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: var(--mono);
-            font-size: 0.85rem;
-            font-weight: 500;
+            font-size: 0.8rem;
             color: var(--green);
         }
-        .journey-step h4 {
+        .j-step h4 {
             font-family: var(--heading);
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 4px;
         }
-        .journey-step p {
-            font-size: 0.9rem;
+        .j-step p {
+            font-size: 0.85rem;
             color: var(--text-muted);
         }
         .journey-artifact {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 36px;
+            border-radius: 16px;
+            padding: 32px;
         }
         .journey-artifact h4 {
             font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.18em;
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--text-muted);
-            margin-bottom: 32px;
+            margin-bottom: 28px;
         }
-        .artifact-bar {
-            display: flex;
-            gap: 2px;
-            margin-bottom: 20px;
-        }
-        .artifact-bar .bar-segment {
-            height: 8px;
-            border-radius: 4px;
-            flex: 1;
-        }
-        .artifact-labels {
-            display: flex;
-            justify-content: space-between;
-        }
+        .artifact-bar { display: flex; gap: 2px; margin-bottom: 16px; }
+        .artifact-bar span { height: 8px; border-radius: 4px; flex: 1; }
+        .artifact-labels { display: flex; justify-content: space-between; }
         .artifact-labels span {
             font-family: var(--mono);
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
         }
 
-        /* ── Structure ── */
-        .structure-grid {
+        /* ── Cinematic Photo Divider ── */
+        .photo-divider {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 21/9;
+        }
+        .photo-divider img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        /* ── Wireframing ── */
+        .wire-grid {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
             gap: 60px;
             align-items: center;
             margin-top: 48px;
         }
-        .structure-image {
-            border-radius: 20px;
+        .wire-image {
+            border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--border);
         }
-        .structure-image img {
-            width: 100%;
-            display: block;
+        .wire-image img {
+            width: 100%; display: block;
             background: var(--bg-card);
         }
-        .structure-points {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-        .structure-point h4 {
+        .wire-points { display: flex; flex-direction: column; gap: 28px; }
+        .wire-point h4 {
             font-family: var(--heading);
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
-        .structure-point p {
+        .wire-point p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.7;
         }
 
-        /* ── UI / Design ── */
-        .ui-section {
-            background: linear-gradient(180deg, rgba(27,43,99,0.08) 0%, var(--bg) 100%);
-            border-radius: 32px;
-            padding: 80px;
+        /* ── Style Guide ── */
+        .style-section {
+            background: var(--bg-card);
             border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 64px;
         }
-        .color-palette {
+        .color-row {
             display: flex;
             gap: 16px;
-            margin: 40px 0;
+            margin: 32px 0;
         }
-        .color-swatch {
+        .color-block {
             flex: 1;
             height: 100px;
             border-radius: 16px;
@@ -581,38 +507,36 @@
             align-items: flex-end;
             padding: 14px;
             font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
         }
         .ui-features {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 24px;
-            margin-top: 40px;
+            margin-top: 32px;
         }
-        .ui-feature {
+        .ui-feat {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             align-items: start;
         }
-        .ui-feature .feat-icon {
-            width: 48px;
-            height: 48px;
-            min-width: 48px;
-            border-radius: 14px;
+        .ui-feat .f-icon {
+            width: 44px; height: 44px; min-width: 44px;
+            border-radius: 12px;
             background: rgba(120,190,32,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
-        .ui-feature h4 {
+        .ui-feat h4 {
             font-family: var(--heading);
             font-weight: 600;
             margin-bottom: 4px;
         }
-        .ui-feature p {
-            font-size: 0.9rem;
+        .ui-feat p {
+            font-size: 0.85rem;
             color: var(--text-muted);
             line-height: 1.6;
         }
@@ -621,8 +545,6 @@
         .phone-showcase {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-top: 60px;
             padding: 60px 0;
         }
         .phone-showcase img {
@@ -633,34 +555,26 @@
             border-radius: 24px;
         }
 
-        /* ── Results ── */
-        .results-banner {
-            background: linear-gradient(135deg, #0f1a3d 0%, var(--navy) 50%, #1a3060 100%);
+        /* ── Takeaways / Results ── */
+        .results-section {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, #1a3060 100%);
             border-radius: 24px;
             padding: 80px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
-        .results-banner::after {
+        .results-section::after {
             content: '';
             position: absolute;
-            bottom: -50px;
-            left: 50%;
+            bottom: -50px; left: 50%;
             transform: translateX(-50%);
-            width: 600px;
-            height: 300px;
+            width: 600px; height: 300px;
             background: radial-gradient(ellipse, rgba(120,190,32,0.1) 0%, transparent 70%);
         }
-        .results-banner .section-label { color: var(--green); }
-        .results-banner h2 {
-            font-family: var(--heading);
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 16px;
-        }
-        .results-banner p {
+        .results-section .sec-label { justify-content: center; }
+        .results-section .sec-heading { text-transform: none; }
+        .results-section p {
             color: rgba(255,255,255,0.65);
             max-width: 600px;
             margin: 0 auto 48px;
@@ -673,267 +587,212 @@
             position: relative;
             z-index: 1;
         }
-        .result-stat .number {
+        .r-stat .number {
             font-family: var(--heading);
             font-size: 4rem;
             font-weight: 700;
             color: var(--green);
             line-height: 1;
         }
-        .result-stat .desc {
+        .r-stat .desc {
             font-family: var(--mono);
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: rgba(255,255,255,0.5);
             margin-top: 10px;
         }
 
-        /* ── CTA ── */
-        .cta-section {
-            text-align: center;
-            padding: 100px 0 120px;
-        }
-        .cta-section h2 {
-            font-family: var(--heading);
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 16px;
-        }
-        .cta-section p {
-            color: var(--text-muted);
-            margin-bottom: 36px;
-        }
-        .btn-prototype {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--green);
-            color: #0a0a0a;
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            padding: 16px 40px;
-            border-radius: 100px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        .btn-prototype:hover {
-            background: var(--green-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(120,190,32,0.2);
-        }
-        .btn-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-decoration: none;
-            margin-top: 24px;
-            transition: color 0.3s;
-        }
-        .btn-back:hover { color: var(--text); }
-
-        /* ── Design Process ── */
-        .design-process {
-            display: flex;
-            justify-content: center;
-            gap: 0;
-            margin-top: 48px;
-            position: relative;
-        }
-        .design-process::before {
-            content: '';
-            position: absolute;
-            top: 28px;
-            left: 15%;
-            right: 15%;
-            height: 2px;
-            background: var(--border);
-        }
-        .process-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 14px;
-            flex: 1;
-            position: relative;
-            z-index: 1;
-        }
-        .process-step .step-circle {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 2px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            transition: border-color 0.3s, background 0.3s;
-        }
-        .process-step:hover .step-circle {
-            border-color: var(--green);
-            background: rgba(120,190,32,0.08);
-        }
-        .process-step .step-label {
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            transition: color 0.3s;
-        }
-        .process-step:hover .step-label {
-            color: var(--green);
-        }
-
-        /* ── Pain Points ── */
-        .pain-points-grid {
+        /* ── Greetings ── */
+        .greetings {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-top: 48px;
+            gap: 60px;
+            align-items: center;
+            padding: 80px 0;
         }
-        .pain-point {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+        .greetings-image {
             border-radius: 16px;
-            padding: 36px;
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-            transition: border-color 0.3s, transform 0.3s;
+            overflow: hidden;
+            aspect-ratio: 16/10;
         }
-        .pain-point:hover {
-            border-color: rgba(229,115,115,0.3);
-            transform: translateY(-2px);
+        .greetings-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
         }
-        .pain-point .pp-num {
-            font-family: var(--heading);
+        .greetings-text .sec-heading {
+            text-transform: none;
+            font-style: italic;
             font-size: 2.5rem;
-            font-weight: 700;
-            color: rgba(229,115,115,0.3);
-            line-height: 1;
-            min-width: 48px;
-        }
-        .pain-point h4 {
-            font-family: var(--heading);
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .pain-point p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.7;
         }
 
         /* ── You May Also Like ── */
-        .also-like {
-            padding: 80px 0;
-        }
-        .also-like-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            margin-top: 40px;
-        }
-        .also-like-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            overflow: hidden;
-            text-decoration: none;
-            color: var(--text);
-            transition: border-color 0.3s, transform 0.3s;
-            display: block;
-        }
-        .also-like-card:hover {
-            border-color: rgba(120,190,32,0.3);
-            transform: translateY(-4px);
-        }
-        .also-like-card .card-thumb {
-            height: 200px;
-            overflow: hidden;
-        }
-        .also-like-card .card-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        .also-like-card:hover .card-thumb img {
-            transform: scale(1.05);
-        }
-        .also-like-card .card-body {
-            padding: 24px 28px 28px;
-        }
-        .also-like-card .card-tag {
-            font-family: var(--mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 8px;
-        }
-        .also-like-card .card-title {
+        .also-like { padding: 80px 0; }
+        .also-like-heading {
             font-family: var(--heading);
             font-size: 1.3rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 32px;
         }
-        .also-like-card .card-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.6;
+        .also-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .also-card {
+            background: var(--bg-dark);
+            border-radius: 12px;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text);
+            transition: transform 0.3s;
+            display: block;
+        }
+        .also-card:hover { transform: translateY(-4px); }
+        .also-card .thumb {
+            height: 200px;
+            overflow: hidden;
+        }
+        .also-card .thumb img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .also-card:hover .thumb img { transform: scale(1.05); }
+        .also-card .card-info {
+            padding: 20px 24px;
+            text-align: center;
+        }
+        .also-card .card-info h4 {
+            font-family: var(--heading);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .also-card .card-info span {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--green);
         }
 
         /* ── Footer ── */
         footer {
-            border-top: 1px solid var(--border);
-            padding: 40px;
             text-align: center;
+            padding: 60px 40px;
+            border-top: 1px solid var(--border);
         }
-        footer span {
+        footer p {
             font-family: var(--mono);
             font-size: 0.7rem;
             letter-spacing: 0.1em;
             color: var(--text-muted);
         }
 
+        /* ── Personas ── */
+        .persona-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .persona-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .persona-img {
+            height: 160px;
+            overflow: hidden;
+            position: relative;
+        }
+        .persona-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .persona-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--bg-card) 0%, transparent 60%);
+        }
+        .persona-body {
+            padding: 24px 28px 28px;
+            margin-top: -32px;
+            position: relative;
+        }
+        .persona-body h3 {
+            font-family: var(--heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .persona-body .p-role {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 14px;
+        }
+        .p-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+        .p-tags span {
+            font-family: var(--mono);
+            font-size: 0.55rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-muted);
+        }
+        .p-detail { margin-bottom: 12px; }
+        .p-detail .p-label {
+            font-family: var(--mono);
+            font-size: 0.55rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .p-detail p {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .p-detail.frust p { color: var(--red); }
+
         /* ── Responsive ── */
         @media (max-width: 900px) {
-            .container { padding: 0 24px; }
-            .hero-content { grid-template-columns: 1fr; gap: 40px; }
-            .hero-visual img { max-height: 400px; }
-            .overview-strip { grid-template-columns: repeat(2, 1fr); }
-            .discovery-grid, .journey-content, .structure-grid,
-            .persona-grid, .insight-cards, .ui-features { grid-template-columns: 1fr; }
-            .problem-banner, .ui-section, .results-banner { padding: 48px 28px; }
-            .stats-row, .results-stats { flex-direction: column; gap: 32px; }
-            .back-nav { padding: 16px 20px; }
-            .phone-showcase { flex-direction: column; align-items: center; }
-            .design-process { flex-wrap: wrap; gap: 24px; }
-            .design-process::before { display: none; }
-            .process-step { flex: 0 0 calc(33% - 16px); }
-            .pain-points-grid { grid-template-columns: 1fr; }
-            .also-like-grid { grid-template-columns: 1fr; }
-            :root { --section-gap: 60px; }
+            .container { padding: 0 20px; }
+            .header { padding: 0 20px; }
+            .hero-inner, .about-grid, .problem-grid, .journey-grid,
+            .wire-grid, .greetings, .persona-grid { grid-template-columns: 1fr; }
+            .hero-phone img { max-height: 400px; }
+            .process-flow { flex-wrap: wrap; gap: 12px; }
+            .process-dash { display: none; }
+            .pain-grid { grid-template-columns: 1fr 1fr; }
+            .time-grid { grid-template-columns: 1fr 1fr; }
+            .results-section { padding: 48px 24px; }
+            .results-stats { flex-direction: column; gap: 32px; }
+            .style-section { padding: 36px 24px; }
+            .also-grid { grid-template-columns: 1fr; }
+            .ui-features { grid-template-columns: 1fr; }
+            .app-banner { padding: 48px 20px; }
+            .section { padding: 60px 0; }
+        }
+        @media (max-width: 500px) {
+            .pain-grid { grid-template-columns: 1fr; }
+            .time-grid { grid-template-columns: 1fr; }
         }
 
         /* ── Animations ── */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .reveal.visible {
             opacity: 1;
@@ -943,8 +802,8 @@
 </head>
 <body>
 
-<!-- Back Nav -->
-<nav class="back-nav">
+<!-- Header -->
+<nav class="header">
     <a href="index.html">← Back to Portfolio</a>
     <span class="brand">YALCIN.OZ</span>
 </nav>
@@ -952,34 +811,52 @@
 <!-- Hero -->
 <section class="hero">
     <div class="container">
-        <div class="hero-content">
+        <div class="hero-inner">
             <div class="hero-text">
-                <div class="tag">UI/UX Case Study</div>
-                <h1>Miles<br><span>&amp;</span> Miles.</h1>
-                <p class="subtitle">Case Study: Mobile First Transformation</p>
-                <p>Bridging the gap between London's automotive heritage and the modern digital concierge expectation.</p>
+                <div class="case-tag">UI/UX Case Study</div>
+                <h1>Miles<br><span class="accent">&amp;</span>Miles.</h1>
+                <div class="hero-sub">Case Study: Mobile First Transformation</div>
+                <p class="hero-desc">Bridging the gap between London's automotive heritage and the modern digital concierge expectation.</p>
+                <span class="hero-role">Role: UX & UI Designer</span>
             </div>
-            <div class="hero-visual">
+            <div class="hero-phone">
                 <img src="mm-phone.png" alt="Miles & Miles Mobile App" />
             </div>
         </div>
+    </div>
+</section>
 
-        <div class="overview-strip reveal">
-            <div class="overview-item">
-                <div class="label">Role</div>
-                <div class="value">UX & UI Designer</div>
+<!-- About + Overview -->
+<section class="section">
+    <div class="container">
+        <div class="about-grid reveal">
+            <div class="about-left">
+                <div class="sec-label">About</div>
+                <h2 class="sec-heading">Your Gateway to Luxury Car Rentals</h2>
             </div>
-            <div class="overview-item">
-                <div class="label">Platform</div>
-                <div class="value">Mobile App</div>
+            <div class="about-right">
+                <div class="sec-label">Overview</div>
+                <p>Miles & Miles is one of London's oldest luxury car rental services, established in 1953. This project transformed their outdated web-only booking system into a modern, mobile-first concierge experience designed for high-net-worth individuals.</p>
+                <p><strong>Target Audience:</strong> London-based professionals, tourists & event planners seeking premium vehicles.</p>
+                <p><strong>Objective:</strong> Reduce mobile drop-off by 40% and create a booking flow under 90 seconds.</p>
+                <span class="pill">Platform: Mobile App</span>
             </div>
-            <div class="overview-item">
-                <div class="label">Duration</div>
-                <div class="value">8 Weeks</div>
+        </div>
+    </div>
+</section>
+
+<!-- Problem + Goal -->
+<section class="section" style="padding-top: 0;">
+    <div class="container">
+        <div class="problem-grid reveal">
+            <div class="problem-image">
+                <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop&auto=format" alt="London Skyline" />
             </div>
-            <div class="overview-item">
-                <div class="label">Tools</div>
-                <div class="value">Figma · FigJam</div>
+            <div class="problem-text">
+                <h3>The Problem</h3>
+                <p>Despite a premium physical fleet, Miles & Miles' digital presence was causing significant drop-off. High-net-worth users were abandoning bookings due to cumbersome web forms and a lack of mobile-specific logistics tracking.</p>
+                <h3>The Goal</h3>
+                <p>Create a mobile experience that matches the "concierge-level" physical service London's elite have come to expect since 1953 — reducing booking time from 6+ minutes to under 90 seconds.</p>
             </div>
         </div>
     </div>
@@ -988,177 +865,144 @@
 <!-- Design Process -->
 <section class="section">
     <div class="container">
-        <div class="section-label reveal">Design Process</div>
-        <h2 class="section-title reveal">How We Got There.</h2>
-        <p class="section-desc reveal">A structured approach to transforming a legacy service into a mobile-first luxury experience.</p>
+        <div class="sec-label reveal">Design Process</div>
         <div class="divider"></div>
-        <div class="design-process reveal">
-            <div class="process-step">
-                <div class="step-circle">🔍</div>
-                <div class="step-label">Empathise</div>
-            </div>
-            <div class="process-step">
-                <div class="step-circle">🎯</div>
-                <div class="step-label">Define</div>
-            </div>
-            <div class="process-step">
-                <div class="step-circle">💡</div>
-                <div class="step-label">Ideate</div>
-            </div>
-            <div class="process-step">
-                <div class="step-circle">🛠️</div>
-                <div class="step-label">Prototype</div>
-            </div>
-            <div class="process-step">
-                <div class="step-circle">✅</div>
-                <div class="step-label">Validate</div>
-            </div>
+        <div class="process-flow reveal">
+            <div class="process-pill"><span class="p-icon">🔍</span> Empathise</div>
+            <div class="process-dash"></div>
+            <div class="process-pill"><span class="p-icon">🎯</span> Define</div>
+            <div class="process-dash"></div>
+            <div class="process-pill"><span class="p-icon">💡</span> Ideate</div>
+            <div class="process-dash"></div>
+            <div class="process-pill"><span class="p-icon">🛠️</span> Prototype</div>
+            <div class="process-dash"></div>
+            <div class="process-pill"><span class="p-icon">✅</span> Validate</div>
         </div>
-    </div>
-</section>
-
-<!-- Stage 01: Discovery -->
-<section class="section">
-    <div class="container">
-        <div class="section-label reveal">Stage 01 · Discovery</div>
-        <h2 class="section-title reveal">Researching Excellence.</h2>
-        <div class="divider"></div>
-
-        <div class="discovery-grid reveal">
-            <div class="discovery-text">
-                <h3>The Digital Friction.</h3>
-                <p>Despite a premium physical fleet, Miles & Miles' digital presence was causing significant drop-off. Our research revealed that high-net-worth users were abandoning bookings due to cumbersome web forms and a lack of mobile-specific logistics tracking.</p>
-            </div>
-            <div class="discovery-image">
-                <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop&auto=format" alt="London Architecture" />
-            </div>
-        </div>
-
-        <div class="insight-cards reveal">
-            <div class="insight-card">
-                <div class="icon">📱</div>
-                <h4>Mobile Usage</h4>
-                <p>72% of luxury users attempt to browse fleet availability on mobile devices while traveling.</p>
-            </div>
-            <div class="insight-card">
-                <div class="icon">⚡</div>
-                <h4>Speed Expectation</h4>
-                <p>Target users value time above all else. Current web booking took over 6 minutes to complete.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Stage 02: Problem -->
-<section class="section">
-    <div class="container">
-        <div class="problem-banner reveal">
-            <div class="section-label">Stage 02 · Problem</div>
-            <h2>A luxury service delivered<br>via <em>legacy digital</em>.</h2>
-            <p>How do we create a mobile experience that matches the "concierge-level" physical service London's elite have come to expect since 1953?</p>
-            <div class="stats-row">
-                <div class="stat">
-                    <div class="number">42%</div>
-                    <div class="desc">Mobile Drop-off Rate</div>
+        <div class="time-grid reveal">
+            <div class="time-item">
+                <div class="hours">3 hours</div>
+                <h4>Research</h4>
+                <div class="time-tags">
+                    <span>Interviews</span>
+                    <span>User Flow</span>
                 </div>
-                <div class="stat">
-                    <div class="number">6m+</div>
-                    <div class="desc">Avg Booking Time</div>
+            </div>
+            <div class="time-item">
+                <div class="hours">2 hours</div>
+                <h4>Prototyping</h4>
+                <div class="time-tags">
+                    <span>Wireframes</span>
+                    <span>Mockups</span>
+                    <span>Prototypes</span>
+                </div>
+            </div>
+            <div class="time-item">
+                <div class="hours">5 hours</div>
+                <h4>Design</h4>
+                <div class="time-tags">
+                    <span>Visual Concept</span>
+                    <span>Design System</span>
+                    <span>Components</span>
+                </div>
+            </div>
+            <div class="time-item">
+                <div class="hours">1 hour</div>
+                <h4>Testing</h4>
+                <div class="time-tags">
+                    <span>Feedback</span>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Pain Points -->
+<!-- App Showcase Banner -->
+<section style="padding: 0 40px 80px;">
+    <div class="container" style="padding: 0;">
+        <div class="app-banner reveal">
+            <img src="mm-phone.png" alt="Miles & Miles App Showcase" />
+        </div>
+    </div>
+</section>
+
+<!-- Empathise: Pain Points -->
 <section class="section">
     <div class="container">
-        <div class="section-label reveal">Key Findings</div>
-        <h2 class="section-title reveal">User Pain Points.</h2>
-        <p class="section-desc reveal">Through interviews and competitive analysis, four critical friction areas emerged that shaped our design direction.</p>
+        <div class="sec-label reveal">Empathise</div>
+        <h2 class="sec-heading reveal">Pain Points</h2>
         <div class="divider"></div>
-        <div class="pain-points-grid reveal">
-            <div class="pain-point">
-                <div class="pp-num">01</div>
-                <div>
-                    <h4>Limited Digital Access</h4>
-                    <p>No dedicated mobile app. Users were forced to navigate a desktop-optimised website on their phones, leading to poor usability and high bounce rates.</p>
-                </div>
+        <div class="pain-grid reveal">
+            <div class="pain-item">
+                <div class="pain-num">1</div>
+                <h4>Limited Digital Access</h4>
+                <p>No dedicated mobile app. Users were forced to navigate a desktop-optimised website on their phones, leading to poor usability.</p>
             </div>
-            <div class="pain-point">
-                <div class="pp-num">02</div>
-                <div>
-                    <h4>Lack of Self-Service</h4>
-                    <p>Booking still required phone calls during business hours. High-net-worth clients expected instant, 24/7 digital booking capabilities.</p>
-                </div>
+            <div class="pain-item">
+                <div class="pain-num">2</div>
+                <h4>Lack of Self-Service Options</h4>
+                <p>Booking still required phone calls during business hours. Clients expected instant, 24/7 digital booking capabilities.</p>
             </div>
-            <div class="pain-point">
-                <div class="pp-num">03</div>
-                <div>
-                    <h4>Inconvenient Logistics</h4>
-                    <p>No real-time tracking for car delivery or pickup. Users had no visibility into where their vehicle was or when it would arrive.</p>
-                </div>
+            <div class="pain-item">
+                <div class="pain-num">3</div>
+                <h4>Inconvenient Pickup Locations</h4>
+                <p>No real-time tracking for car delivery or pickup. Users had no visibility into where their vehicle was or when it would arrive.</p>
             </div>
-            <div class="pain-point">
-                <div class="pp-num">04</div>
-                <div>
-                    <h4>Missing Personalisation</h4>
-                    <p>The system didn't remember user preferences or past bookings. Every rental felt like a first-time experience rather than a premium relationship.</p>
-                </div>
+            <div class="pain-item">
+                <div class="pain-num">4</div>
+                <h4>Missing Personalisation</h4>
+                <p>The system didn't remember user preferences or past bookings. Every rental felt like a first-time experience.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Stage 03: Personas -->
+<!-- Define: Personas -->
 <section class="section">
     <div class="container">
-        <div class="section-label reveal">Stage 03 · Personas</div>
-        <h2 class="section-title reveal">The Modern Elite.</h2>
+        <div class="sec-label reveal">Define</div>
+        <h2 class="sec-heading reveal">The Modern Elite</h2>
         <div class="divider"></div>
-
         <div class="persona-grid reveal">
             <div class="persona-card">
-                <div class="persona-header">
+                <div class="persona-img">
                     <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=400&fit=crop&auto=format" alt="London Architecture" />
                 </div>
                 <div class="persona-body">
                     <h3>Sebastian</h3>
-                    <div class="role">Venture Capitalist, 42</div>
-                    <div class="persona-tags">
+                    <div class="p-role">Venture Capitalist, 42</div>
+                    <div class="p-tags">
                         <span>Efficiency Focused</span>
                         <span>Airport Regular</span>
                         <span>Tech-Savvy</span>
                     </div>
-                    <div class="persona-detail">
-                        <div class="detail-label">Goal</div>
+                    <div class="p-detail">
+                        <div class="p-label">Goal</div>
                         <p>Needs a booking experience that takes seconds, not minutes, and remembers his preferences.</p>
                     </div>
-                    <div class="persona-detail frustration">
-                        <div class="detail-label">Frustration</div>
+                    <div class="p-detail frust">
+                        <div class="p-label">Frustration</div>
                         <p>Having to re-enter billing details on a mobile browser at Heathrow airport.</p>
                     </div>
                 </div>
             </div>
-
             <div class="persona-card">
-                <div class="persona-header">
+                <div class="persona-img">
                     <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&h=400&fit=crop&auto=format" alt="Luxury Fashion" />
                 </div>
                 <div class="persona-body">
                     <h3>Isabella</h3>
-                    <div class="role">Luxury Curator, 35</div>
-                    <div class="persona-tags">
+                    <div class="p-role">Luxury Curator, 35</div>
+                    <div class="p-tags">
                         <span>Style Conscious</span>
                         <span>Event Organizer</span>
                         <span>Status Oriented</span>
                     </div>
-                    <div class="persona-detail">
-                        <div class="detail-label">Goal</div>
+                    <div class="p-detail">
+                        <div class="p-label">Goal</div>
                         <p>Wants a car that matches the aesthetic of her events, with a personal driver who knows London.</p>
                     </div>
-                    <div class="persona-detail frustration">
-                        <div class="detail-label">Frustration</div>
+                    <div class="p-detail frust">
+                        <div class="p-label">Frustration</div>
                         <p>Lack of human-touch in digital booking and uncertainty about driver quality.</p>
                     </div>
                 </div>
@@ -1167,56 +1011,53 @@
     </div>
 </section>
 
-<!-- Stage 04: Journey -->
-<section class="section">
+<!-- Define: User Journey Map -->
+<section class="section" style="padding-top: 0;">
     <div class="container">
-        <div class="section-label reveal">Stage 04 · Journey</div>
-        <h2 class="section-title reveal">The "Invisible" Path.</h2>
-        <p class="section-desc reveal">We mapped the journey to prioritize "Zero-Friction" steps. By moving logistics (delivery/driver) to an optional customization layer, we ensured the primary path remained incredibly fast.</p>
+        <div class="sec-label reveal">Define</div>
+        <h2 class="sec-heading reveal">User Journey Map</h2>
         <div class="divider"></div>
-
-        <div class="journey-content reveal">
+        <div class="journey-grid reveal">
             <div class="journey-steps">
-                <div class="journey-step">
-                    <div class="step-num">1</div>
+                <div class="j-step">
+                    <div class="j-num">1</div>
                     <div>
                         <h4>Browse</h4>
-                        <p>Editorial-style car listings</p>
+                        <p>Editorial-style car listings with cinematic photography</p>
                     </div>
                 </div>
-                <div class="journey-step">
-                    <div class="step-num">2</div>
+                <div class="j-step">
+                    <div class="j-num">2</div>
                     <div>
                         <h4>Select</h4>
-                        <p>Transparent all-inclusive pricing</p>
+                        <p>Transparent all-inclusive pricing with no hidden fees</p>
                     </div>
                 </div>
-                <div class="journey-step">
-                    <div class="step-num">3</div>
+                <div class="j-step">
+                    <div class="j-num">3</div>
                     <div>
                         <h4>Personalize</h4>
-                        <p>Chauffeur & delivery options</p>
+                        <p>Optional chauffeur & delivery customization layer</p>
                     </div>
                 </div>
-                <div class="journey-step">
-                    <div class="step-num">4</div>
+                <div class="j-step">
+                    <div class="j-num">4</div>
                     <div>
                         <h4>Confirm</h4>
-                        <p>Apple Pay & FaceID checkout</p>
+                        <p>Apple Pay & FaceID checkout in under 30 seconds</p>
                     </div>
                 </div>
             </div>
-
             <div class="journey-artifact">
                 <h4>Journey Artifact</h4>
                 <div class="artifact-bar">
-                    <div class="bar-segment" style="background: var(--text-muted); opacity: 0.3;"></div>
-                    <div class="bar-segment" style="background: #e57373;"></div>
-                    <div class="bar-segment" style="background: var(--green);"></div>
+                    <span style="background: var(--text-muted); opacity: 0.3;"></span>
+                    <span style="background: var(--red);"></span>
+                    <span style="background: var(--green);"></span>
                 </div>
                 <div class="artifact-labels">
                     <span style="color: var(--text-muted);">Pre-Booking</span>
-                    <span style="color: #e57373;">The Pain (Web)</span>
+                    <span style="color: var(--red);">The Pain (Web)</span>
                     <span style="color: var(--green);">The Peak (App)</span>
                 </div>
             </div>
@@ -1224,69 +1065,71 @@
     </div>
 </section>
 
-<!-- Stage 05: Structure -->
+<!-- Cinematic Divider -->
+<section style="padding: 0 40px 80px;">
+    <div class="photo-divider reveal">
+        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&h=500&fit=crop&auto=format" alt="Luxury Car" />
+    </div>
+</section>
+
+<!-- Ideate: Wireframing -->
 <section class="section">
     <div class="container">
-        <div class="section-label reveal">Stage 05 · Structure</div>
-        <h2 class="section-title reveal">Hierarchy over UI.</h2>
+        <div class="sec-label reveal">Ideate</div>
+        <h2 class="sec-heading reveal">Wireframing</h2>
         <div class="divider"></div>
-
-        <div class="structure-grid reveal">
-            <div class="structure-image">
-                <img src="mm-phone.png" alt="App wireframe mockup" />
+        <div class="wire-grid reveal">
+            <div class="wire-image">
+                <img src="mm-phone.png" alt="App Wireframe" />
             </div>
-            <div>
-                <h3 class="section-title" style="font-size: 1.8rem;">Iterating on Clarity.</h3>
-                <p class="section-desc" style="margin-bottom: 40px;">We focused on a "Mobile-First Utility" approach, validating that car specifications and rental inclusions were visible at a single glance without scrolling.</p>
-
-                <div class="structure-points">
-                    <div class="structure-point">
-                        <h4>Layered Architecture</h4>
-                        <p>Separating technical data from emotional visuals.</p>
-                    </div>
-                    <div class="structure-point">
-                        <h4>Seamless Transitions</h4>
-                        <p>Ensuring zero loading states between car selection and booking details.</p>
-                    </div>
+            <div class="wire-points">
+                <div class="wire-point">
+                    <h4>Layered Architecture</h4>
+                    <p>Separating technical data from emotional visuals. Car specifications and rental inclusions visible at a single glance.</p>
+                </div>
+                <div class="wire-point">
+                    <h4>Seamless Transitions</h4>
+                    <p>Ensuring zero loading states between car selection and booking details. Every interaction feels instant.</p>
+                </div>
+                <div class="wire-point">
+                    <h4>Mobile-First Utility</h4>
+                    <p>Validating that all critical information is accessible without scrolling on standard mobile viewports.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Stage 06: UI -->
-<section class="section">
+<!-- Ideate: Style Guide -->
+<section class="section" style="padding-top: 0;">
     <div class="container">
-        <div class="ui-section reveal">
-            <div class="section-label">Stage 06 · UI</div>
-            <h2 class="section-title">Luxury Aesthetic.</h2>
-            <p class="section-desc">Applying London's heritage to a digital canvas. We used Imperial Navy (#1B2B63) for authority and Vibrant Green (#78BE20) for action and vitality.</p>
-
-            <div class="color-palette">
-                <div class="color-swatch" style="background: #1B2B63; color: rgba(255,255,255,0.7);">
-                    Imperial Navy<br>#1B2B63
+        <div class="style-section reveal">
+            <div class="sec-label">Ideate</div>
+            <h2 class="sec-heading" style="font-size: 2rem;">Style Guide</h2>
+            <div class="color-row">
+                <div class="color-block" style="background: #1B2B63; color: rgba(255,255,255,0.7); flex: 2;">
+                    Main Colour<br>#1B2B63
                 </div>
-                <div class="color-swatch" style="background: #78BE20; color: #0a0a0a;">
-                    Vibrant Green<br>#78BE20
+                <div class="color-block" style="background: #0f1a3d; color: rgba(255,255,255,0.7);">
+                    Darker<br>#0F1A3D
                 </div>
-                <div class="color-swatch" style="background: #0f1a3d; color: rgba(255,255,255,0.7);">
-                    Deep Navy<br>#0F1A3D
+                <div class="color-block" style="background: #78BE20; color: #0a0a0a;">
+                    Accent<br>#78BE20
                 </div>
-                <div class="color-swatch" style="background: #f5f5f5; color: #333;">
-                    Light Surface<br>#F5F5F5
+                <div class="color-block" style="background: #f5f5f5; color: #333;">
+                    Light<br>#F5F5F5
                 </div>
             </div>
-
             <div class="ui-features">
-                <div class="ui-feature">
-                    <div class="feat-icon">🏎️</div>
+                <div class="ui-feat">
+                    <div class="f-icon">🏎️</div>
                     <div>
                         <h4>Premium Interiors</h4>
                         <p>UI designed to match the tactile feel of high-end materials.</p>
                     </div>
                 </div>
-                <div class="ui-feature">
-                    <div class="feat-icon">🤵</div>
+                <div class="ui-feat">
+                    <div class="f-icon">🤵</div>
                     <div>
                         <h4>Chauffeur Service</h4>
                         <p>Integrated professional driver profiles for added trust.</p>
@@ -1294,26 +1137,34 @@
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
+<!-- Prototype: Mockup -->
+<section class="section" style="padding-top: 0;">
+    <div class="container">
+        <div class="sec-label reveal">Prototype</div>
+        <h2 class="sec-heading reveal">Mock Up &amp; Prototyping</h2>
+        <div class="divider"></div>
         <div class="phone-showcase reveal">
             <img src="mm-phone.png" alt="Final App Design" />
         </div>
     </div>
 </section>
 
-<!-- Results -->
+<!-- Validate: Results -->
 <section class="section">
     <div class="container">
-        <div class="results-banner reveal">
-            <div class="section-label">Final Outcome</div>
-            <h2>Prestige, Measured.</h2>
+        <div class="results-section reveal">
+            <div class="sec-label">Validate</div>
+            <h2 class="sec-heading">Prestige, Measured.</h2>
             <p>The final result is more than just an app; it's a dedicated concierge ecosystem that has transformed the way London's elite interact with the brand.</p>
             <div class="results-stats">
-                <div class="result-stat">
+                <div class="r-stat">
                     <div class="number">85%</div>
                     <div class="desc">Booking Efficiency</div>
                 </div>
-                <div class="result-stat">
+                <div class="r-stat">
                     <div class="number">9.4/10</div>
                     <div class="desc">User Satisfaction</div>
                 </div>
@@ -1322,31 +1173,49 @@
     </div>
 </section>
 
+<!-- Greetings -->
+<section class="section">
+    <div class="container">
+        <div class="greetings reveal">
+            <div class="greetings-image">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=500&fit=crop&auto=format" alt="Luxury Car" />
+            </div>
+            <div class="greetings-text">
+                <div class="sec-label">Greetings</div>
+                <h2 class="sec-heading">Thanks for scrolling.</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- London Skyline Divider -->
+<section style="padding: 0 40px 80px;">
+    <div class="photo-divider reveal">
+        <img src="https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=1200&h=500&fit=crop&auto=format" alt="London Panorama" />
+    </div>
+</section>
+
 <!-- You May Also Like -->
 <section class="also-like">
     <div class="container">
-        <div class="section-label reveal">More Work</div>
-        <h2 class="section-title reveal">You may also like.</h2>
-        <div class="divider"></div>
-        <div class="also-like-grid reveal">
-            <a href="sainsburys.html" class="also-like-card">
-                <div class="card-thumb">
-                    <img src="sainsburys.png" alt="Sainsbury's Self-Checkout Kiosk" />
+        <h3 class="also-like-heading reveal">You may also like</h3>
+        <div class="also-grid reveal">
+            <a href="sainsburys.html" class="also-card">
+                <div class="thumb">
+                    <img src="sainsburys.png" alt="Sainsbury's Self-Checkout" />
                 </div>
-                <div class="card-body">
-                    <div class="card-tag">UX Research · 2024</div>
-                    <div class="card-title">Sainsbury's Self-Checkout</div>
-                    <div class="card-desc">Reimagining the grocery self-checkout experience for speed and accessibility.</div>
+                <div class="card-info">
+                    <h4>Sainsbury's Self-Checkout Kiosk</h4>
+                    <span>2024</span>
                 </div>
             </a>
-            <a href="https://cookfromhere.com" target="_blank" class="also-like-card">
-                <div class="card-thumb" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); display: flex; align-items: center; justify-content: center;">
+            <a href="https://cookfromhere.com" target="_blank" class="also-card">
+                <div class="thumb" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); display: flex; align-items: center; justify-content: center;">
                     <span style="font-size: 3.5rem;">🍳</span>
                 </div>
-                <div class="card-body">
-                    <div class="card-tag">Product Design · 2026</div>
-                    <div class="card-title">CookFromHere</div>
-                    <div class="card-desc">AI-powered recipe app that turns your ingredients into personalised meals.</div>
+                <div class="card-info">
+                    <h4>CookFromHere</h4>
+                    <span>2026</span>
                 </div>
             </a>
         </div>
@@ -1355,11 +1224,10 @@
 
 <!-- Footer -->
 <footer>
-    <span>Yalcin Oz · UX & AI Consultant · London</span>
+    <p>Available to Hire — Let's connect!</p>
 </footer>
 
 <script>
-    // Reveal on scroll
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1370,7 +1238,6 @@
         });
     }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
     reveals.forEach(el => {
-        // Immediately show elements above viewport
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight) {
             el.classList.add('visible');

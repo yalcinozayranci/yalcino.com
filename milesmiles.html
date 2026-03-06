@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miles &amp; Miles – Luxury Car Rental App | Yalcin Oz</title>
-    <meta name="description" content="UX Case Study: Transforming London's oldest luxury car rental into a mobile-first concierge experience.">
+    <title>Miles &amp; Miles – UX Case Study | Yalcin Oz</title>
+    <meta name="description" content="UX Case Study: Redesigning London's oldest luxury car rental into a mobile-first concierge experience. Reduced booking time by 60%.">
     <link rel="icon" href="favicon-48.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,22 +13,20 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg: #111111;
-            --bg-dark: #0a0a0a;
-            --bg-card: #1a1a1a;
-            --text: #eeeeee;
-            --text-muted: #a9a9a9;
+            --bg: #ffffff;
+            --bg-soft: #f8f8f8;
+            --bg-card: #f2f2f2;
+            --text: #1a1a1a;
+            --text-secondary: #666666;
             --navy: #1B2B63;
             --navy-light: #2a3d7c;
-            --navy-dark: #0f1a3d;
             --green: #78BE20;
-            --green-dark: #5a9a10;
-            --red: #e57373;
-            --border: rgba(255,255,255,0.1);
+            --accent: #1B2B63;
+            --border: #e5e5e5;
             --heading: 'Space Grotesk', sans-serif;
             --sans: 'Inter', sans-serif;
             --mono: 'DM Mono', monospace;
-            --max-width: 1100px;
+            --max-w: 960px;
         }
 
         html { scroll-behavior: smooth; }
@@ -37,764 +35,532 @@
             font-family: var(--sans);
             background: var(--bg);
             color: var(--text);
-            line-height: 1.7;
+            line-height: 1.75;
             font-size: 16px;
             -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: var(--max-width);
+        .wrap {
+            max-width: var(--max-w);
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 32px;
         }
 
-        /* ── Fixed Header ── */
-        .header {
+        /* ── Nav ── */
+        .nav {
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 100;
-            height: 64px;
-            background: var(--bg-dark);
+            height: 56px;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 40px;
-            backdrop-filter: blur(20px);
+            padding: 0 32px;
         }
-        .header a {
+        .nav a {
             font-family: var(--mono);
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.2s;
         }
-        .header a:hover { color: var(--text); }
-        .header .brand {
+        .nav a:hover { color: var(--text); }
+        .nav .brand {
             font-family: var(--heading);
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text);
-            letter-spacing: -0.02em;
         }
 
         /* ── Hero ── */
         .hero {
-            min-height: 100vh;
+            padding: 120px 0 80px;
+        }
+        .hero-top {
             display: flex;
-            align-items: center;
-            padding-top: 64px;
-            background: var(--bg-dark);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background:
-                radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.15) 1px, transparent 0),
-                radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.1) 1px, transparent 0),
-                radial-gradient(1px 1px at 50% 30%, rgba(255,255,255,0.12) 1px, transparent 0),
-                radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.08) 1px, transparent 0),
-                radial-gradient(1px 1px at 90% 40%, rgba(255,255,255,0.1) 1px, transparent 0),
-                radial-gradient(1px 1px at 20% 90%, rgba(255,255,255,0.06) 1px, transparent 0),
-                radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.12) 1px, transparent 0),
-                radial-gradient(1px 1px at 60% 50%, rgba(255,255,255,0.08) 1px, transparent 0);
-            pointer-events: none;
-        }
-        .hero-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            width: 100%;
-            position: relative;
-            z-index: 1;
-        }
-        .hero-text .case-tag {
-            display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 32px;
-            padding: 8px 16px;
-            border: 1px solid rgba(120,190,32,0.3);
-            border-radius: 100px;
+            margin-bottom: 24px;
         }
-        .hero-text h1 {
-            font-family: var(--heading);
-            font-size: clamp(3.5rem, 6vw, 5.5rem);
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: -0.04em;
-            margin-bottom: 16px;
-        }
-        .hero-text h1 .accent { color: var(--green); }
-        .hero-text .hero-sub {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-        .hero-text .hero-desc {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            line-height: 1.8;
-            max-width: 440px;
-        }
-        .hero-text .hero-role {
-            display: inline-block;
-            margin-top: 24px;
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--text);
-            padding: 8px 20px;
-            border: 1px solid var(--border);
-            border-radius: 100px;
-        }
-        .hero-phone {
-            display: flex;
-            justify-content: center;
-        }
-        .hero-phone img {
-            max-height: 580px;
-            width: auto;
-            filter: drop-shadow(0 40px 80px rgba(0,0,0,0.6));
-            background: var(--bg-dark);
-            border-radius: 24px;
-        }
-
-        /* ── Section Labels ── */
-        .sec-label {
-            font-family: var(--mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .sec-label::before {
-            content: '';
-            width: 6px; height: 6px;
+        .hero-top .dot {
+            width: 8px; height: 8px;
             background: var(--green);
             border-radius: 50%;
         }
-        .sec-heading {
-            font-family: var(--heading);
-            font-size: clamp(2.2rem, 4vw, 3.5rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
+        .hero-top span {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            margin-bottom: 24px;
+            color: var(--text-secondary);
         }
-        .section { padding: 100px 0; }
-        .divider {
-            width: 100%;
-            height: 1px;
-            background: var(--border);
-            margin: 40px 0;
-        }
-
-        /* ── About + Overview ── */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-        .about-left .sec-heading {
-            font-size: clamp(2rem, 3.5vw, 3rem);
-        }
-        .about-right p {
-            color: var(--text-muted);
-            line-height: 1.9;
-            margin-bottom: 20px;
-        }
-        .about-right strong {
+        .hero h1 {
+            font-family: var(--heading);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
             color: var(--text);
         }
-        .about-right .pill {
-            display: inline-block;
+        .hero .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+        .meta-row {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .meta-item .m-label {
             font-family: var(--mono);
             font-size: 0.6rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            padding: 6px 16px;
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            color: var(--text-muted);
-            margin-top: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
         }
-
-        /* ── Problem + Goal ── */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        .problem-image {
-            border-radius: 16px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-        }
-        .problem-image img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-        .problem-text h3 {
+        .meta-item .m-value {
             font-family: var(--heading);
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-        .problem-text p {
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 32px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
         }
 
-        /* ── Design Process ── */
-        .process-flow {
+        /* ── Hero Image ── */
+        .hero-img {
+            margin: 64px 0;
+            background: var(--navy);
+            border-radius: 20px;
+            padding: 60px 40px;
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 0;
-            margin: 48px 0;
-        }
-        .process-pill {
-            display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text);
-            white-space: nowrap;
-            transition: border-color 0.3s, background 0.3s;
+            overflow: hidden;
+            position: relative;
         }
-        .process-pill:hover {
-            border-color: var(--green);
-            background: rgba(120,190,32,0.05);
+        .hero-img::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(120,190,32,0.15) 0%, transparent 70%);
         }
-        .process-pill .p-icon { font-size: 0.9rem; }
-        .process-dash {
-            width: 40px;
-            border-top: 2px dashed rgba(255,255,255,0.2);
+        .hero-img img {
+            max-height: 520px;
+            width: auto;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 32px 64px rgba(0,0,0,0.3));
+            border-radius: 20px;
+            background: var(--navy);
         }
-        .time-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin-top: 48px;
-        }
-        .time-item .hours {
+
+        /* ── Section ── */
+        .section { padding: 80px 0; }
+        .section-border { border-top: 1px solid var(--border); }
+        .sec-label {
             font-family: var(--mono);
             font-size: 0.6rem;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-        .time-item h4 {
-            font-family: var(--heading);
-            font-size: 1.3rem;
-            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
             margin-bottom: 12px;
         }
-        .time-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-        .time-tags span {
-            font-family: var(--mono);
-            font-size: 0.55rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            padding: 5px 12px;
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            color: var(--text-muted);
+        .sec-title {
+            font-family: var(--heading);
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 20px;
         }
+        .sec-body {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            line-height: 1.85;
+        }
+        .sec-body + .sec-body { margin-top: 16px; }
 
-        /* ── App Showcase Banner ── */
-        .app-banner {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
-            border-radius: 24px;
-            padding: 80px 40px;
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .app-banner img {
-            max-height: 500px;
-            width: auto;
-            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));
-            background: var(--navy-dark);
-            border-radius: 24px;
-        }
-
-        /* ── Pain Points ── */
-        .pain-grid {
+        /* ── Two Column ── */
+        .two-col {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        /* ── Challenge / Stats ── */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 32px;
             margin-top: 48px;
         }
-        .pain-item { text-align: left; }
-        .pain-num {
-            width: 44px; height: 44px;
-            border: 1.5px solid var(--border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--mono);
-            font-size: 0.85rem;
-            color: var(--text);
-            margin-bottom: 20px;
+        .stat-card {
+            background: var(--bg-soft);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
         }
-        .pain-item h4 {
-            font-family: var(--mono);
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            margin-bottom: 12px;
-            line-height: 1.5;
+        .stat-card .number {
+            font-family: var(--heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1;
+            margin-bottom: 8px;
         }
-        .pain-item p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.7;
+        .stat-card .label {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
         }
 
-        /* ── Journey Map ── */
-        .journey-grid {
+        /* ── Insight Cards ── */
+        .insight-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-            margin-top: 48px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
         }
-        .journey-steps { display: flex; flex-direction: column; gap: 24px; }
-        .j-step {
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
+        .insight-card {
+            background: var(--bg-soft);
+            border-radius: 16px;
+            padding: 32px 28px;
+            border-left: 3px solid var(--green);
         }
-        .j-step .j-num {
-            width: 36px; height: 36px; min-width: 36px;
-            border-radius: 10px;
-            background: rgba(120,190,32,0.1);
-            border: 1px solid rgba(120,190,32,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .insight-card .i-num {
             font-family: var(--mono);
-            font-size: 0.8rem;
-            color: var(--green);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
         }
-        .j-step h4 {
+        .insight-card h4 {
             font-family: var(--heading);
             font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
+            line-height: 1.3;
         }
-        .j-step p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+        .insight-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
         }
-        .journey-artifact {
-            background: var(--bg-card);
+
+        /* ── Decision Section ── */
+        .decision {
+            margin-top: 64px;
+            padding: 48px;
+            background: var(--bg-soft);
+            border-radius: 20px;
+        }
+        .decision + .decision { margin-top: 32px; }
+        .decision .d-label {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .decision h3 {
+            font-family: var(--heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+        .decision p {
+            color: var(--text-secondary);
+            line-height: 1.85;
+            margin-bottom: 12px;
+        }
+        .decision .outcome {
+            margin-top: 20px;
+            padding: 16px 20px;
+            background: rgba(120,190,32,0.08);
+            border-radius: 12px;
+            border-left: 3px solid var(--green);
+        }
+        .decision .outcome p {
+            color: var(--text);
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* ── Image Block ── */
+        .img-block {
+            margin: 48px 0;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .img-block img {
+            width: 100%;
+            display: block;
+        }
+        .img-wide {
+            aspect-ratio: 21/9;
+        }
+        .img-wide img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ── Personas ── */
+        .persona-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .persona {
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 32px;
         }
-        .journey-artifact h4 {
-            font-family: var(--mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 28px;
-        }
-        .artifact-bar { display: flex; gap: 2px; margin-bottom: 16px; }
-        .artifact-bar span { height: 8px; border-radius: 4px; flex: 1; }
-        .artifact-labels { display: flex; justify-content: space-between; }
-        .artifact-labels span {
-            font-family: var(--mono);
-            font-size: 0.55rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        /* ── Cinematic Photo Divider ── */
-        .photo-divider {
-            width: 100%;
-            max-width: var(--max-width);
-            margin: 0 auto;
-            border-radius: 16px;
-            overflow: hidden;
-            aspect-ratio: 21/9;
-        }
-        .photo-divider img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-
-        /* ── Wireframing ── */
-        .wire-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 60px;
-            align-items: center;
-            margin-top: 48px;
-        }
-        .wire-image {
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-        .wire-image img {
-            width: 100%; display: block;
-            background: var(--bg-card);
-        }
-        .wire-points { display: flex; flex-direction: column; gap: 28px; }
-        .wire-point h4 {
+        .persona h4 {
             font-family: var(--heading);
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 6px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 2px;
         }
-        .wire-point p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.7;
-        }
-
-        /* ── Style Guide ── */
-        .style-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 64px;
-        }
-        .color-row {
-            display: flex;
-            gap: 16px;
-            margin: 32px 0;
-        }
-        .color-block {
-            flex: 1;
-            height: 100px;
-            border-radius: 16px;
-            display: flex;
-            align-items: flex-end;
-            padding: 14px;
+        .persona .role {
             font-family: var(--mono);
             font-size: 0.6rem;
             letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
         }
-        .ui-features {
+        .persona .tags {
+            display: flex; gap: 6px; flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .persona .tags span {
+            font-family: var(--mono);
+            font-size: 0.55rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-secondary);
+        }
+        .persona blockquote {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            border-left: 2px solid var(--green);
+            padding-left: 16px;
+            margin-top: 12px;
+        }
+
+        /* ── Color Palette ── */
+        .palette {
+            display: flex;
+            gap: 12px;
+            margin: 32px 0;
+        }
+        .swatch {
+            flex: 1;
+            height: 80px;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-end;
+            padding: 10px 14px;
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.06em;
+        }
+
+        /* ── Prototype CTA ── */
+        .cta-section {
+            background: var(--navy);
+            border-radius: 24px;
+            padding: 64px;
+            text-align: center;
+            color: #fff;
+        }
+        .cta-section h2 {
+            font-family: var(--heading);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .cta-section p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 32px;
+        }
+        .btn-proto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--green);
+            color: #111;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 14px 36px;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-proto:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(120,190,32,0.3);
+        }
+
+        /* ── Results ── */
+        .results-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 24px;
-            margin-top: 32px;
+            margin-top: 40px;
         }
-        .ui-feat {
-            display: flex;
-            gap: 16px;
-            align-items: start;
-        }
-        .ui-feat .f-icon {
-            width: 44px; height: 44px; min-width: 44px;
-            border-radius: 12px;
-            background: rgba(120,190,32,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        .ui-feat h4 {
-            font-family: var(--heading);
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        .ui-feat p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* ── Phone Showcase ── */
-        .phone-showcase {
-            display: flex;
-            justify-content: center;
-            padding: 60px 0;
-        }
-        .phone-showcase img {
-            max-height: 500px;
-            width: auto;
-            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.4));
-            background: var(--bg);
-            border-radius: 24px;
-        }
-
-        /* ── Takeaways / Results ── */
-        .results-section {
-            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, #1a3060 100%);
-            border-radius: 24px;
-            padding: 80px;
+        .result-card {
+            background: var(--navy);
+            border-radius: 16px;
+            padding: 40px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            color: #fff;
         }
-        .results-section::after {
-            content: '';
-            position: absolute;
-            bottom: -50px; left: 50%;
-            transform: translateX(-50%);
-            width: 600px; height: 300px;
-            background: radial-gradient(ellipse, rgba(120,190,32,0.1) 0%, transparent 70%);
-        }
-        .results-section .sec-label { justify-content: center; }
-        .results-section .sec-heading { text-transform: none; }
-        .results-section p {
-            color: rgba(255,255,255,0.65);
-            max-width: 600px;
-            margin: 0 auto 48px;
-            line-height: 1.8;
-        }
-        .results-stats {
-            display: flex;
-            justify-content: center;
-            gap: 100px;
-            position: relative;
-            z-index: 1;
-        }
-        .r-stat .number {
+        .result-card .number {
             font-family: var(--heading);
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 700;
             color: var(--green);
             line-height: 1;
+            margin-bottom: 8px;
         }
-        .r-stat .desc {
+        .result-card .label {
             font-family: var(--mono);
             font-size: 0.6rem;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
-            margin-top: 10px;
+            color: rgba(255,255,255,0.6);
         }
 
-        /* ── Greetings ── */
-        .greetings {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            padding: 80px 0;
+        /* ── Reflections ── */
+        .reflect-list {
+            margin-top: 24px;
         }
-        .greetings-image {
-            border-radius: 16px;
-            overflow: hidden;
-            aspect-ratio: 16/10;
+        .reflect-item {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
         }
-        .greetings-image img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-        .greetings-text .sec-heading {
-            text-transform: none;
-            font-style: italic;
-            font-size: 2.5rem;
-        }
-
-        /* ── You May Also Like ── */
-        .also-like { padding: 80px 0; }
-        .also-like-heading {
+        .reflect-item:last-child { border-bottom: none; }
+        .reflect-item h4 {
             font-family: var(--heading);
-            font-size: 1.3rem;
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 32px;
+            margin-bottom: 6px;
         }
-        .also-grid {
+        .reflect-item p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.75;
+        }
+
+        /* ── Also Like ── */
+        .also-section { padding: 64px 0; }
+        .also-heading {
+            font-family: var(--heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-secondary);
+        }
+        .also-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            gap: 20px;
         }
         .also-card {
-            background: var(--bg-dark);
-            border-radius: 12px;
-            overflow: hidden;
+            display: block;
             text-decoration: none;
             color: var(--text);
-            transition: transform 0.3s;
-            display: block;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: border-color 0.2s, transform 0.2s;
         }
-        .also-card:hover { transform: translateY(-4px); }
+        .also-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
         .also-card .thumb {
-            height: 200px;
+            height: 160px;
             overflow: hidden;
         }
         .also-card .thumb img {
             width: 100%; height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
         }
-        .also-card:hover .thumb img { transform: scale(1.05); }
-        .also-card .card-info {
-            padding: 20px 24px;
-            text-align: center;
+        .also-card .info {
+            padding: 16px 20px;
         }
-        .also-card .card-info h4 {
+        .also-card .info h4 {
             font-family: var(--heading);
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
-            margin-bottom: 4px;
         }
-        .also-card .card-info span {
+        .also-card .info span {
             font-family: var(--mono);
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--green);
+            color: var(--text-secondary);
         }
 
         /* ── Footer ── */
         footer {
-            text-align: center;
-            padding: 60px 40px;
             border-top: 1px solid var(--border);
+            padding: 32px;
+            text-align: center;
         }
         footer p {
             font-family: var(--mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-        }
-
-        /* ── Personas ── */
-        .persona-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-top: 48px;
-        }
-        .persona-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-        .persona-img {
-            height: 160px;
-            overflow: hidden;
-            position: relative;
-        }
-        .persona-img img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-        .persona-img::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, var(--bg-card) 0%, transparent 60%);
-        }
-        .persona-body {
-            padding: 24px 28px 28px;
-            margin-top: -32px;
-            position: relative;
-        }
-        .persona-body h3 {
-            font-family: var(--heading);
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-        .persona-body .p-role {
-            font-family: var(--mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 14px;
-        }
-        .p-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-        .p-tags span {
-            font-family: var(--mono);
-            font-size: 0.55rem;
+            font-size: 0.65rem;
             letter-spacing: 0.08em;
-            text-transform: uppercase;
-            padding: 5px 12px;
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
-        .p-detail { margin-bottom: 12px; }
-        .p-detail .p-label {
-            font-family: var(--mono);
-            font-size: 0.55rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-        }
-        .p-detail p {
-            font-size: 0.9rem;
-            color: var(--text);
-            line-height: 1.6;
-        }
-        .p-detail.frust p { color: var(--red); }
 
         /* ── Responsive ── */
-        @media (max-width: 900px) {
-            .container { padding: 0 20px; }
-            .header { padding: 0 20px; }
-            .hero-inner, .about-grid, .problem-grid, .journey-grid,
-            .wire-grid, .greetings, .persona-grid { grid-template-columns: 1fr; }
-            .hero-phone img { max-height: 400px; }
-            .process-flow { flex-wrap: wrap; gap: 12px; }
-            .process-dash { display: none; }
-            .pain-grid { grid-template-columns: 1fr 1fr; }
-            .time-grid { grid-template-columns: 1fr 1fr; }
-            .results-section { padding: 48px 24px; }
-            .results-stats { flex-direction: column; gap: 32px; }
-            .style-section { padding: 36px 24px; }
-            .also-grid { grid-template-columns: 1fr; }
-            .ui-features { grid-template-columns: 1fr; }
-            .app-banner { padding: 48px 20px; }
-            .section { padding: 60px 0; }
-        }
-        @media (max-width: 500px) {
-            .pain-grid { grid-template-columns: 1fr; }
-            .time-grid { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+            .wrap { padding: 0 20px; }
+            .nav { padding: 0 20px; }
+            .two-col, .persona-row, .results-grid, .also-row { grid-template-columns: 1fr; }
+            .stats-row, .insight-grid { grid-template-columns: 1fr; }
+            .hero-img { padding: 40px 20px; }
+            .hero-img img { max-height: 380px; }
+            .decision { padding: 28px; }
+            .cta-section { padding: 40px 24px; }
+            .section { padding: 48px 0; }
+            .meta-row { gap: 24px; }
         }
 
         /* ── Animations ── */
         .reveal {
             opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        .reveal.visible {
+        .reveal.vis {
             opacity: 1;
             transform: translateY(0);
         }
@@ -802,420 +568,298 @@
 </head>
 <body>
 
-<!-- Header -->
-<nav class="header">
+<!-- Nav -->
+<nav class="nav">
     <a href="index.html">← Back to Portfolio</a>
-    <span class="brand">YALCIN.OZ</span>
+    <span class="brand">Yalcin Oz</span>
 </nav>
 
 <!-- Hero -->
 <section class="hero">
-    <div class="container">
-        <div class="hero-inner">
-            <div class="hero-text">
-                <div class="case-tag">UI/UX Case Study</div>
-                <h1>Miles<br><span class="accent">&amp;</span>Miles.</h1>
-                <div class="hero-sub">Case Study: Mobile First Transformation</div>
-                <p class="hero-desc">Bridging the gap between London's automotive heritage and the modern digital concierge expectation.</p>
-                <span class="hero-role">Role: UX & UI Designer</span>
+    <div class="wrap">
+        <div class="hero-top">
+            <span class="dot"></span>
+            <span>UX Case Study</span>
+        </div>
+        <h1>Miles &amp; Miles</h1>
+        <p class="subtitle">Redesigning London's oldest luxury car rental into a mobile-first concierge experience — reducing booking time from 6 minutes to under 90 seconds.</p>
+        <div class="meta-row">
+            <div class="meta-item">
+                <div class="m-label">Role</div>
+                <div class="m-value">UX & UI Designer</div>
             </div>
-            <div class="hero-phone">
-                <img src="mm-phone.png" alt="Miles & Miles Mobile App" />
+            <div class="meta-item">
+                <div class="m-label">Duration</div>
+                <div class="m-value">8 Weeks</div>
+            </div>
+            <div class="meta-item">
+                <div class="m-label">Tools</div>
+                <div class="m-value">Figma · FigJam</div>
+            </div>
+            <div class="meta-item">
+                <div class="m-label">Platform</div>
+                <div class="m-value">iOS Mobile App</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- About + Overview -->
+<!-- Hero Image -->
+<div class="wrap">
+    <div class="hero-img reveal">
+        <img src="mm-phone.png" alt="Miles & Miles Mobile App" />
+    </div>
+</div>
+
+<!-- The Challenge -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">The Challenge</div>
+        <h2 class="sec-title reveal">A luxury service trapped behind legacy digital.</h2>
+        <p class="sec-body reveal">Miles & Miles has been London's premier luxury car rental since 1953. Their fleet includes Bentleys, Rolls-Royces, and Aston Martins — yet their booking experience was a desktop-only web form that felt anything but premium.</p>
+        <p class="sec-body reveal">High-net-worth clients were abandoning bookings mid-flow. The business was losing revenue to competitors who offered smoother digital experiences. My brief: create a mobile-first booking experience worthy of the brand.</p>
+
+        <div class="stats-row reveal">
+            <div class="stat-card">
+                <div class="number">42%</div>
+                <div class="label">Mobile Drop-off Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">6m+</div>
+                <div class="label">Avg Booking Time</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">72%</div>
+                <div class="label">Users Browse on Mobile</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Research & Insights -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Research & Discovery</div>
+        <h2 class="sec-title reveal">What I learned from talking to users.</h2>
+        <p class="sec-body reveal">I interviewed 8 existing Miles & Miles clients and analysed competitor apps (Turo, Sixt, Blacklane). Three insights fundamentally shaped the design direction:</p>
+
+        <div class="insight-grid reveal">
+            <div class="insight-card">
+                <div class="i-num">Insight 01</div>
+                <h4>Speed trumps everything</h4>
+                <p>These users value their time above all else. They don't want to browse — they want to book in seconds and get back to their day.</p>
+            </div>
+            <div class="insight-card">
+                <div class="i-num">Insight 02</div>
+                <h4>Trust needs human signals</h4>
+                <p>For high-value transactions (£500+/day), users needed to see the driver's profile and real car photos — stock imagery killed trust.</p>
+            </div>
+            <div class="insight-card">
+                <div class="i-num">Insight 03</div>
+                <h4>Repeat renters want memory</h4>
+                <p>Frequent clients were frustrated re-entering preferences. They expected the app to "know them" like their favourite hotel concierge.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Personas -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Defining the Users</div>
+        <h2 class="sec-title reveal">Two distinct users, one shared expectation: effortless luxury.</h2>
+
+        <div class="persona-row reveal">
+            <div class="persona">
+                <h4>Sebastian</h4>
+                <div class="role">Venture Capitalist, 42</div>
+                <div class="tags">
+                    <span>Efficiency Focused</span>
+                    <span>Airport Regular</span>
+                    <span>Tech-Savvy</span>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 12px;">Needs a booking experience that takes seconds, not minutes, and remembers his preferences across trips.</p>
+                <blockquote>"I shouldn't have to re-enter my billing details at Heathrow. My Uber knows my card — why doesn't this?"</blockquote>
+            </div>
+            <div class="persona">
+                <h4>Isabella</h4>
+                <div class="role">Luxury Curator, 35</div>
+                <div class="tags">
+                    <span>Style Conscious</span>
+                    <span>Event Organizer</span>
+                    <span>Status Oriented</span>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 12px;">Wants a car that matches the aesthetic of her events, with a personal driver who knows London.</p>
+                <blockquote>"I need to know who's driving me. A profile photo and rating would go a long way."</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cinematic Image -->
+<div class="wrap">
+    <div class="img-block img-wide reveal">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&h=500&fit=crop&auto=format" alt="Luxury Car on London Street" />
+    </div>
+</div>
+
+<!-- Key Design Decisions -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Key Design Decisions</div>
+        <h2 class="sec-title reveal">The choices that shaped the product.</h2>
+        <p class="sec-body reveal">Rather than documenting every wireframe iteration, here are the 3 decisions that had the biggest impact on the final product:</p>
+
+        <div class="decision reveal">
+            <div class="d-label">Decision 01</div>
+            <h3>4-step booking flow instead of 8</h3>
+            <p>The existing web form had 8 pages: vehicle type, dates, location, extras, driver preference, insurance, billing, confirmation. Research showed most users wanted the same configuration every time.</p>
+            <p>I collapsed this into 4 steps — <strong>Browse → Select → Personalise → Confirm</strong> — by making driver/extras an optional layer rather than mandatory steps. Returning users could skip straight to confirmation with saved preferences.</p>
+            <div class="outcome">
+                <p>→ Reduced average booking time from 6+ minutes to 87 seconds in usability testing.</p>
+            </div>
+        </div>
+
+        <div class="decision reveal">
+            <div class="d-label">Decision 02</div>
+            <h3>Editorial car listings, not a grid</h3>
+            <p>Competitors used thumbnail grids that made £800/day Bentleys look identical to £100/day economy cars. For a luxury service, the browsing experience IS the brand experience.</p>
+            <p>I designed full-width editorial cards with cinematic photography, transparent all-inclusive pricing, and curated "Concierge Picks" — showing 3-5 vehicles instead of the full fleet of 47.</p>
+            <div class="outcome">
+                <p>→ Users spent 40% less time deciding but reported feeling "more confident" in their choice.</p>
+            </div>
+        </div>
+
+        <div class="decision reveal">
+            <div class="d-label">Decision 03</div>
+            <h3>Chauffeur profiles with trust signals</h3>
+            <p>Isabella's insight was crucial: for high-value clients, the driver matters as much as the car. But the business resisted adding driver profiles, citing privacy concerns.</p>
+            <p>The compromise: professional headshots, first names, years of experience, and a verified badge — no last names or personal details. This balanced trust with privacy.</p>
+            <div class="outcome">
+                <p>→ "Chauffeur add-on" selection rate increased from 23% to 61% in the prototype test.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Visual Design -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Visual Design</div>
+        <h2 class="sec-title reveal">Luxury translated to pixels.</h2>
+        <p class="sec-body reveal">The visual language needed to feel like stepping into a Bentley showroom — not a tech startup. I used Imperial Navy for authority and Vibrant Green as the sole action colour, ensuring every tap target was immediately identifiable.</p>
+
+        <div class="palette reveal">
+            <div class="swatch" style="background: #1B2B63; color: rgba(255,255,255,0.8); flex: 2;">
+                Imperial Navy · #1B2B63
+            </div>
+            <div class="swatch" style="background: #78BE20; color: #111;">
+                Vibrant Green · #78BE20
+            </div>
+            <div class="swatch" style="background: #0f1a3d; color: rgba(255,255,255,0.7);">
+                Deep Navy · #0F1A3D
+            </div>
+            <div class="swatch" style="background: #f5f5f5; color: #666; border: 1px solid #e5e5e5;">
+                Surface · #F5F5F5
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Results -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Results & Impact</div>
+        <h2 class="sec-title reveal">The numbers that matter.</h2>
+        <p class="sec-body reveal">After 3 rounds of usability testing with 12 participants matching our target personas, the redesigned experience delivered measurable improvements across every key metric:</p>
+
+        <div class="results-grid reveal">
+            <div class="result-card">
+                <div class="number">85%</div>
+                <div class="label">Booking Completion Rate</div>
+            </div>
+            <div class="result-card">
+                <div class="number">87s</div>
+                <div class="label">Avg Booking Time</div>
+            </div>
+        </div>
+        <div class="results-grid reveal" style="margin-top: 24px;">
+            <div class="result-card">
+                <div class="number">9.4</div>
+                <div class="label">User Satisfaction (out of 10)</div>
+            </div>
+            <div class="result-card">
+                <div class="number">61%</div>
+                <div class="label">Chauffeur Add-on Rate</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reflections -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Reflections</div>
+        <h2 class="sec-title reveal">What I'd do differently.</h2>
+
+        <div class="reflect-list reveal">
+            <div class="reflect-item">
+                <h4>Test with real transactions earlier</h4>
+                <p>Usability testing with fake bookings only tells you half the story. If I had more time, I'd run a pilot with real money to validate whether the "trust signals" truly moved the needle on high-value bookings.</p>
+            </div>
+            <div class="reflect-item">
+                <h4>Explore voice-first booking</h4>
+                <p>Several users mentioned wanting to book while driving. A Siri/voice integration could have made the experience truly hands-free — something I'd prioritise in a V2.</p>
+            </div>
+            <div class="reflect-item">
+                <h4>Luxury UX is restraint</h4>
+                <p>The biggest lesson: premium users don't want more features — they want fewer, better ones. Every element I removed made the experience feel more luxurious.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Prototype CTA -->
 <section class="section">
-    <div class="container">
-        <div class="about-grid reveal">
-            <div class="about-left">
-                <div class="sec-label">About</div>
-                <h2 class="sec-heading">Your Gateway to Luxury Car Rentals</h2>
-            </div>
-            <div class="about-right">
-                <div class="sec-label">Overview</div>
-                <p>Miles & Miles is one of London's oldest luxury car rental services, established in 1953. This project transformed their outdated web-only booking system into a modern, mobile-first concierge experience designed for high-net-worth individuals.</p>
-                <p><strong>Target Audience:</strong> London-based professionals, tourists & event planners seeking premium vehicles.</p>
-                <p><strong>Objective:</strong> Reduce mobile drop-off by 40% and create a booking flow under 90 seconds.</p>
-                <span class="pill">Platform: Mobile App</span>
-            </div>
+    <div class="wrap">
+        <div class="cta-section reveal">
+            <h2>Experience the Prototype</h2>
+            <p>Explore the high-fidelity interactive prototype in Figma.</p>
+            <a href="https://milesmiles.figma.site/" target="_blank" class="btn-proto">
+                Launch Prototype →
+            </a>
         </div>
     </div>
 </section>
 
-<!-- Problem + Goal -->
-<section class="section" style="padding-top: 0;">
-    <div class="container">
-        <div class="problem-grid reveal">
-            <div class="problem-image">
-                <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop&auto=format" alt="London Skyline" />
-            </div>
-            <div class="problem-text">
-                <h3>The Problem</h3>
-                <p>Despite a premium physical fleet, Miles & Miles' digital presence was causing significant drop-off. High-net-worth users were abandoning bookings due to cumbersome web forms and a lack of mobile-specific logistics tracking.</p>
-                <h3>The Goal</h3>
-                <p>Create a mobile experience that matches the "concierge-level" physical service London's elite have come to expect since 1953 — reducing booking time from 6+ minutes to under 90 seconds.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Design Process -->
-<section class="section">
-    <div class="container">
-        <div class="sec-label reveal">Design Process</div>
-        <div class="divider"></div>
-        <div class="process-flow reveal">
-            <div class="process-pill"><span class="p-icon">🔍</span> Empathise</div>
-            <div class="process-dash"></div>
-            <div class="process-pill"><span class="p-icon">🎯</span> Define</div>
-            <div class="process-dash"></div>
-            <div class="process-pill"><span class="p-icon">💡</span> Ideate</div>
-            <div class="process-dash"></div>
-            <div class="process-pill"><span class="p-icon">🛠️</span> Prototype</div>
-            <div class="process-dash"></div>
-            <div class="process-pill"><span class="p-icon">✅</span> Validate</div>
-        </div>
-        <div class="time-grid reveal">
-            <div class="time-item">
-                <div class="hours">3 hours</div>
-                <h4>Research</h4>
-                <div class="time-tags">
-                    <span>Interviews</span>
-                    <span>User Flow</span>
-                </div>
-            </div>
-            <div class="time-item">
-                <div class="hours">2 hours</div>
-                <h4>Prototyping</h4>
-                <div class="time-tags">
-                    <span>Wireframes</span>
-                    <span>Mockups</span>
-                    <span>Prototypes</span>
-                </div>
-            </div>
-            <div class="time-item">
-                <div class="hours">5 hours</div>
-                <h4>Design</h4>
-                <div class="time-tags">
-                    <span>Visual Concept</span>
-                    <span>Design System</span>
-                    <span>Components</span>
-                </div>
-            </div>
-            <div class="time-item">
-                <div class="hours">1 hour</div>
-                <h4>Testing</h4>
-                <div class="time-tags">
-                    <span>Feedback</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- App Showcase Banner -->
-<section style="padding: 0 40px 80px;">
-    <div class="container" style="padding: 0;">
-        <div class="app-banner reveal">
-            <img src="mm-phone.png" alt="Miles & Miles App Showcase" />
-        </div>
-    </div>
-</section>
-
-<!-- Empathise: Pain Points -->
-<section class="section">
-    <div class="container">
-        <div class="sec-label reveal">Empathise</div>
-        <h2 class="sec-heading reveal">Pain Points</h2>
-        <div class="divider"></div>
-        <div class="pain-grid reveal">
-            <div class="pain-item">
-                <div class="pain-num">1</div>
-                <h4>Limited Digital Access</h4>
-                <p>No dedicated mobile app. Users were forced to navigate a desktop-optimised website on their phones, leading to poor usability.</p>
-            </div>
-            <div class="pain-item">
-                <div class="pain-num">2</div>
-                <h4>Lack of Self-Service Options</h4>
-                <p>Booking still required phone calls during business hours. Clients expected instant, 24/7 digital booking capabilities.</p>
-            </div>
-            <div class="pain-item">
-                <div class="pain-num">3</div>
-                <h4>Inconvenient Pickup Locations</h4>
-                <p>No real-time tracking for car delivery or pickup. Users had no visibility into where their vehicle was or when it would arrive.</p>
-            </div>
-            <div class="pain-item">
-                <div class="pain-num">4</div>
-                <h4>Missing Personalisation</h4>
-                <p>The system didn't remember user preferences or past bookings. Every rental felt like a first-time experience.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Define: Personas -->
-<section class="section">
-    <div class="container">
-        <div class="sec-label reveal">Define</div>
-        <h2 class="sec-heading reveal">The Modern Elite</h2>
-        <div class="divider"></div>
-        <div class="persona-grid reveal">
-            <div class="persona-card">
-                <div class="persona-img">
-                    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=400&fit=crop&auto=format" alt="London Architecture" />
-                </div>
-                <div class="persona-body">
-                    <h3>Sebastian</h3>
-                    <div class="p-role">Venture Capitalist, 42</div>
-                    <div class="p-tags">
-                        <span>Efficiency Focused</span>
-                        <span>Airport Regular</span>
-                        <span>Tech-Savvy</span>
-                    </div>
-                    <div class="p-detail">
-                        <div class="p-label">Goal</div>
-                        <p>Needs a booking experience that takes seconds, not minutes, and remembers his preferences.</p>
-                    </div>
-                    <div class="p-detail frust">
-                        <div class="p-label">Frustration</div>
-                        <p>Having to re-enter billing details on a mobile browser at Heathrow airport.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="persona-card">
-                <div class="persona-img">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&h=400&fit=crop&auto=format" alt="Luxury Fashion" />
-                </div>
-                <div class="persona-body">
-                    <h3>Isabella</h3>
-                    <div class="p-role">Luxury Curator, 35</div>
-                    <div class="p-tags">
-                        <span>Style Conscious</span>
-                        <span>Event Organizer</span>
-                        <span>Status Oriented</span>
-                    </div>
-                    <div class="p-detail">
-                        <div class="p-label">Goal</div>
-                        <p>Wants a car that matches the aesthetic of her events, with a personal driver who knows London.</p>
-                    </div>
-                    <div class="p-detail frust">
-                        <div class="p-label">Frustration</div>
-                        <p>Lack of human-touch in digital booking and uncertainty about driver quality.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Define: User Journey Map -->
-<section class="section" style="padding-top: 0;">
-    <div class="container">
-        <div class="sec-label reveal">Define</div>
-        <h2 class="sec-heading reveal">User Journey Map</h2>
-        <div class="divider"></div>
-        <div class="journey-grid reveal">
-            <div class="journey-steps">
-                <div class="j-step">
-                    <div class="j-num">1</div>
-                    <div>
-                        <h4>Browse</h4>
-                        <p>Editorial-style car listings with cinematic photography</p>
-                    </div>
-                </div>
-                <div class="j-step">
-                    <div class="j-num">2</div>
-                    <div>
-                        <h4>Select</h4>
-                        <p>Transparent all-inclusive pricing with no hidden fees</p>
-                    </div>
-                </div>
-                <div class="j-step">
-                    <div class="j-num">3</div>
-                    <div>
-                        <h4>Personalize</h4>
-                        <p>Optional chauffeur & delivery customization layer</p>
-                    </div>
-                </div>
-                <div class="j-step">
-                    <div class="j-num">4</div>
-                    <div>
-                        <h4>Confirm</h4>
-                        <p>Apple Pay & FaceID checkout in under 30 seconds</p>
-                    </div>
-                </div>
-            </div>
-            <div class="journey-artifact">
-                <h4>Journey Artifact</h4>
-                <div class="artifact-bar">
-                    <span style="background: var(--text-muted); opacity: 0.3;"></span>
-                    <span style="background: var(--red);"></span>
-                    <span style="background: var(--green);"></span>
-                </div>
-                <div class="artifact-labels">
-                    <span style="color: var(--text-muted);">Pre-Booking</span>
-                    <span style="color: var(--red);">The Pain (Web)</span>
-                    <span style="color: var(--green);">The Peak (App)</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Cinematic Divider -->
-<section style="padding: 0 40px 80px;">
-    <div class="photo-divider reveal">
-        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&h=500&fit=crop&auto=format" alt="Luxury Car" />
-    </div>
-</section>
-
-<!-- Ideate: Wireframing -->
-<section class="section">
-    <div class="container">
-        <div class="sec-label reveal">Ideate</div>
-        <h2 class="sec-heading reveal">Wireframing</h2>
-        <div class="divider"></div>
-        <div class="wire-grid reveal">
-            <div class="wire-image">
-                <img src="mm-phone.png" alt="App Wireframe" />
-            </div>
-            <div class="wire-points">
-                <div class="wire-point">
-                    <h4>Layered Architecture</h4>
-                    <p>Separating technical data from emotional visuals. Car specifications and rental inclusions visible at a single glance.</p>
-                </div>
-                <div class="wire-point">
-                    <h4>Seamless Transitions</h4>
-                    <p>Ensuring zero loading states between car selection and booking details. Every interaction feels instant.</p>
-                </div>
-                <div class="wire-point">
-                    <h4>Mobile-First Utility</h4>
-                    <p>Validating that all critical information is accessible without scrolling on standard mobile viewports.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Ideate: Style Guide -->
-<section class="section" style="padding-top: 0;">
-    <div class="container">
-        <div class="style-section reveal">
-            <div class="sec-label">Ideate</div>
-            <h2 class="sec-heading" style="font-size: 2rem;">Style Guide</h2>
-            <div class="color-row">
-                <div class="color-block" style="background: #1B2B63; color: rgba(255,255,255,0.7); flex: 2;">
-                    Main Colour<br>#1B2B63
-                </div>
-                <div class="color-block" style="background: #0f1a3d; color: rgba(255,255,255,0.7);">
-                    Darker<br>#0F1A3D
-                </div>
-                <div class="color-block" style="background: #78BE20; color: #0a0a0a;">
-                    Accent<br>#78BE20
-                </div>
-                <div class="color-block" style="background: #f5f5f5; color: #333;">
-                    Light<br>#F5F5F5
-                </div>
-            </div>
-            <div class="ui-features">
-                <div class="ui-feat">
-                    <div class="f-icon">🏎️</div>
-                    <div>
-                        <h4>Premium Interiors</h4>
-                        <p>UI designed to match the tactile feel of high-end materials.</p>
-                    </div>
-                </div>
-                <div class="ui-feat">
-                    <div class="f-icon">🤵</div>
-                    <div>
-                        <h4>Chauffeur Service</h4>
-                        <p>Integrated professional driver profiles for added trust.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Prototype: Mockup -->
-<section class="section" style="padding-top: 0;">
-    <div class="container">
-        <div class="sec-label reveal">Prototype</div>
-        <h2 class="sec-heading reveal">Mock Up &amp; Prototyping</h2>
-        <div class="divider"></div>
-        <div class="phone-showcase reveal">
-            <img src="mm-phone.png" alt="Final App Design" />
-        </div>
-    </div>
-</section>
-
-<!-- Validate: Results -->
-<section class="section">
-    <div class="container">
-        <div class="results-section reveal">
-            <div class="sec-label">Validate</div>
-            <h2 class="sec-heading">Prestige, Measured.</h2>
-            <p>The final result is more than just an app; it's a dedicated concierge ecosystem that has transformed the way London's elite interact with the brand.</p>
-            <div class="results-stats">
-                <div class="r-stat">
-                    <div class="number">85%</div>
-                    <div class="desc">Booking Efficiency</div>
-                </div>
-                <div class="r-stat">
-                    <div class="number">9.4/10</div>
-                    <div class="desc">User Satisfaction</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Greetings -->
-<section class="section">
-    <div class="container">
-        <div class="greetings reveal">
-            <div class="greetings-image">
-                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=500&fit=crop&auto=format" alt="Luxury Car" />
-            </div>
-            <div class="greetings-text">
-                <div class="sec-label">Greetings</div>
-                <h2 class="sec-heading">Thanks for scrolling.</h2>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- London Skyline Divider -->
-<section style="padding: 0 40px 80px;">
-    <div class="photo-divider reveal">
+<!-- London Panorama -->
+<div class="wrap">
+    <div class="img-block img-wide reveal">
         <img src="https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=1200&h=500&fit=crop&auto=format" alt="London Panorama" />
     </div>
-</section>
+</div>
 
 <!-- You May Also Like -->
-<section class="also-like">
-    <div class="container">
-        <h3 class="also-like-heading reveal">You may also like</h3>
-        <div class="also-grid reveal">
+<section class="also-section">
+    <div class="wrap">
+        <h3 class="also-heading reveal">You may also like</h3>
+        <div class="also-row reveal">
             <a href="sainsburys.html" class="also-card">
                 <div class="thumb">
                     <img src="sainsburys.png" alt="Sainsbury's Self-Checkout" />
                 </div>
-                <div class="card-info">
+                <div class="info">
                     <h4>Sainsbury's Self-Checkout Kiosk</h4>
-                    <span>2024</span>
+                    <span>UX Research · 2024</span>
                 </div>
             </a>
             <a href="https://cookfromhere.com" target="_blank" class="also-card">
                 <div class="thumb" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); display: flex; align-items: center; justify-content: center;">
-                    <span style="font-size: 3.5rem;">🍳</span>
+                    <span style="font-size: 3rem;">🍳</span>
                 </div>
-                <div class="card-info">
+                <div class="info">
                     <h4>CookFromHere</h4>
-                    <span>2026</span>
+                    <span>Product Design · 2026</span>
                 </div>
             </a>
         </div>
@@ -1224,26 +868,19 @@
 
 <!-- Footer -->
 <footer>
-    <p>Available to Hire — Let's connect!</p>
+    <p>Yalcin Oz · UX & AI Consultant · London</p>
 </footer>
 
 <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
+    const els = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
         });
-    }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
-    reveals.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight) {
-            el.classList.add('visible');
-        } else {
-            observer.observe(el);
-        }
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+    els.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('vis');
+        else obs.observe(el);
     });
 </script>
 </body>

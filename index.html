@@ -367,39 +367,6 @@ section { padding: 120px 40px; }
   align-items: start;
 }
 
-.about-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-top: 40px;
-}
-
-.stat-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  transition: all 0.4s var(--transition-smooth);
-}
-
-.stat-card:hover { border-color: var(--border-hover); background: rgba(212,168,83,0.04); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-
-.stat-number {
-  font-family: var(--heading);
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 6px;
-}
-
-.stat-label {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  font-weight: 400;
-  letter-spacing: 0.05em;
-}
 
 .about-journey p {
   color: var(--text-muted);
@@ -959,6 +926,7 @@ footer {
       <p class="hero-desc">I'm Yalcin, a UX & AI Consultant based in London. I turn complex products into intuitive experiences and integrate AI that feels invisible, not intrusive.</p>
       <div class="hero-btns">
         <a href="#work" class="btn-primary">View My Work</a>
+        <a href="Yalcin.pdf" target="_blank" class="btn-outline">↓ Download CV</a>
       </div>
     </div>
     <div class="hero-photo">
@@ -976,14 +944,9 @@ footer {
         <h2 class="section-title reveal">From economics to espresso<br>to <em style="font-family:var(--heading);color:var(--accent)">experience design</em></h2>
         <div class="about-journey reveal">
           <p>Originally from Türkiye, my path to design has been anything but linear. After graduating in <strong>Economics</strong> in 2018, I moved to London for an <strong>Erasmus+ internship as a Financial Business Analyst</strong>, consulting for startups and falling in love with building things from zero.</p>
-          <p>That energy led me to found and run my own <a href="https://www.youtube.com/watch?v=y91tQDTecjM" target="_blank" style="color:var(--accent);text-decoration:none;font-weight:600;background:rgba(212,168,83,0.1);padding:2px 8px;border-radius:6px;border-bottom:2px solid var(--accent);transition:all 0.3s;white-space:nowrap;" onmouseover="this.style.background='rgba(212,168,83,0.2)'" onmouseout="this.style.background='rgba(212,168,83,0.1)'">☕ coffee shop in London ▶</a> (2019–2020) during one of the toughest periods for small businesses. It was a masterclass in resilience, empathy, and understanding what people actually need — not what they say they need.</p>
-          <p>Since 2020, I've channelled that entrepreneurial instinct into tech as a <strong>self-employed consultant</strong>, specialising in user journey mapping, pain-point diagnosis, and rapid prototyping, all supercharged with <strong>AI integration</strong> for smarter, human-centric products.</p>
-        </div>
-      </div>
-      <div>
-        
-        <div style="margin-top:32px" class="reveal">
-          <a href="Yalcin.pdf" class="btn-outline" target="_blank">↓ Download Resume</a>
+          <p>Before becoming a UX consultant, I ran a <a href="https://www.youtube.com/watch?v=y91tQDTecjM" target="_blank" style="color:var(--accent);text-decoration:none;font-weight:600;background:rgba(212,168,83,0.1);padding:2px 8px;border-radius:6px;border-bottom:2px solid var(--accent);transition:all 0.3s;white-space:nowrap;" onmouseover="this.style.background='rgba(212,168,83,0.2)'" onmouseout="this.style.background='rgba(212,168,83,0.1)'">☕ coffee shop in London ▶</a> (2019–2020). I hired staff, managed queues, watched people fumble with card machines, and learned what "user friction" really means — measured not in drop-off rates, but in lost customers. That experience gave me something design school can't teach: observing people not just through interviews, but in real life.</p>
+          <p>Since 2020, I've worked independently across <strong>fintech, retail, and digital products</strong>. My projects range from 0→1 product design to integrating AI features into existing platforms. I specialise in the gap between design and implementation — the place where things usually break.</p>
+          <p>I don't just design AI products — <strong>I build them</strong>. <a href="https://cookfromhere.com" target="_blank" style="color:var(--accent);text-decoration:none;font-weight:500;">CookFromHere</a> is my own product: an AI-powered recipe app I took from idea to production solo. I wrote the UX, built the React frontend, integrated Google Gemini's vision API, architected 13 Supabase edge functions, set up Stripe subscriptions, built transactional emails with Resend, and shipped it in 9 languages. When I design AI features for clients, I know exactly what's possible — because I've done it myself.</p>
         </div>
       </div>
     </div>
@@ -1011,7 +974,7 @@ footer {
           <h3>Miles & Miles</h3>
         </div>
       </a>
-      <a href="https://cookfromhere.com" target="_blank" class="work-tile" style="background:#1a1a1a;"><!-- external site, new tab ok -->
+      <a href="cookfromhere.html" class="work-tile" style="background:#1a1a1a;">
         <img src="cookfromhere-hero.png" alt="CookFromHere" style="object-fit:contain;object-position:center center;" />
         <div class="work-tile-overlay">
           <span class="work-tile-tag">Founder · UX · Web & Mobile</span>
@@ -1046,7 +1009,7 @@ footer {
               <span style="color:#4ade80;font-weight:600;">✦ Goal:</span> <span style="color:var(--text-muted);">Invisible checkout. No scanning, no staff, just place & go</span>
             </div>
           </div>
-          <a href="sainsburys.html" target="_blank" class="work-link" style="font-size:1rem;">
+          <a href="sainsburys.html" class="work-link" style="font-size:1rem;">
             View Full Case Study
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
@@ -1090,8 +1053,8 @@ footer {
             <span style="font-size:0.75rem;padding:4px 12px;border-radius:100px;background:var(--accent-dim);color:var(--accent);border:1px solid rgba(212,168,83,0.15);">Reduce Food Waste</span>
             <span style="font-size:0.75rem;padding:4px 12px;border-radius:100px;background:var(--accent-dim);color:var(--accent);border:1px solid rgba(212,168,83,0.15);">Web & Mobile</span>
           </div>
-          <a href="https://cookfromhere.com" target="_blank" class="work-link">
-            Visit CookFromHere
+          <a href="cookfromhere.html" class="work-link">
+            View Case Study
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -1100,12 +1063,51 @@ footer {
   </div>
 </section>
 
+<!-- ─── APPROACH ─── -->
+<section id="approach">
+  <div class="section-inner">
+    <div class="section-label reveal">How I Work</div>
+    <h2 class="section-title reveal">My Approach</h2>
+    <p class="section-desc reveal">Understand people first. Build what they actually need.</p>
+    <div class="approach-grid reveal">
+      <div class="approach-step">
+        <div class="approach-num">01</div>
+        <h4>Research</h4>
+        <p>Interviews, data, and context before pixels. I identify real user needs, not assumptions.</p>
+        <div style="margin-top:12px;font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);letter-spacing:0.05em;">User interviews · JTBD · Competitive analysis</div>
+      </div>
+      <div class="approach-step">
+        <div class="approach-num">02</div>
+        <h4>Define</h4>
+        <p>Turn research into clear problem statements. The right framing eliminates wasted design cycles.</p>
+        <div style="margin-top:12px;font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);letter-spacing:0.05em;">Affinity mapping · HMW · Problem framing</div>
+      </div>
+      <div class="approach-step">
+        <div class="approach-num">03</div>
+        <h4>Prototype & Test</h4>
+        <p>Low-fi first, then iterate. I validate with real users before investing in high-fidelity.</p>
+        <div style="margin-top:12px;font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);letter-spacing:0.05em;">Figma · FigJam · Usability testing · Maze</div>
+      </div>
+      <div class="approach-step">
+        <div class="approach-num">04</div>
+        <h4>Ship</h4>
+        <p>Pixel-perfect handoff or production code. I bridge the gap between design and engineering.</p>
+        <div style="margin-top:12px;font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);letter-spacing:0.05em;">React · TypeScript · Tailwind · Supabase</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ─── FOOTER ─── -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-copy">© 2026 Yalcin Oz. Designed with intention.</div>
+    <div class="footer-copy">
+      <div style="color:var(--text);font-size:0.85rem;margin-bottom:6px;">Designed & built by Yalcin Oz — London</div>
+      <div>© 2026 Yalcin Oz. All rights reserved.</div>
+    </div>
     <div class="footer-socials">
       <a href="https://www.linkedin.com/in/yalcinozayranci/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/yalcinozayranci" target="_blank">GitHub</a>
       <a href="mailto:ozayranciyalcin@gmail.com">Email</a>
     </div>
   </div>

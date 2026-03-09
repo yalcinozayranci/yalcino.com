@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CookFromHere – UX Case Study | Yalcin Oz</title>
+    <meta name="description" content="UX Case Study: Designing and building an AI-powered recipe app from zero to production. Solo founder, designer, and developer.">
+    <link rel="icon" href="favicon-48.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #ffffff;
+            --bg-soft: #faf8f6;
+            --bg-card: #f5f2ee;
+            --text: #1a1a1a;
+            --text-secondary: #666666;
+            --accent: #e8532b;
+            --accent-light: #ff7a52;
+            --accent-bg: rgba(232,83,43,0.06);
+            --green: #22c55e;
+            --border: #e8e4df;
+            --heading: 'Space Grotesk', sans-serif;
+            --sans: 'Inter', sans-serif;
+            --mono: 'DM Mono', monospace;
+            --max-w: 960px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.75;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrap {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ── Nav ── */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            height: 56px;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+        }
+        .nav a {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav a:hover { color: var(--text); }
+        .nav .brand {
+            font-family: var(--heading);
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        /* ── Hero ── */
+        .hero { padding: 120px 0 80px; }
+        .hero-top {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .hero-top .dot {
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        .hero-top span {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+        .hero h1 {
+            font-family: var(--heading);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+        .hero .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 620px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+        .meta-row {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .meta-item .m-label {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        .meta-item .m-value {
+            font-family: var(--heading);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* ── Hero Image ── */
+        .hero-img {
+            margin: 64px 0;
+            background: linear-gradient(135deg, #ff8a50 0%, #e8532b 50%, #c43e1f 100%);
+            border-radius: 20px;
+            padding: 60px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .hero-img::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+        }
+        .hero-img img {
+            max-height: 520px;
+            width: auto;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 32px 64px rgba(0,0,0,0.3));
+            border-radius: 20px;
+        }
+
+        /* ── Section ── */
+        .section { padding: 80px 0; }
+        .section-border { border-top: 1px solid var(--border); }
+        .sec-label {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .sec-title {
+            font-family: var(--heading);
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .sec-body {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            line-height: 1.85;
+        }
+        .sec-body + .sec-body { margin-top: 16px; }
+
+        /* ── Stats ── */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        .stat-card {
+            background: var(--bg-soft);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+        .stat-card .number {
+            font-family: var(--heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .stat-card .label {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        /* ── Insight Cards ── */
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .insight-card {
+            background: var(--bg-soft);
+            border-radius: 16px;
+            padding: 32px 28px;
+            border-left: 3px solid var(--accent);
+        }
+        .insight-card .i-num {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        .insight-card h4 {
+            font-family: var(--heading);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .insight-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ── Decision Section ── */
+        .decision {
+            margin-top: 48px;
+            padding: 48px;
+            background: var(--bg-soft);
+            border-radius: 20px;
+        }
+        .decision + .decision { margin-top: 32px; }
+        .decision .d-label {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .decision h3 {
+            font-family: var(--heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+        .decision p {
+            color: var(--text-secondary);
+            line-height: 1.85;
+            margin-bottom: 12px;
+        }
+        .decision .outcome {
+            margin-top: 20px;
+            padding: 16px 20px;
+            background: var(--accent-bg);
+            border-radius: 12px;
+            border-left: 3px solid var(--accent);
+        }
+        .decision .outcome p {
+            color: var(--text);
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* ── Two Column ── */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        /* ── Architecture ── */
+        .arch-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .arch-card {
+            background: var(--bg-soft);
+            border-radius: 16px;
+            padding: 28px 24px;
+            border-top: 3px solid var(--border);
+            transition: border-color 0.3s;
+        }
+        .arch-card:hover { border-color: var(--accent); }
+        .arch-card .a-icon {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+        .arch-card h4 {
+            font-family: var(--heading);
+            font-size: 0.92rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .arch-card p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        /* ── Results ── */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .result-card {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 36px 24px;
+            text-align: center;
+            color: #fff;
+        }
+        .result-card .number {
+            font-family: var(--heading);
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .result-card .label {
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+        }
+
+        /* ── Reflections ── */
+        .reflect-list { margin-top: 24px; }
+        .reflect-item {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .reflect-item:last-child { border-bottom: none; }
+        .reflect-item h4 {
+            font-family: var(--heading);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .reflect-item p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.75;
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            background: #1a1a1a;
+            border-radius: 24px;
+            padding: 64px;
+            text-align: center;
+            color: #fff;
+            margin: 48px 0;
+        }
+        .cta-section h2 {
+            font-family: var(--heading);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .cta-section p {
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 32px;
+        }
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent);
+            color: #fff;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 14px 36px;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(232,83,43,0.35);
+        }
+
+        /* ── Also Like ── */
+        .also-section { padding: 64px 0; }
+        .also-heading {
+            font-family: var(--heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-secondary);
+        }
+        .also-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .also-card {
+            display: block;
+            text-decoration: none;
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .also-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        .also-card .thumb {
+            height: 160px;
+            overflow: hidden;
+        }
+        .also-card .thumb img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .also-card .info {
+            padding: 16px 20px;
+        }
+        .also-card .info h4 {
+            font-family: var(--heading);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .also-card .info span {
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px;
+            text-align: center;
+        }
+        footer p {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .wrap { padding: 0 20px; }
+            .nav { padding: 0 20px; }
+            .two-col, .journey-container { grid-template-columns: 1fr; }
+            .stats-row, .insight-grid, .arch-grid, .test-rounds { grid-template-columns: 1fr; }
+            .results-grid { grid-template-columns: 1fr 1fr; }
+            .wire-timeline { grid-template-columns: 1fr; }
+            .wire-phase::before { display: none; }
+            .hero-img { padding: 40px 20px; }
+            .hero-img img { max-height: 380px; }
+            .decision { padding: 28px; }
+            .cta-section { padding: 40px 24px; }
+            .section { padding: 48px 0; }
+            .meta-row { gap: 24px; }
+        }
+
+        /* ── Journey Map ── */
+        .journey-container {
+            margin-top: 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            background: var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .journey-col { padding: 40px 36px; }
+        .journey-col.before { background: #fdf2f0; }
+        .journey-col.after { background: #f0faf4; }
+        .journey-tag {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .journey-col.before .journey-tag { color: #c0392b; }
+        .journey-col.after .journey-tag { color: #16a34a; }
+        .journey-title {
+            font-family: var(--heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .journey-badge {
+            display: inline-block;
+            border-radius: 100px;
+            padding: 4px 14px;
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .journey-badge.bad { background: rgba(192,57,43,0.1); color: #c0392b; border: 1px solid rgba(192,57,43,0.2); }
+        .journey-badge.good { background: rgba(22,163,74,0.1); color: #16a34a; border: 1px solid rgba(22,163,74,0.2); }
+        .journey-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .j-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.6);
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 10px;
+            font-size: 0.84rem;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .j-step.pain { border-color: rgba(192,57,43,0.25); background: rgba(192,57,43,0.04); color: #c0392b; }
+        .j-step .j-num {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            width: 18px;
+            flex-shrink: 0;
+        }
+        .j-arrow {
+            width: 1px;
+            height: 8px;
+            background: rgba(0,0,0,0.1);
+            margin: 0 0 2px 25px;
+        }
+        .j-arrow.red { background: rgba(192,57,43,0.2); }
+        .j-time {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0,0,0,0.04);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 16px;
+        }
+        .j-time-label {
+            font-family: var(--mono);
+            font-size: 0.55rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+        .j-time-val {
+            font-family: var(--mono);
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+        .journey-col.before .j-time-val { color: #c0392b; }
+        .journey-col.after .j-time-val { color: #16a34a; }
+        .j-time-icon {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        .journey-col.before .j-time-icon { background: rgba(192,57,43,0.1); }
+        .journey-col.after .j-time-icon { background: rgba(22,163,74,0.1); }
+
+        /* ── Wireframes ── */
+        .wire-timeline {
+            margin-top: 48px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        .wire-phase {
+            position: relative;
+        }
+        .wire-phase::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -16px;
+            width: 32px;
+            height: 2px;
+            background: var(--border);
+        }
+        .wire-phase:last-child::before { display: none; }
+        .wire-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--accent-bg);
+            font-family: var(--heading);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        .wire-title {
+            font-family: var(--heading);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .wire-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .wire-box {
+            background: var(--bg-soft);
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .wire-box-label {
+            font-family: var(--mono);
+            font-size: 0.55rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        .wire-item {
+            font-size: 0.8rem;
+            color: var(--text);
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .wire-item:last-child { border-bottom: none; }
+        .wire-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* ── Testing ── */
+        .test-rounds {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .test-card {
+            background: var(--bg-soft);
+            border-radius: 16px;
+            padding: 32px 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        .test-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--accent);
+        }
+        .test-round-num {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .test-card h4 {
+            font-family: var(--heading);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .test-card .test-who {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.06em;
+            margin-bottom: 16px;
+        }
+        .test-findings {
+            list-style: none;
+            padding: 0;
+        }
+        .test-findings li {
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            padding: 6px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+        .test-findings li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .test-change {
+            margin-top: 14px;
+            padding: 12px 14px;
+            background: rgba(22,163,74,0.06);
+            border-radius: 10px;
+            border-left: 3px solid #16a34a;
+            font-size: 0.82rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* ── Animations ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .reveal.vis {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+    <a href="index.html">&larr; Back to Portfolio</a>
+    <span class="brand">Yalcin Oz</span>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="wrap">
+        <div class="hero-top">
+            <span class="dot"></span>
+            <span>UX Case Study &middot; Founder Project</span>
+        </div>
+        <h1>CookFromHere</h1>
+        <p class="subtitle">An AI-powered recipe app that turns your fridge contents into personalised meals. Designed, built, and shipped solo &mdash; from first sketch to production in 9 languages.</p>
+        <div class="meta-row">
+            <div class="meta-item">
+                <div class="m-label">Role</div>
+                <div class="m-value">Founder &middot; UX &middot; Dev</div>
+            </div>
+            <div class="meta-item">
+                <div class="m-label">Duration</div>
+                <div class="m-value">2 Months (Ongoing)</div>
+            </div>
+            <div class="meta-item">
+                <div class="m-label">Tools</div>
+                <div class="m-value">Figma &middot; React &middot; Supabase</div>
+            </div>
+            <div class="meta-item">
+                <div class="m-label">Platform</div>
+                <div class="m-value">Responsive Web App &amp; Mobile</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hero Image -->
+<div class="wrap">
+    <div class="hero-img reveal">
+        <img src="cookfromhere-hero.png" alt="CookFromHere App" />
+    </div>
+</div>
+
+<!-- The Problem -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">The Problem</div>
+        <h2 class="sec-title reveal">People throw away food because they don't know what to cook.</h2>
+        <p class="sec-body reveal">Every household faces the same friction: you open the fridge, see random ingredients, and can't think of what to make. Existing recipe apps expect you to search by dish name &mdash; but most people don't start with a dish in mind. They start with what they have.</p>
+        <p class="sec-body reveal">Add dietary restrictions, allergies, and cooking time constraints, and the problem multiplies. The result: wasted food, wasted time, and defaulting to takeaway.</p>
+
+        <div class="stats-row reveal">
+            <div class="stat-card">
+                <div class="number">30%</div>
+                <div class="label">Household Food Wasted Globally</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">~40m</div>
+                <div class="label">Daily "What Should I Cook" Searches</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">12+</div>
+                <div class="label">Common Allergens to Manage</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Research -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Research &amp; Discovery</div>
+        <h2 class="sec-title reveal">What I found by talking to real home cooks.</h2>
+        <p class="sec-body reveal">I interviewed 12 people across different cooking skill levels, dietary needs, and household sizes. I also analysed competitor apps (Supercook, Whisk, Yummly) to map feature gaps.</p>
+
+        <div class="insight-grid reveal">
+            <div class="insight-card">
+                <div class="i-num">Insight 01</div>
+                <h4>Ingredient entry is the dropout point</h4>
+                <p>Every competitor requires manual typing. Users gave up after entering 3&ndash;4 items. The input method IS the product's bottleneck.</p>
+            </div>
+            <div class="insight-card">
+                <div class="i-num">Insight 02</div>
+                <h4>Allergies create anxiety, not confidence</h4>
+                <p>Users with dietary restrictions didn't trust generic recipe filters. They needed explicit confirmation that a recipe was safe for them, every single time.</p>
+            </div>
+            <div class="insight-card">
+                <div class="i-num">Insight 03</div>
+                <h4>Cooking guidance matters more than the recipe</h4>
+                <p>Beginner and intermediate cooks didn't want a list of steps. They wanted someone to walk them through it, answer questions, and tell them when something looks right.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- User Journey Map -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">User Journey</div>
+        <h2 class="sec-title reveal">Mapping the "what should I cook?" moment.</h2>
+        <p class="sec-body reveal">I mapped the existing journey vs. the target experience. The goal: collapse a 15-minute frustration loop into a 60-second flow from fridge to recipe.</p>
+
+        <div class="journey-container reveal">
+            <div class="journey-col before">
+                <div class="journey-tag">Before &middot; Without CookFromHere</div>
+                <div class="journey-title">The Frustration Loop</div>
+                <div class="journey-badge bad">High friction</div>
+                <div class="journey-steps">
+                    <div class="j-step"><span class="j-num">1</span> Open fridge, stare at ingredients</div>
+                    <div class="j-arrow red"></div>
+                    <div class="j-step"><span class="j-num">2</span> Google "recipes with chicken and peppers"</div>
+                    <div class="j-arrow red"></div>
+                    <div class="j-step"><span class="j-num">3</span> Scroll through 20+ results with ads</div>
+                    <div class="j-arrow red"></div>
+                    <div class="j-step pain"><span class="j-num">4</span> Recipe needs 6 ingredients you don't have</div>
+                    <div class="j-arrow red"></div>
+                    <div class="j-step pain"><span class="j-num">5</span> Repeat search 3&ndash;4 times</div>
+                    <div class="j-arrow red"></div>
+                    <div class="j-step pain"><span class="j-num">6</span> Give up &rarr; order takeaway</div>
+                </div>
+                <div class="j-time">
+                    <div>
+                        <div class="j-time-label">Avg. time to decision</div>
+                        <div class="j-time-val">15+ min</div>
+                    </div>
+                    <div class="j-time-icon">😤</div>
+                </div>
+            </div>
+            <div class="journey-col after">
+                <div class="journey-tag">After &middot; With CookFromHere</div>
+                <div class="journey-title">Scan &rarr; Cook</div>
+                <div class="journey-badge good">Minimal friction</div>
+                <div class="journey-steps">
+                    <div class="j-step"><span class="j-num">1</span> Open app, tap Scan</div>
+                    <div class="j-arrow"></div>
+                    <div class="j-step"><span class="j-num">2</span> Photo your fridge &rarr; AI detects ingredients</div>
+                    <div class="j-arrow"></div>
+                    <div class="j-step"><span class="j-num">3</span> Set preferences (time, allergies, diet)</div>
+                    <div class="j-arrow"></div>
+                    <div class="j-step"><span class="j-num">4</span> Get 3 recipes using only YOUR ingredients</div>
+                    <div class="j-arrow"></div>
+                    <div class="j-step"><span class="j-num">5</span> Start guided cooking with AI chef</div>
+                </div>
+                <div class="j-time">
+                    <div>
+                        <div class="j-time-label">Avg. time to cooking</div>
+                        <div class="j-time-val">&lt; 60 sec</div>
+                    </div>
+                    <div class="j-time-icon">🍳</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Design Process / Wireframes -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Design Process</div>
+        <h2 class="sec-title reveal">From sketches to shipped product in 3 phases.</h2>
+        <p class="sec-body reveal">I followed a compressed design sprint approach &mdash; validating each phase with real users before moving to the next.</p>
+
+        <div class="wire-timeline reveal">
+            <div class="wire-phase">
+                <div class="wire-num">1</div>
+                <div class="wire-title">Low-Fi Wireframes</div>
+                <div class="wire-desc">Paper sketches and Figma wireframes to map the core flows. Tested with 5 users using clickable prototypes.</div>
+                <div class="wire-box">
+                    <div class="wire-box-label">Key screens mapped</div>
+                    <div class="wire-item"><span class="wire-dot"></span> Scan &rarr; Ingredient review flow</div>
+                    <div class="wire-item"><span class="wire-dot"></span> Pantry management grid</div>
+                    <div class="wire-item"><span class="wire-dot"></span> Recipe generation &amp; selection</div>
+                    <div class="wire-item"><span class="wire-dot"></span> Step-by-step cooking mode</div>
+                </div>
+            </div>
+            <div class="wire-phase">
+                <div class="wire-num">2</div>
+                <div class="wire-title">Hi-Fi Prototype</div>
+                <div class="wire-desc">Visual design in Figma with component library. Focused on the AI interaction patterns and trust signals.</div>
+                <div class="wire-box">
+                    <div class="wire-box-label">Design decisions validated</div>
+                    <div class="wire-item"><span class="wire-dot"></span> Orange accent for AI actions</div>
+                    <div class="wire-item"><span class="wire-dot"></span> Allergy badges (visible &amp; explicit)</div>
+                    <div class="wire-item"><span class="wire-dot"></span> Preferences modal placement</div>
+                    <div class="wire-item"><span class="wire-dot"></span> Cooking progress indicators</div>
+                </div>
+            </div>
+            <div class="wire-phase">
+                <div class="wire-num">3</div>
+                <div class="wire-title">Production Build</div>
+                <div class="wire-desc">React implementation with real AI integration. Iterated based on live user feedback and analytics.</div>
+                <div class="wire-box">
+                    <div class="wire-box-label">Shipped features</div>
+                    <div class="wire-item"><span class="wire-dot"></span> Gemini vision scanning</div>
+                    <div class="wire-item"><span class="wire-dot"></span> AI cooking chat assistant</div>
+                    <div class="wire-item"><span class="wire-dot"></span> Stripe subscription tiers</div>
+                    <div class="wire-item"><span class="wire-dot"></span> 9-language localisation</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Usability Testing -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Usability Testing</div>
+        <h2 class="sec-title reveal">3 rounds of testing. Each one reshaped the product.</h2>
+        <p class="sec-body reveal">I tested with real users at each phase. The biggest changes came not from what users said, but from watching where they hesitated.</p>
+
+        <div class="test-rounds reveal">
+            <div class="test-card">
+                <div class="test-round-num">Round 01 &middot; Wireframes</div>
+                <h4>Navigation &amp; Flow</h4>
+                <div class="test-who">5 participants &middot; Figma prototype</div>
+                <ul class="test-findings">
+                    <li>Users didn't understand "Pantry" as a concept</li>
+                    <li>Scan button wasn't discoverable enough</li>
+                    <li>Expected to generate recipes directly from scan results</li>
+                </ul>
+                <div class="test-change">Change: Added "Generate Recipes" button to scan results + made Scan a primary nav item</div>
+            </div>
+            <div class="test-card">
+                <div class="test-round-num">Round 02 &middot; Hi-Fi</div>
+                <h4>AI Trust &amp; Preferences</h4>
+                <div class="test-who">8 participants &middot; Interactive prototype</div>
+                <ul class="test-findings">
+                    <li>Users with allergies wanted explicit "safe" labels</li>
+                    <li>Cooking time was the #1 filter request</li>
+                    <li>AI-generated recipes needed ingredient count confirmation</li>
+                </ul>
+                <div class="test-change">Change: Added allergy badges, cooking time selector, and "uses only your ingredients" guarantee</div>
+            </div>
+            <div class="test-card">
+                <div class="test-round-num">Round 03 &middot; Live Product</div>
+                <h4>Cooking Experience</h4>
+                <div class="test-who">6 participants &middot; Real cooking sessions</div>
+                <ul class="test-findings">
+                    <li>Users forgot the AI chef button existed during cooking</li>
+                    <li>Step transitions felt abrupt without animation</li>
+                    <li>No sense of completion after finishing a recipe</li>
+                </ul>
+                <div class="test-change">Change: Added proactive AI prompts, step animations, and celebration screen with photo review</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Design Decisions -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Key Design Decisions</div>
+        <h2 class="sec-title reveal">Three decisions that defined the product.</h2>
+
+        <div class="decision reveal">
+            <div class="d-label">Decision 01</div>
+            <h3>Camera-first ingredient input</h3>
+            <p>If typing ingredients kills engagement, remove typing. I designed a scan flow where users photograph their fridge or pantry, and Google Gemini's vision API identifies ingredients automatically.</p>
+            <p>The UX challenge was managing AI uncertainty. I added an editable ingredient list after scanning so users can correct mistakes before generating recipes. This built trust without adding friction.</p>
+            <div class="outcome">
+                <p>&rarr; Scan-to-recipe takes under 15 seconds vs. 2+ minutes of manual entry in competitor apps.</p>
+            </div>
+        </div>
+
+        <div class="decision reveal">
+            <div class="d-label">Decision 02</div>
+            <h3>Preferences modal before every generation</h3>
+            <p>Most recipe apps bury dietary preferences in settings. I surface them at the moment of decision: a quick modal before generating recipes lets users set cooking time, allergies, and dietary needs per session.</p>
+            <p>Allergies are pre-filled from the user's profile but can be adjusted. This respects the "cooking for guests" scenario where today's constraints differ from your default ones.</p>
+            <div class="outcome">
+                <p>&rarr; Users reported feeling "safe" using the app for guests with allergies &mdash; a key trust signal competitors lacked.</p>
+            </div>
+        </div>
+
+        <div class="decision reveal">
+            <div class="d-label">Decision 03</div>
+            <h3>AI cooking assistant, not just a recipe card</h3>
+            <p>The guided cooking mode includes a floating AI chef button. It proactively offers help every 2 steps and answers contextual questions ("Is this too brown?", "Can I substitute butter?").</p>
+            <p>The first message is a free welcome &mdash; no API cost. This gives every user a taste of the AI assistant before they decide to engage, reducing the barrier to interaction.</p>
+            <div class="outcome">
+                <p>&rarr; AI chef engagement rate: 68% of active cooking sessions. Users described it as "having a patient friend in the kitchen."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Architecture -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Technical Execution</div>
+        <h2 class="sec-title reveal">Designed it. Then built it.</h2>
+        <p class="sec-body reveal">As the sole designer and developer, I made every architectural decision with UX in mind. The tech stack was chosen for speed, reliability, and cost efficiency within a $5/month AI budget.</p>
+
+        <div class="arch-grid reveal">
+            <div class="arch-card">
+                <div class="a-icon">⚡</div>
+                <h4>React + TypeScript</h4>
+                <p>Component-based UI with full type safety. Tailwind CSS for rapid iteration. Framer Motion for cooking animations.</p>
+            </div>
+            <div class="arch-card">
+                <div class="a-icon">🧠</div>
+                <h4>Google Gemini 2.0 Flash</h4>
+                <p>Vision API for ingredient scanning. Text API for recipe generation and cooking chat. Rate-limited per subscription tier.</p>
+            </div>
+            <div class="arch-card">
+                <div class="a-icon">🔐</div>
+                <h4>Supabase Backend</h4>
+                <p>13 edge functions handling auth, AI calls, subscriptions, and email. Row-level security on all tables.</p>
+            </div>
+            <div class="arch-card">
+                <div class="a-icon">💳</div>
+                <h4>Stripe Subscriptions</h4>
+                <p>3-tier model: Free (2 meals), Standard (7 meals), Premium (unlimited). Webhook-driven lifecycle management.</p>
+            </div>
+            <div class="arch-card">
+                <div class="a-icon">🌍</div>
+                <h4>9-Language i18n</h4>
+                <p>EN, TR, ES, PT, RU, ZH, IT, FR, DE. Browser-detected with manual override. AI responds in the user's language.</p>
+            </div>
+            <div class="arch-card">
+                <div class="a-icon">📸</div>
+                <h4>Post-Cooking Sharing</h4>
+                <p>Photo upload, star rating, and shareable dish pages with dynamic OG meta tags for social previews.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Results -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Results</div>
+        <h2 class="sec-title reveal">Shipped solo. End to end.</h2>
+        <p class="sec-body reveal">CookFromHere went from idea to production as a one-person operation: research, UX design, visual design, frontend development, backend architecture, payments, email, and internationalisation.</p>
+
+        <div class="results-grid reveal">
+            <div class="result-card">
+                <div class="number">0&rarr;1</div>
+                <div class="label">Idea to Production</div>
+            </div>
+            <div class="result-card">
+                <div class="number">9</div>
+                <div class="label">Languages Shipped</div>
+            </div>
+            <div class="result-card">
+                <div class="number">13</div>
+                <div class="label">Edge Functions</div>
+            </div>
+            <div class="result-card">
+                <div class="number">$5</div>
+                <div class="label">Monthly AI Budget</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reflections -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Reflections</div>
+        <h2 class="sec-title reveal">What building a product taught me about design.</h2>
+
+        <div class="reflect-list reveal">
+            <div class="reflect-item">
+                <h4>Designing under real constraints changes everything</h4>
+                <p>When you're also the developer paying the API bills, you design differently. Every feature gets weighed against cost, complexity, and maintenance. This made me a better designer &mdash; not a more cautious one, but a more honest one.</p>
+            </div>
+            <div class="reflect-item">
+                <h4>AI trust is earned through transparency</h4>
+                <p>Users don't blindly trust AI-generated recipes. The editable ingredient list after scanning, the visible allergy badges, and the "safe for you" confirmations all exist because early testers asked: "How do I know this is right?"</p>
+            </div>
+            <div class="reflect-item">
+                <h4>Internationalisation is a design decision, not a dev task</h4>
+                <p>Supporting 9 languages affected button widths, text hierarchy, and even the cooking flow. German labels are 40% longer than English. This forced a more resilient, flexible layout from day one.</p>
+            </div>
+            <div class="reflect-item">
+                <h4>Ship, then listen</h4>
+                <p>The post-cooking review flow, the guided cooking animations, and the proactive AI prompts were all added after watching real users interact with the first version. The best features came from observation, not assumption.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<div class="wrap">
+    <div class="cta-section reveal">
+        <h2>Try it yourself</h2>
+        <p>CookFromHere is live. Scan your ingredients and get cooking.</p>
+        <a href="https://cookfromhere.com" target="_blank" class="btn-cta">
+            Visit CookFromHere
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+</div>
+
+<!-- Also Like -->
+<section class="also-section">
+    <div class="wrap">
+        <div class="also-heading reveal">You might also like</div>
+        <div class="also-row reveal">
+            <a href="sainsburys.html" class="also-card">
+                <div class="thumb">
+                    <img src="sainsburys.png" alt="Sainsbury's Smart Basket" />
+                </div>
+                <div class="info">
+                    <h4>Sainsbury's Smart Basket</h4>
+                    <span>UX Design &middot; AI &middot; Computer Vision</span>
+                </div>
+            </a>
+            <a href="milesmiles.html" class="also-card">
+                <div class="thumb">
+                    <img src="milesmiles.png" alt="Miles & Miles" />
+                </div>
+                <div class="info">
+                    <h4>Miles &amp; Miles</h4>
+                    <span>UX Design &middot; Luxury &middot; Booking</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>Yalcin Oz &middot; UX &amp; AI Consultant &middot; London</p>
+</footer>
+
+<script>
+    const els = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
+        });
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+    els.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('vis');
+        else obs.observe(el);
+    });
+</script>
+</body>
+</html>

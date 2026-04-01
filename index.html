@@ -470,7 +470,7 @@ section { padding: 120px 40px; }
 
 .work-visual-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
 
@@ -478,7 +478,7 @@ section { padding: 120px 40px; }
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  aspect-ratio: 3/4;
+  aspect-ratio: 4/3;
   display: block;
   text-decoration: none;
   border: 1px solid var(--border);
@@ -977,8 +977,19 @@ footer {
       <a href="cookfromhere.html" class="work-tile" style="background:#1a1a1a;">
         <img src="cookfromhere-hero.png" alt="CookFromHere" style="object-fit:contain;object-position:center center;" />
         <div class="work-tile-overlay">
-          <span class="work-tile-tag">Founder · UX · Web & Mobile</span>
+          <span class="work-tile-tag">UX Design · AI · Solo Product</span>
           <h3>CookFromHere</h3>
+        </div>
+      </a>
+      <a href="yale.html" class="work-tile" style="background:linear-gradient(135deg, #3a7fd5 0%, #0057b8 50%, #003d82 100%);display:flex;align-items:center;justify-content:center;">
+        <div style="text-align:center;color:#fff;padding:40px;">
+          <div style="font-size:3rem;margin-bottom:12px;">🔔</div>
+          <div style="font-family:var(--heading);font-size:1.4rem;font-weight:700;margin-bottom:4px;">Yale Smart Doorbell</div>
+          <div style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.7;">Face Recognition · Secure Entry</div>
+        </div>
+        <div class="work-tile-overlay">
+          <span class="work-tile-tag">UX Design · IoT · Security</span>
+          <h3>Yale Smart Doorbell</h3>
         </div>
       </a>
     </div>
@@ -1501,7 +1512,8 @@ const YALCIN_KNOWLEDGE = {
   projects: {
     sainsburys: "Sainsbury's AI-Powered Autonomous Checkout. Redesigned self-checkout using computer vision and AI age estimation.",
     miles_miles: "Miles & Miles: luxury car rental platform with VIP doorstep delivery experience.",
-    cookfromhere: "CookFromHere.com, Yalcin's own product. A platform that turns your ingredients into meal ideas, reducing food waste."
+    cookfromhere: "CookFromHere.com, Yalcin's own product. A platform that turns your ingredients into meal ideas, reducing food waste.",
+    yale: "Yale Smart Doorbell concept. A facial recognition system for frictionless home entry without compromising security."
   },
   booking: {
     message: "Let's get you booked in! 🎯\n\nPick whichever works best:\n\n[[BOOK_15]]\n[[BOOK_30]]\n\nOr reach out directly:\n📧 ozayranciyalcin@gmail.com\n📞 +44 7380 888 645"
@@ -1560,7 +1572,7 @@ function findBestResponse(userMsg) {
   // Projects / Portfolio
   if (msg.match(/project|portfolio|work|case study|sainsbury|miles|cook|proje|[çc]al[ıi][sş]ma|[oö]rnek/)) {
     const p = YALCIN_KNOWLEDGE.projects;
-    return `Here are some recent projects:\n\n🛒 **${p.sainsburys}**\n\n🚗 **${p.miles_miles}**\n\n🍳 **${p.cookfromhere}**\n\nScroll down to the "Work" section for full case studies with wireframes and journey maps!`;
+    return `Here are some recent projects:\n\n🛒 **${p.sainsburys}**\n\n🚗 **${p.miles_miles}**\n\n🍳 **${p.cookfromhere}**\n\n🔔 **${p.yale}**\n\nScroll down to the "Work" section for full case studies with wireframes and journey maps!`;
   }
 
   // Contact

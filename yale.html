@@ -543,11 +543,13 @@
             .flow-grid { grid-template-columns: 1fr 1fr; }
             .flow-card::after { display: none; }
             .edge-grid { grid-template-columns: 1fr; }
-            .hero-img { padding: 40px 20px; }
+            .hero-img { padding: 0; min-height: auto; }
             .decision { padding: 28px; }
             .section { padding: 48px 0; }
             .meta-row { gap: 24px; }
             .also-row { grid-template-columns: 1fr; }
+            .proto-screens { grid-template-columns: 1fr !important; }
+            .doorbell-states { grid-template-columns: 1fr 1fr !important; }
         }
 
         /* ── Animations ── */
@@ -602,12 +604,8 @@
 
 <!-- Hero Image -->
 <div class="wrap">
-    <div class="hero-img reveal">
-        <div class="hero-illustration">
-            <div class="doorbell-icon">🔔</div>
-            <p style="font-size:1.4rem;font-family:var(--heading);font-weight:700;opacity:1;margin-bottom:8px;text-transform:none;letter-spacing:-0.02em;">Face recognised. Door unlocked.</p>
-            <p>A concept for frictionless, secure home entry</p>
-        </div>
+    <div class="hero-img reveal" style="padding:0;overflow:hidden;">
+        <img src="yale-hero.png" alt="Yale Smart Doorbell with facial recognition app mockup" style="width:100%;height:100%;object-fit:cover;position:relative;z-index:1;border-radius:20px;filter:none;" />
     </div>
 </div>
 
@@ -616,8 +614,8 @@
     <div class="wrap">
         <div class="sec-label reveal">The Problem</div>
         <h2 class="sec-title reveal">Getting into your own home shouldn't take 5 steps.</h2>
-        <p class="sec-body reveal">Yale's Smart Video Doorbell works with their smart locks through the Yale Home app. When someone rings the bell, you get a notification, open the app, check the video feed, confirm who it is, then tap to unlock. For a delivery person or a guest, that flow makes sense. For you coming home with bags of groceries, it's friction that shouldn't exist.</p>
-        <p class="sec-body reveal">The doorbell already has a camera pointed at faces all day. The question I wanted to explore: what if the system could recognise household members and offer a faster path in &mdash; without removing the security layer that makes smart locks trustworthy?</p>
+        <p class="sec-body reveal">Yale's doorbell + smart lock combo requires: ring &rarr; notification &rarr; open app &rarr; check video &rarr; tap unlock. That's fine for visitors. For you coming home with shopping bags, it's friction that shouldn't exist.</p>
+        <p class="sec-body reveal">The camera is already looking at faces. What if it could recognise you and offer a faster path in?</p>
     </div>
 </section>
 
@@ -626,7 +624,7 @@
     <div class="wrap">
         <div class="sec-label reveal">Research &amp; Discovery</div>
         <h2 class="sec-title reveal">How do people actually get into their homes?</h2>
-        <p class="sec-body reveal">I spoke with 8 people who use smart locks or video doorbells &mdash; friends, family, and a few contacts from online communities. These were informal conversations, not structured interviews. I also looked at how competitors (Ring, Nest, Aqara) handle the recognition-to-entry problem.</p>
+        <p class="sec-body reveal">Informal conversations with 8 smart lock / doorbell users, plus competitor analysis (Ring, Nest, Aqara). Not formal research &mdash; directional insights.</p>
 
         <div class="insight-grid reveal">
             <div class="insight-card">
@@ -653,7 +651,7 @@
     <div class="wrap">
         <div class="sec-label reveal">User Journey</div>
         <h2 class="sec-title reveal">From 5 steps to 1 confirmation.</h2>
-        <p class="sec-body reveal">I mapped the current Yale flow against the proposed experience. The goal wasn't to remove security &mdash; it was to remove the steps that don't add security value.</p>
+        <p class="sec-body reveal">Remove the steps that don't add security value. Keep the ones that do.</p>
 
         <div class="journey-container reveal">
             <div class="journey-col before">
@@ -707,7 +705,7 @@
     <div class="wrap">
         <div class="sec-label reveal">Proposed Flow</div>
         <h2 class="sec-title reveal">Two paths: recognised and unrecognised.</h2>
-        <p class="sec-body reveal">The core design idea is simple: if the doorbell knows who you are, it shortcuts the process. If it doesn't, it falls back to the existing secure flow. The system never auto-unlocks &mdash; it always requires one deliberate action.</p>
+        <p class="sec-body reveal">Known face &rarr; fast path. Unknown face &rarr; standard secure flow. Never auto-unlocks.</p>
 
         <div style="margin-top:48px;" class="reveal">
             <div style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Path A &middot; Recognised Face (household member)</div>
@@ -763,6 +761,94 @@
     </div>
 </section>
 
+<!-- Prototype Screens -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">Prototype Screens</div>
+        <h2 class="sec-title reveal">What the doorbell and app would show.</h2>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px;" class="reveal">
+            <!-- Screen 1: Doorbell recognises -->
+            <div style="background:var(--bg-soft);border-radius:20px;padding:24px;text-align:center;">
+                <div style="font-family:var(--mono);font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Doorbell Screen</div>
+                <div style="background:#1a1a1a;border-radius:16px;padding:32px 20px;color:#fff;margin-bottom:12px;">
+                    <div style="width:64px;height:64px;border-radius:50%;border:3px solid #22c55e;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;">👤</div>
+                    <div style="font-family:var(--heading);font-size:1.1rem;font-weight:700;margin-bottom:4px;">Hi, Yalcin</div>
+                    <div style="font-size:0.75rem;opacity:0.6;margin-bottom:20px;">Face recognised &middot; 98% match</div>
+                    <div style="background:#22c55e;color:#fff;border-radius:100px;padding:14px;font-family:var(--heading);font-weight:600;font-size:0.9rem;">🔓 Tap to Unlock</div>
+                </div>
+                <div style="font-size:0.78rem;color:var(--text-secondary);">Recognised household member</div>
+            </div>
+
+            <!-- Screen 2: App notification -->
+            <div style="background:var(--bg-soft);border-radius:20px;padding:24px;text-align:center;">
+                <div style="font-family:var(--mono);font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">App &middot; Recognised Entry</div>
+                <div style="background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px 20px;margin-bottom:12px;">
+                    <div style="font-size:0.65rem;color:var(--text-secondary);font-family:var(--mono);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;">Yale Home</div>
+                    <div style="background:var(--accent-bg);border-radius:12px;padding:16px;margin-bottom:12px;">
+                        <div style="font-size:0.7rem;color:var(--accent);font-weight:600;margin-bottom:4px;">✓ Yalcin entered</div>
+                        <div style="font-size:0.7rem;color:var(--text-secondary);">Front door &middot; 14:32</div>
+                    </div>
+                    <div style="background:var(--accent-bg);border-radius:12px;padding:16px;margin-bottom:12px;">
+                        <div style="font-size:0.7rem;color:var(--accent);font-weight:600;margin-bottom:4px;">✓ Elif entered</div>
+                        <div style="font-size:0.7rem;color:var(--text-secondary);">Front door &middot; 12:15</div>
+                    </div>
+                    <div style="font-size:0.68rem;color:var(--text-secondary);margin-top:8px;">All entries logged silently</div>
+                </div>
+                <div style="font-size:0.78rem;color:var(--text-secondary);">Passive log, no action needed</div>
+            </div>
+
+            <!-- Screen 3: Unknown visitor -->
+            <div style="background:var(--bg-soft);border-radius:20px;padding:24px;text-align:center;">
+                <div style="font-family:var(--mono);font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">App &middot; Unknown Visitor</div>
+                <div style="background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px 20px;margin-bottom:12px;">
+                    <div style="font-size:0.65rem;color:var(--text-secondary);font-family:var(--mono);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;">Yale Home</div>
+                    <div style="width:80px;height:80px;border-radius:12px;background:#f0f0f0;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:2rem;border:2px solid #e8532b;">👤</div>
+                    <div style="font-family:var(--heading);font-size:0.9rem;font-weight:600;margin-bottom:4px;color:#e8532b;">Unknown Visitor</div>
+                    <div style="font-size:0.7rem;color:var(--text-secondary);margin-bottom:16px;">Confidence: 97% &middot; Age: 28-32</div>
+                    <div style="display:flex;gap:8px;">
+                        <div style="flex:1;background:var(--accent);color:#fff;border-radius:10px;padding:10px;font-size:0.75rem;font-weight:600;">🔓 Unlock</div>
+                        <div style="flex:1;background:var(--bg-soft);color:var(--text);border-radius:10px;padding:10px;font-size:0.75rem;font-weight:600;border:1px solid var(--border);">📞 Talk</div>
+                    </div>
+                </div>
+                <div style="font-size:0.78rem;color:var(--text-secondary);">Full verification before access</div>
+            </div>
+        </div>
+
+        <!-- Doorbell states -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px;" class="reveal">
+            <div style="text-align:center;">
+                <div style="width:80px;height:80px;border-radius:50%;background:#1a1a1a;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;">
+                    <div style="width:24px;height:24px;border-radius:50%;border:2px solid #555;"></div>
+                </div>
+                <div style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-secondary);">Idle</div>
+                <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:4px;">Ring glows dim white</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="width:80px;height:80px;border-radius:50%;background:#1a1a1a;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;">
+                    <div style="width:24px;height:24px;border-radius:50%;border:2px solid var(--accent);box-shadow:0 0 12px rgba(0,87,184,0.5);"></div>
+                </div>
+                <div style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-secondary);">Scanning</div>
+                <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:4px;">Blue pulse = detecting</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="width:80px;height:80px;border-radius:50%;background:#1a1a1a;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;">
+                    <div style="width:24px;height:24px;border-radius:50%;border:2px solid #22c55e;box-shadow:0 0 12px rgba(34,197,94,0.5);"></div>
+                </div>
+                <div style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-secondary);">Recognised</div>
+                <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:4px;">Green = tap to unlock</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="width:80px;height:80px;border-radius:50%;background:#1a1a1a;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;">
+                    <div style="width:24px;height:24px;border-radius:50%;border:2px solid #e8532b;box-shadow:0 0 12px rgba(232,83,43,0.5);"></div>
+                </div>
+                <div style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-secondary);">Unknown</div>
+                <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:4px;">Orange = standard ring</div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Key Design Decisions -->
 <section class="section section-border">
     <div class="wrap">
@@ -772,30 +858,27 @@
         <div class="decision reveal">
             <div class="d-label">Decision 01</div>
             <h3>Confirmation tap, not auto-unlock</h3>
-            <p>The single biggest decision. Every person I spoke with rejected the idea of a door that opens automatically when it sees your face. Even with 99.9% accuracy, the psychological comfort of a deliberate action matters.</p>
-            <p>The tap on the doorbell serves two purposes: it's a security confirmation, and it gives the user a sense of control. You chose to open the door. The system didn't decide for you.</p>
+            <p>Everyone I spoke with rejected auto-unlock. Even with 99.9% accuracy, people want a deliberate action. The tap serves two purposes: security confirmation and psychological control. You chose to open the door &mdash; the system didn't decide for you.</p>
             <div class="outcome">
-                <p>&rarr; This keeps the interaction to one step (vs. 5 currently) while preserving the user's sense of agency and security.</p>
+                <p>&rarr; One step (vs. 5 currently), but the user's sense of agency and security is preserved.</p>
             </div>
         </div>
 
         <div class="decision reveal">
             <div class="d-label">Decision 02</div>
             <h3>On-device face processing, no cloud</h3>
-            <p>Biometric data is classified as "special category" under GDPR. Uploading face data to a cloud server creates legal exposure, breach risk, and user anxiety. The concept proposes all face matching happens on-device, with face embeddings (mathematical representations, not photos) stored locally on the doorbell.</p>
-            <p>This limits the system to household members only (no "recognise my Deliveroo driver" feature), but that constraint actually simplifies the UX and strengthens the privacy story.</p>
+            <p>Biometric data is "special category" under GDPR. All face matching happens on-device using mathematical embeddings, not photos. No cloud upload = no breach risk. This limits recognition to household members only, but that constraint simplifies the UX and strengthens the privacy story.</p>
             <div class="outcome">
-                <p>&rarr; Privacy-first architecture that reduces GDPR compliance burden and builds user trust. The trade-off: no cloud-based "smart" features like visitor history with faces.</p>
+                <p>&rarr; Privacy-first architecture. Trade-off: no cloud-based features like visitor face history.</p>
             </div>
         </div>
 
         <div class="decision reveal">
             <div class="d-label">Decision 03</div>
             <h3>Liveness detection as a non-negotiable</h3>
-            <p>Face recognition without liveness detection is a security theatre. Someone could hold up a photo of a household member and get the unlock button. The concept requires active liveness checks &mdash; depth sensing and micro-movement analysis &mdash; before showing the unlock option.</p>
-            <p>This adds a 1&ndash;2 second delay to the recognition step. I considered whether that delay would frustrate users, but in testing the prototype flow, people actually interpreted the brief pause as "the system is being careful" &mdash; which increased trust.</p>
+            <p>Without liveness detection, someone could hold up a photo and get the unlock button. The concept requires depth sensing + micro-movement analysis before showing the unlock option. This adds a 1&ndash;2 second delay &mdash; but testers interpreted the pause as "the system is being careful," which increased trust.</p>
             <div class="outcome">
-                <p>&rarr; A small delay that users perceive as thoroughness, not slowness. Security and UX aligned rather than in tension.</p>
+                <p>&rarr; A small delay perceived as thoroughness, not slowness. Security and UX aligned.</p>
             </div>
         </div>
     </div>
@@ -805,8 +888,7 @@
 <section class="section section-border">
     <div class="wrap">
         <div class="sec-label reveal">Edge Cases &amp; Security</div>
-        <h2 class="sec-title reveal">The scenarios that test whether a concept actually works.</h2>
-        <p class="sec-body reveal">A smart doorbell concept is only as good as its worst edge case. I mapped the scenarios that would break a naive implementation and designed fallbacks for each.</p>
+        <h2 class="sec-title reveal">The scenarios that break a naive implementation.</h2>
 
         <div class="edge-grid reveal">
             <div class="edge-card">
@@ -884,19 +966,19 @@
         <div class="reflect-list reveal">
             <div class="reflect-item">
                 <h4>Security and convenience aren't opposites</h4>
-                <p>The instinct is to think "more secure = more friction." But the current 5-step flow isn't more secure &mdash; it just feels like work. Facial recognition with a confirmation tap is both faster and arguably more secure than someone glancing at a video feed and tapping unlock.</p>
+                <p>The current 5-step flow isn't more secure &mdash; it just feels like work. A face match + confirmation tap is faster and arguably more secure than a quick video glance.</p>
             </div>
             <div class="reflect-item">
                 <h4>The hardest UX problems are emotional, not functional</h4>
-                <p>Everyone I spoke with understood that auto-unlock could work technically. They still didn't want it. The resistance wasn't rational &mdash; it was about feeling in control of their home. Designing for that feeling mattered more than optimising the flow.</p>
+                <p>Everyone understood auto-unlock could work technically. They still didn't want it. Designing for the feeling of control mattered more than optimising the flow.</p>
             </div>
             <div class="reflect-item">
-                <h4>GDPR isn't a constraint &mdash; it's a design tool</h4>
-                <p>Treating biometric data regulations as a design constraint actually led to a better product. On-device processing, explicit consent, instant deletion &mdash; these aren't just legal requirements, they're trust-building features that users actively want.</p>
+                <h4>GDPR is a design tool, not just a constraint</h4>
+                <p>On-device processing, explicit consent, instant deletion &mdash; these aren't just legal requirements. They're trust-building features users actively want.</p>
             </div>
             <div class="reflect-item">
-                <h4>I worked alone on this &mdash; and it shows in the research</h4>
-                <p>8 informal conversations aren't enough to validate a concept this consequential. If this were a real project, I'd want structured interviews, a larger sample with diverse demographics, and proper usability testing with physical prototypes at actual front doors.</p>
+                <h4>I worked alone &mdash; and it shows in the research</h4>
+                <p>8 informal conversations aren't enough for a concept this consequential. A real project would need structured interviews, diverse demographics, and physical prototype testing at actual front doors.</p>
             </div>
         </div>
 
@@ -904,15 +986,15 @@
         <div class="reflect-list reveal">
             <div class="reflect-item">
                 <h4>Start with Yale's real users, not assumptions</h4>
-                <p>I designed this based on general smart home user conversations. But Yale's user base might have very different attitudes toward biometrics than the tech-savvy people I spoke with. Older homeowners, families with security concerns, and people in different cultural contexts might reject or embrace this very differently.</p>
+                <p>Yale's user base likely has very different attitudes toward biometrics than the tech-savvy people I spoke with. Older homeowners, different cultural contexts &mdash; the research needs to be broader.</p>
             </div>
             <div class="reflect-item">
                 <h4>Prototype the physical interaction earlier</h4>
-                <p>I designed the flow in Figma, but the critical moment &mdash; tapping a button on a doorbell while holding shopping bags &mdash; is a physical interaction that screens can't simulate. I should have built a rough physical mockup to test the ergonomics of the tap gesture.</p>
+                <p>Tapping a doorbell button while holding shopping bags is a physical problem that screens can't simulate. I should have built a rough physical mockup to test the ergonomics.</p>
             </div>
             <div class="reflect-item">
-                <h4>Engage with the technical constraints sooner</h4>
-                <p>I designed the ideal UX first and assumed the hardware could support it. In reality, the processing power, camera quality, and IR capabilities of the Yale doorbell would significantly constrain what's possible. A real project would need hardware-software co-design from day one.</p>
+                <h4>Engage with hardware constraints sooner</h4>
+                <p>I designed the ideal UX and assumed the hardware could support it. A real project would need hardware-software co-design from day one.</p>
             </div>
         </div>
     </div>

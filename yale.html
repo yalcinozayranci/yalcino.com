@@ -13,6 +13,7 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg: #faf8f6;
+            --bg-white: #ffffff;
             --text: #1a1a1a;
             --text-secondary: #555;
             --accent: #0057b8;
@@ -52,19 +53,7 @@
         .container-wide { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
 
         /* Hero */
-        .hero {
-            padding: 140px 0 80px;
-        }
-        .hero h1 {
-            font-family: var(--heading);
-            font-size: clamp(2.8rem, 6vw, 4.2rem);
-            font-weight: 700;
-            line-height: 1.08;
-            letter-spacing: -0.03em;
-            margin-bottom: 48px;
-        }
-
-        /* Breadcrumb */
+        .hero { padding: 140px 0 0; }
         .breadcrumb {
             font-family: var(--mono);
             font-size: 0.7rem;
@@ -75,6 +64,21 @@
         .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
         .breadcrumb a:hover { color: var(--text); }
         .breadcrumb .sep { margin: 0 8px; }
+        .hero h1 {
+            font-family: var(--heading);
+            font-size: clamp(2.8rem, 6vw, 4.2rem);
+            font-weight: 700;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.75;
+            margin-bottom: 48px;
+        }
 
         /* Meta */
         .meta-grid {
@@ -84,7 +88,6 @@
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
             padding: 36px 0;
-            margin: 60px 0 0;
         }
         .meta-col h5 {
             font-family: var(--heading);
@@ -100,7 +103,7 @@
 
         /* Full bleed image */
         .full-image {
-            margin: 80px 0;
+            margin: 72px 0;
             border-radius: 16px;
             overflow: hidden;
             background: linear-gradient(135deg, #001d3d 0%, #003566 40%, #0057b8 100%);
@@ -125,6 +128,41 @@
             filter: drop-shadow(0 24px 48px rgba(0,0,0,0.35));
         }
 
+        /* Process steps indicator */
+        .process-nav {
+            display: flex;
+            gap: 0;
+            margin: 72px 0 0;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg-white);
+        }
+        .process-step {
+            flex: 1;
+            padding: 16px 12px;
+            text-align: center;
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            border-right: 1px solid var(--border);
+            transition: background 0.2s, color 0.2s;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .process-step:last-child { border-right: none; }
+        .process-step:hover { background: var(--bg); color: var(--text); }
+        .process-step .step-num {
+            display: block;
+            font-family: var(--heading);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
         /* Section headings */
         .section-heading {
             font-family: var(--heading);
@@ -132,7 +170,15 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             line-height: 1.15;
-            margin: 100px 0 32px;
+            margin: 100px 0 16px;
+        }
+        .section-why {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
         }
         .section-subheading {
             font-family: var(--heading);
@@ -245,9 +291,9 @@
         .path-green .path-result { background: var(--green); color: #fff; }
         .path-red .path-result { background: rgba(220,38,38,0.08); color: var(--red); }
 
-        /* Inline callout */
+        /* Callout */
         .callout {
-            background: #fff;
+            background: var(--bg-white);
             border-left: 3px solid var(--accent);
             padding: 24px 28px;
             border-radius: 0 12px 12px 0;
@@ -262,6 +308,55 @@
             color: var(--accent);
             margin-bottom: 8px;
         }
+
+        /* Decision cards */
+        .decision-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 32px 28px;
+            margin: 24px 0;
+        }
+        .decision-card .d-label {
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .decision-card h4 {
+            font-family: var(--heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .decision-card p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 12px; }
+        .decision-card .d-outcome {
+            background: rgba(0,87,184,0.05);
+            border-left: 3px solid var(--accent);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        /* Edge case grid */
+        .edge-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 32px 0;
+        }
+        .edge-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .edge-item h4 { font-family: var(--heading); font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+        .edge-item p { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.65; }
 
         /* CTA */
         .cta {
@@ -302,24 +397,9 @@
 
         /* Also like */
         .also { padding: 0 0 80px; }
-        .also h3 {
-            font-family: var(--heading);
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-        }
+        .also h3 { font-family: var(--heading); font-size: 1rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 24px; }
         .also-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        .also-card {
-            display: block;
-            text-decoration: none;
-            color: var(--text);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            overflow: hidden;
-            transition: border-color 0.2s, transform 0.2s;
-            background: #fff;
-        }
+        .also-card { display: block; text-decoration: none; color: var(--text); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: border-color 0.2s, transform 0.2s; background: var(--bg-white); }
         .also-card:hover { border-color: var(--accent); transform: translateY(-3px); }
         .also-card .thumb { height: 150px; overflow: hidden; }
         .also-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
@@ -327,14 +407,9 @@
         .also-card .info h4 { font-family: var(--heading); font-size: 0.92rem; font-weight: 600; }
         .also-card .info span { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
 
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 32px;
-            text-align: center;
-        }
+        footer { border-top: 1px solid var(--border); padding: 32px; text-align: center; }
         footer p { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em; color: var(--text-secondary); }
 
-        /* Reveal animation */
         .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .reveal.vis { opacity: 1; transform: translateY(0); }
 
@@ -342,13 +417,15 @@
             .container, .container-wide { padding: 0 20px; }
             .nav { padding: 0 20px; }
             .meta-grid { grid-template-columns: 1fr; gap: 24px; }
-            .journey-compare { grid-template-columns: 1fr; }
-            .two-path { grid-template-columns: 1fr; }
+            .journey-compare, .two-path, .edge-grid { grid-template-columns: 1fr; }
             .also-grid { grid-template-columns: 1fr; }
             .full-image { padding: 40px 20px; margin: 48px 0; }
             .full-image img { max-height: 280px; }
-            .section-heading { margin: 64px 0 24px; }
+            .section-heading { margin: 64px 0 12px; }
             .divider { margin: 48px 0; }
+            .process-nav { flex-direction: column; }
+            .process-step { border-right: none; border-bottom: 1px solid var(--border); }
+            .process-step:last-child { border-bottom: none; }
         }
     </style>
 </head>
@@ -359,7 +436,9 @@
     <a href="index.html">&larr; Portfolio</a>
 </nav>
 
-<!-- Hero -->
+<!-- ══════════════════════════════════════════════ -->
+<!-- HERO -->
+<!-- ══════════════════════════════════════════════ -->
 <section class="hero">
     <div class="container">
         <div class="breadcrumb">
@@ -368,6 +447,21 @@
             Yale Smart Doorbell
         </div>
         <h1>Yale Smart<br>Doorbell</h1>
+        <p class="subtitle">How might we reduce 5 unlock steps to 1 &mdash; using facial recognition, without compromising security or privacy?</p>
+        <div class="meta-grid">
+            <div class="meta-col">
+                <h5>My contribution</h5>
+                <p>User Research<br>Journey Mapping<br>Interaction Design<br>Accessibility Review</p>
+            </div>
+            <div class="meta-col">
+                <h5>Tools</h5>
+                <p>Figma<br>Protopie</p>
+            </div>
+            <div class="meta-col">
+                <h5>Duration &amp; Status</h5>
+                <p>3 weeks &middot; Solo &middot; 2026<br>Conceptual (not affiliated with Yale)</p>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -378,44 +472,69 @@
     </div>
 </div>
 
-<!-- Overview -->
+<!-- Process overview -->
 <div class="container">
-    <h2 class="section-heading reveal">Overview</h2>
+    <div class="process-nav reveal">
+        <div class="process-step"><span class="step-num">01</span>Design Review</div>
+        <div class="process-step"><span class="step-num">02</span>User Research</div>
+        <div class="process-step"><span class="step-num">03</span>User Journey</div>
+        <div class="process-step"><span class="step-num">04</span>Design Decisions</div>
+        <div class="process-step"><span class="step-num">05</span>Accessibility</div>
+        <div class="process-step"><span class="step-num">06</span>Validation</div>
+    </div>
+</div>
 
-    <p class="prose reveal">Yale's current smart doorbell requires five separate steps to let someone in: ring the bell, wait for a notification, open the app, check the video, tap unlock. For visitors, that's fine. But when you're the one standing at your own front door with shopping bags, it's a problem.</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 01 · DESIGN REVIEW -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="container">
+    <h2 class="section-heading reveal">Design review</h2>
+    <div class="section-why reveal">Why &mdash; To understand how the current product works and where the friction lives</div>
 
-    <p class="prose reveal">I explored how facial recognition could reduce this to a single tap &mdash; without compromising on security or privacy. This is a conceptual project. I'm not affiliated with Yale.</p>
+    <p class="prose reveal">I started by reviewing Yale's existing smart doorbell experience end-to-end. The current flow requires five steps to unlock: press the doorbell, wait for a push notification, open the app, check the video feed, then tap unlock.</p>
 
-    <div class="meta-grid reveal">
-        <div class="meta-col">
-            <h5>My contribution</h5>
-            <p>UX Research<br>Interaction Design<br>Concept Development</p>
-        </div>
-        <div class="meta-col">
-            <h5>Tools</h5>
-            <p>Figma<br>Protopie</p>
-        </div>
-        <div class="meta-col">
-            <h5>Duration</h5>
-            <p>3 weeks<br>Solo project &middot; 2026</p>
-        </div>
+    <p class="prose reveal">This was designed for <strong>visitors</strong>, not residents. It assumes someone inside the house is available to verify and unlock. But when the resident is the one at the door &mdash; carrying shopping, standing in the rain &mdash; they're stuck waiting for someone else to go through five steps, or they reach for a physical key.</p>
+
+    <p class="prose reveal"><strong>The core friction:</strong> the smart lock's unlock flow makes residents dependent on someone else. The "smart" part becomes the backup, not the primary method.</p>
+</div>
+
+<div class="container"><hr class="divider"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 02 · USER RESEARCH -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="container">
+    <h2 class="section-heading reveal">User research</h2>
+    <div class="section-why reveal">Why &mdash; To understand real behaviour, not just assumed pain points</div>
+
+    <p class="prose reveal">I spoke with 8 smart lock users &mdash; friends, family, and online contacts. These were informal conversations, not formal structured interviews. The insights are directional, not statistically significant. A real project would require a larger, more diverse sample.</p>
+
+    <h3 class="section-subheading reveal">Finding 1: Most people bypass their smart lock</h3>
+    <p class="prose reveal">6 out of 8 people told me they use a physical key or PIN code more than the app. <strong>Why this matters:</strong> if users avoid the "smart" feature, the product is failing at its primary value proposition. The app unlock is too slow when you're physically at the door.</p>
+
+    <h3 class="section-subheading reveal">Finding 2: Security anxiety is about letting others in</h3>
+    <p class="prose reveal">Nobody was worried about their own entry. The stress came from <strong>remote-unlocking for someone else</strong> &mdash; a delivery driver, a family member who forgot their key. <strong>Why this matters:</strong> the security model should differentiate between "me at my door" and "someone else at my door."</p>
+
+    <h3 class="section-subheading reveal">Finding 3: Nobody wants fully automatic unlock</h3>
+    <p class="prose reveal">Every single person rejected auto-unlock. Even if the tech were perfect, it felt "wrong." <strong>Why this matters:</strong> perceived control is as important as actual security. The confirmation step isn't a compromise &mdash; it's the feature.</p>
+
+    <div class="callout reveal">
+        <div class="callout-label">Key Takeaway</div>
+        <p>People want the door to know who they are. They don't want it to decide for them. The design must preserve the feeling of choice.</p>
     </div>
 </div>
 
 <div class="container"><hr class="divider"></div>
 
-<!-- The Problem -->
+<!-- ══════════════════════════════════════════════ -->
+<!-- 03 · USER JOURNEY -->
+<!-- ══════════════════════════════════════════════ -->
 <div class="container">
-    <h2 class="section-heading reveal">The problem</h2>
+    <h2 class="section-heading reveal">User journey</h2>
+    <div class="section-why reveal">Why &mdash; To map the current flow against the proposed flow and quantify the improvement</div>
 
-    <p class="prose reveal">The current unlock flow was designed for visitors, not residents. It assumes someone inside the house is available to check video and tap unlock. When you're the one at the door, you're stuck waiting for someone else to go through five steps &mdash; or you reach for your physical key anyway.</p>
+    <p class="prose reveal">I mapped the current unlock journey step by step, marking where friction and dependency occur. Then I designed a proposed flow based on the research findings: facial recognition to identify, confirmation tap to unlock.</p>
 
-    <p class="prose reveal"><strong>5 steps and 30&ndash;90 seconds to enter your own home.</strong> That's the gap I wanted to close.</p>
-</div>
-
-<!-- Journey Comparison -->
-<div class="container">
-    <h3 class="section-subheading reveal">Before and after</h3>
     <div class="journey-compare reveal">
         <div class="journey-side before">
             <div class="journey-label">Current Flow</div>
@@ -436,38 +555,11 @@
             <div class="journey-time">&lt; 5 sec</div>
         </div>
     </div>
-</div>
 
-<div class="container"><hr class="divider"></div>
+    <p class="prose reveal">The proposed flow removes the dependency on a second person. The resident interacts directly with the doorbell. Steps 3&ndash;5 of the current flow (open app, check video, tap unlock) are replaced by one action: tap the doorbell.</p>
 
-<!-- Research -->
-<div class="container">
-    <h2 class="section-heading reveal">Research</h2>
-
-    <p class="prose reveal">I spoke with 8 smart lock users &mdash; friends, family, online contacts. These were informal conversations, not formal research. Directional insights, not statistical evidence.</p>
-
-    <h3 class="section-subheading reveal">Most people bypass their smart lock</h3>
-    <p class="prose reveal">6 out of 8 people told me they use a physical key or PIN more than the app. The app unlock is just too slow when you're standing at the door. The "smart" part becomes the backup.</p>
-
-    <h3 class="section-subheading reveal">Security anxiety is about letting others in</h3>
-    <p class="prose reveal">Nobody was worried about their own entry. The stress came from remote-unlocking for someone else &mdash; a delivery driver, a family member who forgot their key. That's where things felt uncertain.</p>
-
-    <h3 class="section-subheading reveal">Nobody wants fully automatic unlock</h3>
-    <p class="prose reveal">Every single person rejected the idea of the door opening automatically when it recognises you. Even if the tech were perfect, it felt "wrong." People want to choose to open the door, even when the system already knows who they are.</p>
-
-    <div class="callout reveal">
-        <div class="callout-label">Key Insight</div>
-        <p>The feeling of control matters more than the speed of entry. A confirmation tap isn't a compromise &mdash; it's the feature.</p>
-    </div>
-</div>
-
-<div class="container"><hr class="divider"></div>
-
-<!-- Two Paths -->
-<div class="container">
-    <h2 class="section-heading reveal">Two paths</h2>
-
-    <p class="prose reveal">The core interaction splits into two flows depending on whether the camera recognises the person. Known faces get a shortcut. Unknown faces get the standard visitor experience.</p>
+    <h3 class="section-subheading reveal">Two paths: known vs unknown</h3>
+    <p class="prose reveal">The system needs to handle two distinct scenarios. I mapped separate flows for recognised household members and unrecognised visitors, because the experience &mdash; and the security requirements &mdash; are fundamentally different.</p>
 
     <div class="two-path reveal">
         <div class="path-col path-green">
@@ -490,74 +582,105 @@
 
 <div class="container"><hr class="divider"></div>
 
-<!-- Design Decisions -->
+<!-- ══════════════════════════════════════════════ -->
+<!-- 04 · DESIGN DECISIONS -->
+<!-- ══════════════════════════════════════════════ -->
 <div class="container">
-    <h2 class="section-heading reveal">Key decisions</h2>
+    <h2 class="section-heading reveal">Design decisions</h2>
+    <div class="section-why reveal">Why &mdash; To explain the reasoning behind each choice, backed by research findings</div>
 
-    <h3 class="section-subheading reveal">Confirmation tap, not auto-unlock</h3>
-    <p class="prose reveal">Everyone rejected auto-unlock. The single tap preserves agency: you chose to open the door. The result is one step instead of five, with security preserved. It's faster <em>and</em> people feel in control.</p>
+    <div class="decision-card reveal">
+        <div class="d-label">Decision 01 &mdash; Based on Research Finding 3</div>
+        <h4>Confirmation tap, not auto-unlock</h4>
+        <p>Every participant rejected auto-unlock. The single tap preserves user agency &mdash; "I chose to open the door" vs "the door decided for me." This directly addresses the research finding that perceived control matters more than speed.</p>
+        <div class="d-outcome">&rarr; Outcome: 1 step instead of 5. Faster and users feel in control.</div>
+    </div>
 
-    <h3 class="section-subheading reveal">On-device processing, no cloud</h3>
-    <p class="prose reveal">Face data is GDPR "special category" data. All matching happens on-device using embeddings, not photos. Nothing leaves the doorbell. No cloud means no breach risk. The trade-off: only household members can be enrolled, not regular visitors.</p>
+    <div class="decision-card reveal">
+        <div class="d-label">Decision 02 &mdash; GDPR &amp; Privacy Requirement</div>
+        <h4>On-device processing, no cloud</h4>
+        <p>Facial data is GDPR "special category" biometric data. All matching happens on-device using embeddings (mathematical representations), not stored photos. Nothing leaves the doorbell hardware. No cloud means no breach surface.</p>
+        <div class="d-outcome">&rarr; Outcome: Privacy-first architecture. Trade-off: only household members can enroll.</div>
+    </div>
 
-    <h3 class="section-subheading reveal">Liveness detection required</h3>
-    <p class="prose reveal">Without it, a photo held up to the camera could trigger the unlock prompt. Depth sensing plus micro-movement analysis adds 1&ndash;2 seconds of processing time. In testing, people didn't read the pause as slowness &mdash; they read it as the system being thorough.</p>
-
-    <div class="callout reveal">
-        <div class="callout-label">Outcome</div>
-        <p>Perceived thoroughness, not perceived delay. The brief pause built trust instead of eroding it.</p>
+    <div class="decision-card reveal">
+        <div class="d-label">Decision 03 &mdash; Security Requirement</div>
+        <h4>Liveness detection required</h4>
+        <p>Without liveness detection, a printed photo held to the camera could trigger the unlock prompt. Depth sensing + micro-movement analysis adds 1&ndash;2 seconds. In user feedback, participants read this pause as "the system is being thorough" rather than slow.</p>
+        <div class="d-outcome">&rarr; Outcome: Perceived thoroughness, not delay. The pause built trust.</div>
     </div>
 </div>
 
 <div class="container"><hr class="divider"></div>
 
-<!-- Edge Cases -->
+<!-- ══════════════════════════════════════════════ -->
+<!-- 05 · ACCESSIBILITY & EDGE CASES -->
+<!-- ══════════════════════════════════════════════ -->
 <div class="container">
-    <h2 class="section-heading reveal">Edge cases</h2>
+    <h2 class="section-heading reveal">Accessibility &amp; inclusive design</h2>
+    <div class="section-why reveal">Why &mdash; A biometric system must work for everyone, not just the ideal user</div>
 
-    <p class="prose reveal">A naive implementation breaks quickly. These are the scenarios I designed for:</p>
+    <p class="prose reveal">Facial recognition creates real exclusion risks. I designed fallback methods for every scenario where the primary flow might fail or be inappropriate. No user should be locked out because they can't or won't use face recognition.</p>
 
-    <h3 class="section-subheading reveal">Children under 13</h3>
-    <p class="prose reveal">GDPR restricts biometric processing for minors. Solution: face recognition plus mandatory PIN. Parents set time-based entry rules through the app.</p>
-
-    <h3 class="section-subheading reveal">Elderly household members</h3>
-    <p class="prose reveal">Face recognition is entirely opt-in. The PIN pad and physical key remain as parallel entry methods. No one gets locked out because they didn't enroll.</p>
-
-    <h3 class="section-subheading reveal">Temporary guests &amp; delivery workers</h3>
-    <p class="prose reveal">Guests get time-limited access codes through the app. Codes auto-expire and are logged. Delivery workers never trigger auto-unlock &mdash; they go through the standard video call flow.</p>
-
-    <h3 class="section-subheading reveal">Low light, weather &amp; emergencies</h3>
-    <p class="prose reveal">IR LEDs handle night recognition. Below the confidence threshold, the system falls back to PIN. For emergencies: a silent alarm PIN opens the door normally while alerting emergency contacts.</p>
+    <div class="edge-grid reveal">
+        <div class="edge-item">
+            <h4>Children under 13</h4>
+            <p>GDPR restricts biometric processing for minors. Face + mandatory PIN. Parents set time-based entry rules.</p>
+        </div>
+        <div class="edge-item">
+            <h4>Elderly members</h4>
+            <p>Face recognition is opt-in only. PIN pad and physical key remain as parallel entry methods.</p>
+        </div>
+        <div class="edge-item">
+            <h4>Temporary guests</h4>
+            <p>Time-limited access codes via app. Auto-expire and are logged. No biometric enrollment needed.</p>
+        </div>
+        <div class="edge-item">
+            <h4>Delivery workers</h4>
+            <p>Never trigger facial recognition flow. Standard video call to homeowner for remote decision.</p>
+        </div>
+        <div class="edge-item">
+            <h4>Low light &amp; weather</h4>
+            <p>IR LEDs for night. Below confidence threshold &rarr; automatic fallback to PIN entry.</p>
+        </div>
+        <div class="edge-item">
+            <h4>Emergency / duress</h4>
+            <p>Silent alarm PIN: opens door normally while silently alerting emergency contacts.</p>
+        </div>
+    </div>
 </div>
 
 <div class="container"><hr class="divider"></div>
 
-<!-- What I'd Validate -->
+<!-- ══════════════════════════════════════════════ -->
+<!-- 06 · VALIDATION & OPEN QUESTIONS -->
+<!-- ══════════════════════════════════════════════ -->
 <div class="container">
-    <h2 class="section-heading reveal">Open questions</h2>
+    <h2 class="section-heading reveal">What I'd validate next</h2>
+    <div class="section-why reveal">Why &mdash; Honest about what's unproven. This is a concept, not a shipped product.</div>
 
-    <p class="prose reveal">This is a concept, not a shipped product. There are things I can't answer without building and testing it for real:</p>
+    <p class="prose reveal"><strong>Would people actually enroll their faces?</strong> Even with on-device processing and full transparency, biometric enrollment is a big ask. I don't have real opt-in data.</p>
 
-    <p class="prose reveal"><strong>Would people actually enroll their faces?</strong> Even with on-device processing and no cloud, biometric enrollment is a big ask. I don't know what the opt-in rate would look like.</p>
+    <p class="prose reveal"><strong>Does one-tap feel secure enough in context?</strong> Prototype testing in a controlled environment isn't the same as standing at your front door at night. Physical context changes how security <em>feels</em>.</p>
 
-    <p class="prose reveal"><strong>Does one-tap feel secure enough in context?</strong> Prototype testing in a living room isn't the same as standing at your actual front door at night. Context changes everything about how security feels.</p>
-
-    <p class="prose reveal"><strong>Can doorbell hardware handle this?</strong> On-device face matching with liveness detection requires real processing power. I haven't verified whether current doorbell chipsets can support this without unacceptable latency.</p>
+    <p class="prose reveal"><strong>Can current doorbell hardware support this?</strong> On-device face matching with liveness detection requires significant processing power. I haven't verified chipset capabilities or battery impact.</p>
 </div>
 
 <div class="container"><hr class="divider"></div>
 
-<!-- Reflections -->
+<!-- ══════════════════════════════════════════════ -->
+<!-- REFLECTIONS -->
+<!-- ══════════════════════════════════════════════ -->
 <div class="container">
     <h2 class="section-heading reveal">Reflections</h2>
 
-    <p class="prose reveal"><strong>Security and convenience aren't opposites.</strong> The current 5-step flow isn't actually more secure &mdash; it just feels that way because it's more effort. A face match plus a confirmation tap is faster and arguably safer than a quick video glance from across the room.</p>
+    <p class="prose reveal"><strong>Security and convenience aren't opposites.</strong> The current 5-step flow isn't more secure &mdash; it just feels that way because it requires more effort. A face match plus confirmation is faster and arguably safer than a quick video glance from across the room.</p>
 
-    <p class="prose reveal"><strong>The hardest UX problems are emotional.</strong> Everyone understood auto-unlock could work technically. They still didn't want it. Designing for the feeling of control mattered more than optimising for speed.</p>
+    <p class="prose reveal"><strong>The hardest UX problems are emotional.</strong> Everyone understood auto-unlock could work technically. They still didn't want it. Designing for the <em>feeling</em> of control mattered more than optimising for speed.</p>
 
-    <p class="prose reveal"><strong>GDPR as a design tool, not just a constraint.</strong> On-device processing, explicit consent, instant deletion. These aren't just legal requirements &mdash; they're trust-building features. Regulations pushed the design in a better direction.</p>
+    <p class="prose reveal"><strong>GDPR as a design constraint pushed better decisions.</strong> On-device processing, explicit consent, instant deletion. Regulations forced privacy-first architecture that also happens to be a trust-building feature.</p>
 
-    <p class="prose reveal"><strong>I worked alone, and it shows in the research.</strong> 8 informal conversations isn't enough. A real project would need structured interviews, diverse demographics, and physical prototype testing at actual front doors.</p>
+    <p class="prose reveal"><strong>I worked alone, and it shows in the research.</strong> 8 informal conversations isn't enough. A real project needs structured interviews, diverse demographics, and physical prototype testing at actual front doors. I'm honest about that limitation.</p>
 </div>
 
 <!-- CTA -->

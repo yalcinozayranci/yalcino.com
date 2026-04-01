@@ -76,12 +76,6 @@
         .reflect-item h4 { font-family:var(--heading);font-size:0.95rem;font-weight:600;margin-bottom:4px; }
         .reflect-item p { color:var(--text-secondary);font-size:0.88rem;line-height:1.7; }
 
-        /* Phone mockup */
-        .phone { width:200px;border-radius:24px;background:#fff;box-shadow:0 8px 40px rgba(0,0,0,0.12);border:1px solid #e0e0e0;overflow:hidden;flex-shrink:0; }
-        .phone-status { background:#f8f8f8;padding:6px 14px;display:flex;justify-content:space-between;font-size:0.55rem;font-weight:600;color:#333;border-bottom:1px solid #eee; }
-        .phone-body { padding:14px; }
-        .phone-btn { border-radius:10px;padding:10px;text-align:center;font-size:0.7rem;font-weight:600; }
-
         /* Journey */
         .journey { display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border-radius:16px;overflow:hidden;margin-top:36px; }
         .journey-col { padding:32px 28px; }
@@ -153,65 +147,6 @@
     </div>
 </section>
 
-<!-- Prototype Screens -->
-<div class="wrap">
-    <div style="display:flex;justify-content:center;gap:24px;padding:48px 0;flex-wrap:wrap;" class="phones-row reveal">
-        <!-- Screen 1: Recognised -->
-        <div class="phone">
-            <div class="phone-status"><span>9:41</span><span>Yale Home</span><span style="font-size:0.7rem;">&#9881;</span></div>
-            <div style="background:#e8f5e9;padding:20px 14px;text-align:center;">
-                <div style="width:56px;height:56px;border-radius:50%;border:3px solid var(--green);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;background:#fff;">
-                    <span style="font-family:var(--heading);font-size:0.7rem;font-weight:700;color:var(--green);">Y</span>
-                </div>
-                <div style="font-family:var(--heading);font-size:0.85rem;font-weight:700;">Welcome, Yalcin</div>
-                <div style="font-size:0.65rem;color:var(--text-secondary);margin-top:2px;">Face matched &middot; Front door</div>
-            </div>
-            <div class="phone-body">
-                <div class="phone-btn" style="background:var(--green);color:#fff;margin-bottom:8px;">Tap to Unlock</div>
-                <div style="font-size:0.6rem;color:var(--text-secondary);text-align:center;">14:32 &middot; Today</div>
-            </div>
-        </div>
-
-        <!-- Screen 2: Unknown visitor -->
-        <div class="phone">
-            <div class="phone-status"><span>9:41</span><span>Yale Home</span><span style="font-size:0.7rem;">&#9881;</span></div>
-            <div style="background:#fff3e0;padding:20px 14px;text-align:center;">
-                <div style="width:56px;height:56px;border-radius:50%;border:3px solid #e8532b;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;background:#fff;">
-                    <span style="font-family:var(--heading);font-size:0.7rem;font-weight:700;color:#e8532b;">?</span>
-                </div>
-                <div style="font-family:var(--heading);font-size:0.85rem;font-weight:700;">Unknown Visitor</div>
-                <div style="font-size:0.65rem;color:var(--text-secondary);margin-top:2px;">No match found</div>
-            </div>
-            <div class="phone-body">
-                <div style="display:flex;gap:8px;">
-                    <div class="phone-btn" style="flex:1;background:var(--accent);color:#fff;">Unlock</div>
-                    <div class="phone-btn" style="flex:1;background:#f5f5f5;color:var(--text);">Talk</div>
-                </div>
-                <div style="font-size:0.6rem;color:var(--text-secondary);text-align:center;margin-top:8px;">Video call active</div>
-            </div>
-        </div>
-
-        <!-- Screen 3: Activity log -->
-        <div class="phone">
-            <div class="phone-status"><span>9:41</span><span>Yale Home</span><span style="font-size:0.7rem;">&#9881;</span></div>
-            <div class="phone-body" style="padding:16px 14px;">
-                <div style="font-family:var(--heading);font-size:0.8rem;font-weight:700;margin-bottom:12px;">Today's Activity</div>
-                <div style="padding:8px 10px;background:var(--bg-soft);border-radius:8px;margin-bottom:6px;font-size:0.7rem;display:flex;justify-content:space-between;">
-                    <span><span style="color:var(--green);font-weight:600;">&#10003;</span> Yalcin</span><span style="color:var(--text-secondary);">14:32</span>
-                </div>
-                <div style="padding:8px 10px;background:var(--bg-soft);border-radius:8px;margin-bottom:6px;font-size:0.7rem;display:flex;justify-content:space-between;">
-                    <span><span style="color:var(--green);font-weight:600;">&#10003;</span> Elif</span><span style="color:var(--text-secondary);">12:15</span>
-                </div>
-                <div style="padding:8px 10px;background:#fff3e0;border-radius:8px;margin-bottom:6px;font-size:0.7rem;display:flex;justify-content:space-between;">
-                    <span><span style="color:#e8532b;font-weight:600;">?</span> Unknown</span><span style="color:var(--text-secondary);">10:44</span>
-                </div>
-                <div style="padding:8px 10px;background:var(--bg-soft);border-radius:8px;font-size:0.7rem;display:flex;justify-content:space-between;">
-                    <span><span style="color:var(--green);font-weight:600;">&#10003;</span> Yalcin</span><span style="color:var(--text-secondary);">08:20</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Problem -->
 <section class="section section-border">
@@ -305,39 +240,6 @@
     </div>
 </section>
 
-<!-- Doorbell States -->
-<section class="section section-border">
-    <div class="wrap">
-        <div class="sec-label reveal">Doorbell LED States</div>
-        <h2 class="sec-title reveal">Visual feedback at the door.</h2>
-        <div style="display:flex;justify-content:center;gap:40px;margin-top:36px;flex-wrap:wrap;" class="reveal">
-            <div style="text-align:center;">
-                <div style="width:64px;height:64px;border-radius:50%;background:#1a1a1a;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;">
-                    <div style="width:20px;height:20px;border-radius:50%;border:2px solid #555;"></div>
-                </div>
-                <div style="font-family:var(--mono);font-size:0.6rem;color:var(--text-secondary);">Idle</div>
-            </div>
-            <div style="text-align:center;">
-                <div style="width:64px;height:64px;border-radius:50%;background:#1a1a1a;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;">
-                    <div style="width:20px;height:20px;border-radius:50%;border:2px solid var(--accent);box-shadow:0 0 10px rgba(0,87,184,0.5);"></div>
-                </div>
-                <div style="font-family:var(--mono);font-size:0.6rem;color:var(--text-secondary);">Scanning</div>
-            </div>
-            <div style="text-align:center;">
-                <div style="width:64px;height:64px;border-radius:50%;background:#1a1a1a;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;">
-                    <div style="width:20px;height:20px;border-radius:50%;border:2px solid var(--green);box-shadow:0 0 10px rgba(34,197,94,0.5);"></div>
-                </div>
-                <div style="font-family:var(--mono);font-size:0.6rem;color:var(--text-secondary);">Recognised</div>
-            </div>
-            <div style="text-align:center;">
-                <div style="width:64px;height:64px;border-radius:50%;background:#1a1a1a;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;">
-                    <div style="width:20px;height:20px;border-radius:50%;border:2px solid #e8532b;box-shadow:0 0 10px rgba(232,83,43,0.5);"></div>
-                </div>
-                <div style="font-family:var(--mono);font-size:0.6rem;color:var(--text-secondary);">Unknown</div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Design Decisions -->
 <section class="section section-border">

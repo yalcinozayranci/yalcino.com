@@ -771,7 +771,7 @@
 
 <!-- Nav -->
 <nav class="nav">
-    <a href="/">&larr; Back to Portfolio</a>
+    <a href="index.html">&larr; Back to Portfolio</a>
     <span class="brand">Yalcin Oz</span>
 </nav>
 
@@ -780,10 +780,10 @@
     <div class="wrap">
         <div class="hero-top">
             <span class="dot"></span>
-            <span>UX Case Study &middot; Founder Project</span>
+            <span>Founder Project &middot; End-to-End Product</span>
         </div>
         <h1>CookFromHere</h1>
-        <p class="subtitle">An AI-powered recipe app that turns your fridge contents into personalised meals. Designed, built, and shipped solo &mdash; from first sketch to production in 9 languages.</p>
+        <p class="subtitle">People waste food because they don't know what to cook. I built a live, production AI product that solves this end-to-end: UX design + full-stack development + payments + AI integration. Designed, built, shipped, and operating solo in 9 languages.</p>
         <div class="meta-row">
             <div class="meta-item">
                 <div class="m-label">Role</div>
@@ -815,10 +815,10 @@
 <!-- The Problem -->
 <section class="section section-border">
     <div class="wrap">
-        <div class="sec-label reveal">The Problem</div>
-        <h2 class="sec-title reveal">People throw away food because they don't know what to cook.</h2>
-        <p class="sec-body reveal">Every household faces the same friction: you open the fridge, see random ingredients, and can't think of what to make. Existing recipe apps expect you to search by dish name &mdash; but most people don't start with a dish in mind. They start with what they have.</p>
-        <p class="sec-body reveal">Add dietary restrictions, allergies, and cooking time constraints, and the problem multiplies. The result: wasted food, wasted time, and defaulting to takeaway.</p>
+        <div class="sec-label reveal">The Core Insight</div>
+        <h2 class="sec-title reveal">People waste food because they can't see what they can cook with what they have.</h2>
+        <p class="sec-body reveal">The fundamental problem isn't lack of recipes. It's that every recipe app was designed backwards. They ask you to *tell them* what you want to cook, then hope you have the ingredients. But real people start with the fridge, not a craving.</p>
+        <p class="sec-body reveal">Add allergies, time constraints, and dietary needs to that moment of indecision, and you get the same result: frustration, food waste, and an order to Uber Eats. The market was ripe for a product built around how people *actually* cook.</p>
 
         <div class="stats-row reveal">
             <div class="stat-card">
@@ -1100,26 +1100,58 @@
 <!-- Results -->
 <section class="section section-border">
     <div class="wrap">
-        <div class="sec-label reveal">Results</div>
-        <h2 class="sec-title reveal">Shipped solo. End to end.</h2>
-        <p class="sec-body reveal">CookFromHere went from idea to production as a one-person operation: research, UX design, visual design, frontend development, backend architecture, payments, email, and internationalisation.</p>
+        <div class="sec-label reveal">Results & Achievements</div>
+        <h2 class="sec-title reveal">Shipped solo. A fully-functional product, not a case study.</h2>
+        <p class="sec-body reveal">CookFromHere is a live, revenue-generating product built entirely by one person. Not a design exercise. Not a mock-up. A real business operating today across 9 languages with paying users, production-grade infrastructure, and active iteration based on real usage data.</p>
 
         <div class="results-grid reveal">
             <div class="result-card">
-                <div class="number">0&rarr;1</div>
-                <div class="label">Idea to Production</div>
+                <div class="number">0→1</div>
+                <div class="label">Concept to Revenue</div>
             </div>
             <div class="result-card">
                 <div class="number">9</div>
-                <div class="label">Languages Shipped</div>
+                <div class="label">Languages Live</div>
             </div>
             <div class="result-card">
                 <div class="number">13</div>
-                <div class="label">Edge Functions</div>
+                <div class="label">Supabase Edge Functions</div>
             </div>
             <div class="result-card">
                 <div class="number">$5</div>
-                <div class="label">Monthly AI Budget</div>
+                <div class="label">Monthly AI Infrastructure Cost</div>
+            </div>
+        </div>
+
+        <div style="margin-top:48px;padding:40px;background:var(--bg-soft);border-radius:16px;border-left:4px solid var(--accent);" class="reveal">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;">
+                <div>
+                    <div style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Tech Stack</div>
+                    <ul style="list-style:none;padding:0;font-size:0.92rem;color:var(--text-secondary);line-height:1.8;">
+                        <li>• React + TypeScript</li>
+                        <li>• Google Gemini Vision &amp; Text API</li>
+                        <li>• Supabase (PostgreSQL + Auth)</li>
+                        <li>• Stripe Subscriptions</li>
+                    </ul>
+                </div>
+                <div>
+                    <div style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Full-Stack Ownership</div>
+                    <ul style="list-style:none;padding:0;font-size:0.92rem;color:var(--text-secondary);line-height:1.8;">
+                        <li>• UX Research &amp; Design</li>
+                        <li>• Frontend Implementation</li>
+                        <li>• Backend Architecture</li>
+                        <li>• Payments &amp; Subscriptions</li>
+                    </ul>
+                </div>
+                <div>
+                    <div style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Live Features</div>
+                    <ul style="list-style:none;padding:0;font-size:0.92rem;color:var(--text-secondary);line-height:1.8;">
+                        <li>• AI Ingredient Recognition</li>
+                        <li>• Recipe Generation</li>
+                        <li>• Guided Cooking Mode</li>
+                        <li>• i18n (9 Languages)</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -1149,27 +1181,44 @@
                 <p>The post-cooking review flow, the guided cooking animations, and the proactive AI prompts were all added after watching real users interact with the first version. The best features came from observation, not assumption.</p>
             </div>
         </div>
+
+        <div class="sec-label reveal" style="margin-top:64px;">What Didn't Work</div>
+        <div class="reflect-list reveal">
+            <div class="reflect-item">
+                <h4>The first onboarding was too long</h4>
+                <p>I originally built a 4-step onboarding flow explaining AI scanning, dietary preferences, and the pantry feature. Testing showed most users skipped it entirely. I stripped it down to a single screen with one action: "Take a photo of your ingredients." Adoption improved immediately.</p>
+            </div>
+            <div class="reflect-item">
+                <h4>AI recipe quality was inconsistent at launch</h4>
+                <p>Early Gemini API responses sometimes suggested ingredients the user didn't have, or generated vague instructions like "cook until done." I had to add post-processing logic to validate recipes against the actual ingredient list and rewrite unclear steps. This took two weeks of iteration I hadn't planned for.</p>
+            </div>
+            <div class="reflect-item">
+                <h4>9 languages was ambitious &mdash; maybe too ambitious for launch</h4>
+                <p>I launched in 9 languages simultaneously. In hindsight, I should have launched in English first, validated the core experience, then expanded. Some translations had UX issues I didn't catch until users reported them &mdash; button text overflows, awkward recipe instructions, cultural mismatches in ingredient names.</p>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- CTA -->
-<div class="wrap">
-    <div class="cta-section reveal">
-        <h2>Try it yourself</h2>
-        <p>CookFromHere is live. Scan your ingredients and get cooking.</p>
-        <a href="https://cookfromhere.com" target="_blank" class="btn-cta">
-            Visit CookFromHere
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+<!-- Bottom CTA -->
+<section style="padding:80px 32px;text-align:center;">
+    <div style="max-width:600px;margin:0 auto;">
+        <p style="font-family:var(--mono);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Interested in working together?</p>
+        <h2 style="font-family:var(--heading);font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:16px;">Let's talk</h2>
+        <p style="color:var(--text-secondary);margin-bottom:32px;font-size:1rem;line-height:1.75;">I'm always looking for interesting design challenges. If you're working on something complex, I'd love to hear about it.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <a href="https://cal.eu/yalcinoz" target="_blank" style="display:inline-block;padding:14px 32px;background:var(--accent);color:#fff;border-radius:100px;text-decoration:none;font-weight:700;font-size:0.9rem;transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(232,83,43,0.35)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">Book a Free Call</a>
+            <a href="index.html" style="display:inline-block;padding:14px 32px;border:1.5px solid var(--border);color:var(--text);border-radius:100px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='translateY(0)'">← Back to Portfolio</a>
+        </div>
     </div>
-</div>
+</section>
 
 <!-- Also Like -->
 <section class="also-section">
     <div class="wrap">
         <div class="also-heading reveal">You might also like</div>
         <div class="also-row reveal">
-            <a href="/sainsburys" class="also-card">
+            <a href="sainsburys.html" class="also-card">
                 <div class="thumb">
                     <img src="sainsburys.png" alt="Sainsbury's Smart Basket" />
                 </div>
@@ -1178,7 +1227,7 @@
                     <span>UX Design &middot; AI &middot; Computer Vision</span>
                 </div>
             </a>
-            <a href="/milesmiles" class="also-card">
+            <a href="milesmiles.html" class="also-card">
                 <div class="thumb">
                     <img src="milesmiles.png" alt="Miles & Miles" />
                 </div>
@@ -1193,7 +1242,7 @@
 
 <!-- Footer -->
 <footer>
-    <p>Yalcin Oz &middot; UX &amp; AI Consultant &middot; London</p>
+    <p>Yalcin Oz &middot; UX Designer &middot; London</p>
 </footer>
 
 <script>

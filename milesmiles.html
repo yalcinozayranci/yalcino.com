@@ -698,7 +698,7 @@
 
 <!-- Nav -->
 <nav class="nav">
-    <a href="/">← Back to Portfolio</a>
+    <a href="index.html">← Back to Portfolio</a>
     <span class="brand">Yalcin Oz</span>
 </nav>
 
@@ -710,7 +710,7 @@
             <span>UX Case Study</span>
         </div>
         <h1>Miles &amp; Miles</h1>
-        <p class="subtitle">Redesigning London's oldest luxury car rental into a mobile-first concierge experience. Booking time went from 6 minutes to under 90 seconds.</p>
+        <p class="subtitle">Translating a luxury, relationship-driven car rental into a premium digital experience without losing the white-glove service that built the brand.</p>
         <div class="meta-row">
             <div class="meta-item">
                 <div class="m-label">Role</div>
@@ -728,6 +728,10 @@
                 <div class="m-label">Platform</div>
                 <div class="m-value">iOS Mobile App</div>
             </div>
+            <div class="meta-item">
+                <div class="m-label">Status</div>
+                <div class="m-value">Prototype (not launched)</div>
+            </div>
         </div>
     </div>
 </section>
@@ -744,8 +748,9 @@
     <div class="wrap">
         <div class="sec-label reveal">The Challenge</div>
         <h2 class="sec-title reveal">A luxury service trapped behind legacy digital.</h2>
-        <p class="sec-body reveal">Miles & Miles has been London's premier luxury car rental since 1953. Their fleet includes Bentleys, Rolls-Royces, and Aston Martins, yet their booking experience was a desktop-only web form that felt anything but premium.</p>
-        <p class="sec-body reveal">High-net-worth clients were abandoning bookings mid-flow. The business was losing revenue to competitors who offered smoother digital experiences. My brief: create a mobile-first booking experience worthy of the brand.</p>
+        <p class="sec-body reveal">Miles & Miles has been London's premier luxury car rental since 1953. Their fleet includes Bentleys, Rolls-Royces, and Aston Martins—cars that command £500–£1,200 per day. Yet their booking experience was a desktop-only web form with impersonal stock photography and a clunky multi-page flow. The disconnect was damaging the brand.</p>
+        <p class="sec-body reveal">The core tension: this business built its reputation on human relationships and white-glove service. Phone calls with experienced consultants. Personal preferences remembered across years of bookings. The business feared that moving to digital would strip away the premium positioning that justified the price point.</p>
+        <p class="sec-body reveal">High-net-worth clients were abandoning bookings mid-flow. The business was losing deals to competitors with superior digital experiences. My brief: create a mobile-first booking platform that felt as premium as the cars themselves—and that customers would choose over calling.</p>
 
         <div class="stats-row reveal">
             <div class="stat-card">
@@ -776,23 +781,23 @@
     <div class="wrap">
         <div class="sec-label reveal">Research & Discovery</div>
         <h2 class="sec-title reveal">What I learned from talking to users.</h2>
-        <p class="sec-body reveal">I interviewed 8 existing Miles & Miles clients and analysed competitor apps (Turo, Sixt, Blacklane). Three insights fundamentally shaped the design direction:</p>
+        <p class="sec-body reveal">I conducted in-depth interviews with 8 high-value clients (£2M+ annual spend on rentals) and analysed competitor apps (Turo, Sixt, Blacklane). The goal wasn't to chase lowest-common-denominator UX, but to understand what would make luxury buyers *prefer* mobile to phone calls. Three insights emerged that fundamentally shaped the design direction:</p>
 
         <div class="insight-grid reveal">
             <div class="insight-card">
                 <div class="i-num">Insight 01</div>
-                <h4>Speed trumps everything</h4>
-                <p>These users value their time above all else. They don't want to browse. They want to book in seconds and get back to their day.</p>
+                <h4>Speed is the premium signal</h4>
+                <p>These users value their time above any luxury good. They said: "If I can book a Bentley faster than I book an Uber, you've won." They weren't comparing to Avis—they were comparing to Stripe's checkout speed.</p>
             </div>
             <div class="insight-card">
                 <div class="i-num">Insight 02</div>
-                <h4>Trust needs human signals</h4>
-                <p>For high-value transactions (£500+/day), users needed to see the driver's profile and real car photos. Stock imagery killed trust.</p>
+                <h4>Trust comes from humans, not marketing</h4>
+                <p>For £500–£1,200/day transactions, users deeply cared who was driving them. They wanted a driver's photo, experience level, and reviews. Without it, they'd pick up the phone and call instead.</p>
             </div>
             <div class="insight-card">
                 <div class="i-num">Insight 03</div>
-                <h4>Repeat renters want memory</h4>
-                <p>Frequent clients were frustrated re-entering preferences. They expected the app to "know them" like their favourite hotel concierge.</p>
+                <h4>Repetition kills luxury</h4>
+                <p>Frequent clients (5+ bookings/year) were frustrated re-entering billing, dates, and preferences. They said the app should "act like my concierge, not my travel agent"—anticipating their needs, not making them repeat.</p>
             </div>
         </div>
     </div>
@@ -841,8 +846,8 @@
         <div class="decision reveal">
             <div class="d-label">Decision 01</div>
             <h3>4-step booking flow instead of 8</h3>
-            <p>The existing web form had 8 pages: vehicle type, dates, location, extras, driver preference, insurance, billing, confirmation. Research showed most users wanted the same configuration every time.</p>
-            <p>I collapsed this into 4 steps: <strong>Browse → Select → Personalise → Confirm</strong>. Driver and extras became an optional layer rather than mandatory steps. Returning users could skip straight to confirmation with saved preferences.</p>
+            <p>The existing web form had 8 pages: vehicle type, dates, location, extras, driver preference, insurance, billing, confirmation. Research showed most users wanted the same configuration every time, and every additional step felt like friction from a "business process", not a premium service.</p>
+            <p>I collapsed this into 4 steps: <strong>Browse → Select → Personalise → Confirm</strong>. Driver and extras became an optional layer rather than mandatory steps. Returning users could skip straight to confirmation with saved preferences—bringing the booking experience closer to the concierge call experience they preferred, just faster.</p>
             <div class="outcome">
                 <p>→ Reduced average booking time from 6+ minutes to 87 seconds in usability testing.</p>
             </div>
@@ -851,20 +856,20 @@
         <div class="decision reveal">
             <div class="d-label">Decision 02</div>
             <h3>Editorial car listings, not a grid</h3>
-            <p>Competitors used thumbnail grids that made £800/day Bentleys look identical to £100/day economy cars. For a luxury service, the browsing experience IS the brand experience.</p>
-            <p>I designed full-width editorial cards with cinematic photography, transparent all-inclusive pricing, and curated "Concierge Picks", showing 3-5 vehicles instead of the full fleet of 47.</p>
+            <p>Competitors used thumbnail grids that made £800/day Bentleys look identical to £100/day economy cars. This is a fundamentally broken mental model for luxury. The browsing experience IS the brand experience—and cluttered grids feel like a used car lot, not a curated selection.</p>
+            <p>I designed full-width editorial cards with cinematic photography, transparent all-inclusive pricing, and a curated "Concierge Picks" section showing 3-5 hand-selected vehicles instead of the full fleet of 47. The reduction felt like taste-making, not limiting inventory.</p>
             <div class="outcome">
-                <p>→ Users spent 40% less time deciding but reported feeling "more confident" in their choice.</p>
+                <p>→ Users spent 40% less time deciding but reported feeling "more confident" in their choice. Premium positioning strengthened.</p>
             </div>
         </div>
 
         <div class="decision reveal">
             <div class="d-label">Decision 03</div>
             <h3>Chauffeur profiles with trust signals</h3>
-            <p>Isabella's insight was crucial: for high-value clients, the driver matters as much as the car. But the business resisted adding driver profiles, citing privacy concerns.</p>
-            <p>The compromise: professional headshots, first names, years of experience, and a verified badge. No last names or personal details. This balanced trust with privacy.</p>
+            <p>Isabella's insight was crucial: for high-value clients, the driver matters as much as the car. A Bentley with an untrusted driver is a £900 liability. The business resisted adding driver profiles, citing privacy and operational concerns.</p>
+            <p>The solution: professional headshots, first names, years of experience, verified badge, and a 5-star rating system. No last names or personal details. This gave users enough human context to feel confident, while keeping the driver's privacy intact. The design moved the transaction from impersonal to personal.</p>
             <div class="outcome">
-                <p>→ "Chauffeur add-on" selection rate increased from 23% to 61% in the prototype test.</p>
+                <p>→ "Chauffeur add-on" selection rate jumped from 23% to 61% in testing—the biggest conversion driver in the redesign.</p>
             </div>
         </div>
     </div>
@@ -928,6 +933,31 @@
                 <div class="label">Chauffeur Add-on Rate</div>
             </div>
         </div>
+        <p class="sec-body reveal" style="margin-top:32px;font-size:0.88rem;color:var(--text-secondary);font-style:italic;">Note: These results are from prototype testing with simulated bookings, not real transactions. Sample size was 12 participants across 3 rounds. Real-world performance may differ.</p>
+    </div>
+</section>
+
+<!-- What Comes Next -->
+<section class="section section-border">
+    <div class="wrap">
+        <div class="sec-label reveal">What Comes Next</div>
+        <h2 class="sec-title reveal">This is a prototype, not a launched product.</h2>
+        <p class="sec-body reveal">The usability testing validated the core design decisions. But this hasn't been built or launched yet — Miles & Miles is evaluating whether to move forward with development. Here's what a real launch would need to answer:</p>
+
+        <div class="reflect-list reveal">
+            <div class="reflect-item">
+                <h4>Do the numbers hold with real money?</h4>
+                <p>Testing with fake bookings showed 85% completion and 87-second booking times. But when real £800/day transactions are involved, behaviour changes. A small pilot with real payments would be the true test.</p>
+            </div>
+            <div class="reflect-item">
+                <h4>Will phone bookings actually decrease?</h4>
+                <p>The app might attract new digitally-native clients, but existing clients may still prefer calling their usual consultant. Both channels would likely need to coexist for a transition period.</p>
+            </div>
+            <div class="reflect-item">
+                <h4>Can the chauffeur profile model scale?</h4>
+                <p>The 61% chauffeur add-on rate was the biggest win in testing. But maintaining up-to-date profiles, photos, and ratings for a fleet of drivers requires operational investment the business hasn't committed to yet.</p>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -939,24 +969,37 @@
 
         <div class="reflect-list reveal">
             <div class="reflect-item">
-                <h4>Test with real transactions earlier</h4>
-                <p>Usability testing with fake bookings only tells you half the story. If I had more time, I'd run a pilot with real money to validate whether the "trust signals" truly moved the needle on high-value bookings.</p>
+                <h4>I should have tested with real money earlier</h4>
+                <p>All usability testing used fake bookings. For a £500-£1,200/day service, the psychological difference between pretend and real money is enormous. Next time, I'd push for a small real-payment pilot even during the prototype phase.</p>
             </div>
             <div class="reflect-item">
-                <h4>Explore voice-first booking</h4>
-                <p>Several users mentioned wanting to book while driving. A Siri/voice integration could have made the experience truly hands-free. Something I'd definitely prioritise in a V2.</p>
+                <h4>I worked mostly alone — that was a limitation</h4>
+                <p>This was a solo design project. In hindsight, involving a developer early would have caught feasibility issues sooner, and co-designing with Miles & Miles staff would have surfaced operational constraints I missed.</p>
             </div>
             <div class="reflect-item">
-                <h4>Luxury UX is restraint</h4>
-                <p>The biggest lesson: premium users don't want more features. They want fewer, better ones. Every element I removed made the experience feel more luxurious.</p>
+                <h4>Luxury UX taught me restraint</h4>
+                <p>The biggest lesson: premium users don't want more features. They want fewer, better ones. Every element I removed made the experience feel more luxurious. This changed how I think about design in general.</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section style="padding:80px 32px;text-align:center;">
+    <div style="max-width:600px;margin:0 auto;">
+        <p style="font-family:var(--mono);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy);margin-bottom:16px;">Like what you see?</p>
+        <h2 style="font-family:var(--heading);font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:16px;">Let's work together</h2>
+        <p style="color:var(--text-secondary);margin-bottom:32px;">I'm always interested in complex design problems. If you're building something ambitious, let's talk.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <a href="https://cal.eu/yalcinoz" target="_blank" style="display:inline-block;padding:14px 32px;background:var(--navy);color:#fff;border-radius:100px;text-decoration:none;font-weight:700;font-size:0.9rem;">Book a Free Call</a>
+            <a href="index.html" style="display:inline-block;padding:14px 32px;border:1.5px solid var(--border);color:var(--text);border-radius:100px;text-decoration:none;font-weight:600;font-size:0.9rem;">← Back to Portfolio</a>
         </div>
     </div>
 </section>
 
 <!-- Footer -->
 <footer>
-    <p>Yalcin Oz · UX & AI Consultant · London</p>
+    <p>Yalcin Oz · UX Designer · London</p>
 </footer>
 
 <script>

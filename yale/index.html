@@ -491,11 +491,7 @@
     <h2 class="section-heading reveal">Design review</h2>
     <div class="section-why reveal">Why: To understand how the current product works and where the friction lives</div>
 
-    <p class="prose reveal">I started by reviewing Yale's existing smart doorbell experience end-to-end. The current flow requires five steps to unlock: press the doorbell, wait for a push notification, open the app, check the video feed, then tap unlock.</p>
-
-    <p class="prose reveal">This was designed for <strong>visitors</strong>, not residents. It assumes someone inside the house is available to verify and unlock. But when the resident is the one at the door (carrying shopping, standing in the rain) they're stuck waiting for someone else to go through five steps, or they reach for a physical key.</p>
-
-    <p class="prose reveal"><strong>The core friction:</strong> the smart lock's unlock flow makes residents dependent on someone else. The "smart" part becomes the backup, not the primary method.</p>
+    <p class="prose reveal">Yale’s smart doorbell needs 5 steps to unlock: press doorbell, wait for notification, open app, check video, tap unlock. The flow was built for visitors — not residents at their own door.</p>
 </div>
 
 <div class="container"><hr class="divider"></div>
@@ -507,16 +503,16 @@
     <h2 class="section-heading reveal">User research</h2>
     <div class="section-why reveal">Why: To understand real behaviour, not just assumed pain points</div>
 
-    <p class="prose reveal">I spoke with 8 smart lock users (friends, family, and online contacts). These were informal conversations, not formal structured interviews. The insights are directional, not statistically significant. A real project would require a larger, more diverse sample.</p>
+    <p class="prose reveal">I spoke with 8 smart lock users. Informal conversations, directional insights.</p>
 
     <h3 class="section-subheading reveal">Finding 1: Most people bypass their smart lock</h3>
-    <p class="prose reveal">6 out of 8 people told me they use a physical key or PIN code more than the app. <strong>Why this matters:</strong> if users avoid the "smart" feature, the product is failing at its primary value proposition. The app unlock is too slow when you're physically at the door.</p>
+    <p class="prose reveal">6 out of 8 use a physical key or PIN more than the app. The smart feature is too slow at the door.</p>
 
     <h3 class="section-subheading reveal">Finding 2: Security anxiety is about letting others in</h3>
-    <p class="prose reveal">Nobody was worried about their own entry. The stress came from <strong>remote-unlocking for someone else</strong>: a delivery driver, a family member who forgot their key. <strong>Why this matters:</strong> the security model should differentiate between "me at my door" and "someone else at my door."</p>
+    <p class="prose reveal">Nobody worried about their own entry. The stress was remote-unlocking for others.</p>
 
     <h3 class="section-subheading reveal">Finding 3: Nobody wants fully automatic unlock</h3>
-    <p class="prose reveal">Every single person rejected auto-unlock. Even if the tech were perfect, it felt "wrong." <strong>Why this matters:</strong> perceived control is as important as actual security. The confirmation step isn't a compromise. It's the feature.</p>
+    <p class="prose reveal">Every person rejected auto-unlock — even if perfect, it felt "wrong." The confirmation step isn't a compromise. It's the feature.</p>
 
     <div class="callout reveal">
         <div class="callout-label">Key Takeaway</div>
@@ -533,7 +529,7 @@
     <h2 class="section-heading reveal">User journey</h2>
     <div class="section-why reveal">Why: To map the current flow against the proposed flow and quantify the improvement</div>
 
-    <p class="prose reveal">I mapped the current unlock journey step by step, marking where friction and dependency occur. Then I designed a proposed flow based on the research findings: facial recognition to identify, confirmation tap to unlock.</p>
+    <p class="prose reveal">Current flow mapped against the proposed redesign.</p>
 
     <div class="journey-compare reveal">
         <div class="journey-side before">
@@ -556,10 +552,10 @@
         </div>
     </div>
 
-    <p class="prose reveal">The proposed flow removes the dependency on a second person. The resident interacts directly with the doorbell. Steps 3-5 of the current flow (open app, check video, tap unlock) are replaced by one action: tap the doorbell.</p>
+    <p class="prose reveal"></p>
 
     <h3 class="section-subheading reveal">Two paths: known vs unknown</h3>
-    <p class="prose reveal">The system needs to handle two distinct scenarios. I mapped separate flows for recognised household members and unrecognised visitors, because the experience and the security requirements are fundamentally different.</p>
+    <p class="prose reveal"></p>
 
     <div class="two-path reveal">
         <div class="path-col path-green">
@@ -592,21 +588,21 @@
     <div class="decision-card reveal">
         <div class="d-label">Decision 01: Based on Research Finding 3</div>
         <h4>Confirmation tap, not auto-unlock</h4>
-        <p>Every participant rejected auto-unlock. The single tap preserves user agency. "I chose to open the door" vs "the door decided for me." This directly addresses the research finding that perceived control matters more than speed.</p>
+        <p>Every participant rejected auto-unlock. One tap preserves agency: "I chose to open the door."</p>
         <div class="d-outcome">&rarr; Outcome: 1 step instead of 5. Faster and users feel in control.</div>
     </div>
 
     <div class="decision-card reveal">
         <div class="d-label">Decision 02: GDPR &amp; Privacy Requirement</div>
         <h4>On-device processing, no cloud</h4>
-        <p>Facial data is GDPR "special category" biometric data. All matching happens on-device using embeddings (mathematical representations), not stored photos. Nothing leaves the doorbell hardware. No cloud means no breach surface.</p>
+        <p>All face matching on-device using embeddings, not stored photos. Nothing leaves the hardware.</p>
         <div class="d-outcome">&rarr; Outcome: Privacy-first architecture. Trade-off: only household members can enroll.</div>
     </div>
 
     <div class="decision-card reveal">
         <div class="d-label">Decision 03: Security Requirement</div>
         <h4>Liveness detection required</h4>
-        <p>Without liveness detection, a printed photo held to the camera could trigger the unlock prompt. Depth sensing + micro-movement analysis adds 1-2 seconds. In user feedback, participants read this pause as "the system is being thorough" rather than slow.</p>
+        <p>Without liveness detection, a photo could trigger unlock. Depth sensing adds 1-2 seconds — users read this as "thorough," not slow.</p>
         <div class="d-outcome">&rarr; Outcome: Perceived thoroughness, not delay. The pause built trust.</div>
     </div>
 </div>
@@ -674,13 +670,9 @@
 <div class="container">
     <h2 class="section-heading reveal">Reflections</h2>
 
-    <p class="prose reveal"><strong>Security and convenience aren't opposites.</strong> The current 5-step flow isn't more secure. It just feels that way because it requires more effort. A face match plus confirmation is faster and arguably safer than a quick video glance from across the room.</p>
+    <p class="prose reveal"><strong>The hardest UX problems are emotional. Everyone understood auto-unlock could work. They still didn't want it. Designing for the feeling of control mattered more than speed.
 
-    <p class="prose reveal"><strong>The hardest UX problems are emotional.</strong> Everyone understood auto-unlock could work technically. They still didn't want it. Designing for the <em>feeling</em> of control mattered more than optimising for speed.</p>
-
-    <p class="prose reveal"><strong>GDPR as a design constraint pushed better decisions.</strong> On-device processing, explicit consent, instant deletion. Regulations forced privacy-first architecture that also happens to be a trust-building feature.</p>
-
-    <p class="prose reveal"><strong>I worked alone, and it shows in the research.</strong> 8 informal conversations isn't enough. A real project needs structured interviews, diverse demographics, and physical prototype testing at actual front doors. I'm honest about that limitation.</p>
+            <p class="body-text">GDPR as a constraint pushed better decisions. On-device processing, explicit consent, instant deletion — regulations forced privacy-first architecture that also builds trust.</p>
 </div>
 
 <!-- CTA -->
